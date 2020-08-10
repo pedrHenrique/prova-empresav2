@@ -3,7 +3,8 @@
  
  <h4> Branch local para constante atualização do projeto
 
-<br> <h5> 10/08/2020
+<br>  **10/08/2020**
  <br> Nova Modelagem do Projeto
  <br> Inserção de ENUM em algumas classes do Projeto
  <br> Criação de Tags
+ <br> Reformulação de algumas variáveis  
