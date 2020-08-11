@@ -9,7 +9,7 @@ public class Departamento {
 	// Variáveis
 	private long idDepartamento;
 	private String nome;
-	private int ramal;
+	private int ramal; //Adicionaro forma de contato recebendo Ramal e Email futuramente (se possível) 
 	private static Collection<Departamento> departamentoLista = new HashSet<Departamento>();
 
 	// Construtores

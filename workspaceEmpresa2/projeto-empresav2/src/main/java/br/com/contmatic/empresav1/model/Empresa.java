@@ -6,10 +6,12 @@ import java.util.HashSet;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Hours;
+import org.hibernate.validator.constraints;
 
 public class Empresa {
 
 	// Variáveis
+    @NotNull
 	private long idEmpresa;
 	private String nome;
 	private String cnpj;
