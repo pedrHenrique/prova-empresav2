@@ -158,13 +158,13 @@ public class Funcionario {
             this.contato = "(" + contato.substring(0,2) + ") " + contato.substring(2,7) + "-" + contato.substring(7);
             tipoContato = TipoContato.CELULAR;
             
-        } else if(contato.contains("@") && contato.contains(".com") && !(contato.isEmpty() && contato.length() < 5 && contato.length() > 50)) {
-            this.contato = contato;
-            tipoContato = TipoContato.EMAIL;
+		} else if(contato.contains("@") && contato.contains(".com") && !(contato.length() < 7 || contato.length() > 50)) {
+		    this.contato = contato;
+		    tipoContato = TipoContato.EMAIL;
             
-        } else {
-            throw new IllegalArgumentException("Você pode cadastrar tanto um telefone/celular quanto um email Ex.: 11941063792 ou Junior@Junior.com.br");
-        }
+		} else {
+			throw new IllegalArgumentException("Telefone ou Email cadastrados de forma errada. Apenas utilize números para cadastrar um telefone Ex: 11941063792");
+		}
     }
 	
 	public String getCep() {

@@ -24,18 +24,6 @@ public class Departamento {
 
 	}
 	
-//	public enum TelefoneType {
-//
-//	    RAMAL("Ramal", 3);
-//
-//	    private String descricao;
-//	    private int tamanho;
-//
-//	    private TelefoneType(String descricao, int tamanho) {
-//	        this.descricao = descricao;
-//	        this.tamanho = tamanho;
-//	    }
-
 	// Métodos
 
 	public Collection<Departamento> listarDepartamentos() {
