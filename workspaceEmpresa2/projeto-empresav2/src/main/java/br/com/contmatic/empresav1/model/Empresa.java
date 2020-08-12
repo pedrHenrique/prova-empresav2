@@ -3,22 +3,46 @@ package br.com.contmatic.empresav1.model;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.HashSet;
+
+import org.hibernate.validator.constraints.br.CNPJ;
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.Hours;
-import org.hibernate.validator.constraints;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class Empresa {
 
 	// Variáveis
+    
     @NotNull
+    @Max(500)
 	private long idEmpresa;
+    
+    @NotNull
+    @Size(min = 5, max = 50)
 	private String nome;
+    
+    @NotNull
+    @CNPJ
 	private String cnpj;
+    
+    @NotNull
+    @Min(8)
+    //@Pattern(regexp = "\\D")
 	private String cep;
-	private DateTimeZone dtFundacao;
+    
+	private DateTime dtFundacao;
+	
+	@NotNull
+	@Size(min = 7, max = 50)
 	private String contato;
+	
+	@NotNull
 	private TipoContato tipoContato;
+	
 	private static Collection<Empresa> empresaLista = new HashSet<Empresa>();
 
 	

@@ -4,11 +4,25 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class Departamento {
 
 	// Variáveis
+    
+    @NotNull
+    @Max(300)
 	private long idDepartamento;
+    
+    @NotNull
+    //@Pattern(regexp="A-Z")
 	private String nome;
+    
+    @NotNull
+    @Min(3)
 	private int ramal; //Adicionaro forma de contato recebendo Ramal e Email futuramente (se possível) 
 	private static Collection<Departamento> departamentoLista = new HashSet<Departamento>();
 

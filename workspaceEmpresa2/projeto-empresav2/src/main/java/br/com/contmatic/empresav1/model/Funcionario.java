@@ -4,12 +4,16 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 public class Funcionario {
 
 	// Variáveis
 	
 	private long idFuncionario;
 	private String nome;
+	
+	@CPF
 	private String cpf;
 	private String cep;
 	private String contato;
