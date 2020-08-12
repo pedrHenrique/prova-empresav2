@@ -1,10 +1,10 @@
 # prova-empresav2
  Repositório para a segundo Projeto-Prova da Contmatic<br>
  
- <h4> Branch local para constante atualização do projeto</h4>
+ <h4> Branch Develop </h4>
 
-<br>  **10/08/2020**
+<br>  **12/08/2020**
  <br> Nova Modelagem do Projeto
- <br> Inserção de ENUM em algumas classes do Projeto
- <br> Criação de Tags
- <br> Reformulação de algumas variáveis  
+ <br> Enums já inseridos e testados no projeto
+ <br> Testes de criação e utilização de Tags
+ <br> Início da utilização de Anottations 
