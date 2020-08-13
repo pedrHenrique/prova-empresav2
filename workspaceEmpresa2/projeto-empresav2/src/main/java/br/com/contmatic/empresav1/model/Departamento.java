@@ -5,25 +5,32 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 public class Departamento {
 
 	// Variáveis
     
-    @NotNull
-    @Max(300)
+    @Max(300) //301 Valor de ADM
+    @PositiveOrZero
 	private long idDepartamento;
     
-    @NotNull
-    //@Pattern(regexp="A-Z")
+    @NotBlank
+    @Pattern(regexp="[a-zA-z]+", message = "Nome invalido. Recomenda-se mudar") //Não permite receber nada que não seja de A-z
+    //@Pattern(regexp=".+@.+\\.[a-z]+", message="Email Invalido")
 	private String nome;
     
-    @NotNull
-    @Min(3)
+     
+    @Max(999)
+    @PositiveOrZero
 	private int ramal; //Adicionaro forma de contato recebendo Ramal e Email futuramente (se possível) 
+    
+    @NotEmpty //Maybe???
 	private static Collection<Departamento> departamentoLista = new HashSet<Departamento>();
 
 	// Construtores
@@ -34,8 +41,13 @@ public class Departamento {
 		salvarRegistro(this);
 	}
 
+	
 	public Departamento() {
-
+	    //Instância "Mascarada Para Enganar as Annotations"
+	    this.idDepartamento = 0;
+	    this.nome =  "admim";
+	    this.ramal = 0;
+	    
 	}
 	
 	// Métodos
@@ -45,6 +57,7 @@ public class Departamento {
 	}
 
 	public Departamento registraDep(long id, String nome, int ramal) {
+	    
 		return new Departamento(id, nome, ramal);
 	}
 
@@ -91,10 +104,12 @@ public class Departamento {
 
 	// Getters And Setters
 
+	
 	public long getIdDepartamento() {
 		return idDepartamento;
 	}
 
+	
 	public void setIdDepartamento(long idDepartamento) {
 		if (idDepartamento > 0 && idDepartamento <= 300) {
 			this.idDepartamento = idDepartamento;
@@ -107,8 +122,9 @@ public class Departamento {
 		return nome;
 	}
 
+	
 	public void setNome(String nome) {
-		if ((nome.length() >= 3) && !(nome.isEmpty())) {
+		if ((nome.length() >= 2) && !(nome.isEmpty())) {
 			this.nome = nome;
 		} else {
 			throw new IllegalArgumentException("Nome deve ter 5 ou mais caracteres!");
@@ -119,7 +135,8 @@ public class Departamento {
 	public int getRamal() {
 		return ramal;
 	}
-
+	
+	
 	public void setRamal(int ramal) {
 		if (ramal > 0 && ramal <= 999) {
 			this.ramal = ramal;

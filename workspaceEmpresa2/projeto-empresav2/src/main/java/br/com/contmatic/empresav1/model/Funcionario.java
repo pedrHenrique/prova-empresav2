@@ -8,8 +8,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CPF;
@@ -19,26 +22,31 @@ public class Funcionario {
 	// Variáveis
 	
     @NotNull
+    @Max(1500)
+    @Positive
 	private long idFuncionario;
     
-    @NotNull
+    @NotBlank
     @Size(min = 5, max = 50)
+    @Pattern(regexp="[a-zA-z]+", message = "Nome invalido. Recomenda-se mudar")
 	private String nome;
 	
-    @NotNull
+    @NotEmpty
 	@CPF
+	//Adicionar mais uma necessária
 	private String cpf;
     
     @NotNull
     @Min(8)
-	private String cep;
+	private String cep; //será um enum no futuro
     
     @Email
     @Size(min = 7, max = 50)
     @NotNull
+    @Pattern(regexp=".+@.+\\.[a-z]+", message="Email Invalido")
 	private String contato;
     
-    @NotNull
+    @NotEmpty
     @Valid
 	private TipoContato tipoContato;
     

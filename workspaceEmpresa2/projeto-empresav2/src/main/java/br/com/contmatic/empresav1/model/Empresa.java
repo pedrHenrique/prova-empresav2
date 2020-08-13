@@ -11,8 +11,12 @@ import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 public class Empresa {
@@ -21,29 +25,32 @@ public class Empresa {
     
     @NotNull
     @Max(500)
+    @Positive
 	private long idEmpresa;
     
-    @NotNull
-    @Size(min = 5, max = 50)
+    @NotBlank
+    @Pattern(regexp="[a-zA-z]+", message = "Nome invalido. Recomenda-se mudar")
 	private String nome;
     
     @NotNull
     @CNPJ
 	private String cnpj;
     
-    @NotNull
+    @NotEmpty
     @Min(8)
+    @Positive
     //@Pattern(regexp = "\\D")
-	private String cep;
+	private String cep; //Terá de ser um enum
     
 	private DateTime dtFundacao;
-
-	@Email
-	@Size(min = 7, max = 50)
-	@NotNull
-	private String contato;
 	
 	@NotNull
+	@Email
+	@Size(min = 7, max = 50)
+	@Pattern(regexp=".+@.+\\.[a-zA-z]+", message="Email Invalido")
+	private String contato;
+	
+	@NotEmpty
 	@Valid
 	private TipoContato tipoContato;
 	
