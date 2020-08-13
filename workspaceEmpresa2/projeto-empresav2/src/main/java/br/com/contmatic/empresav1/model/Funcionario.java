@@ -4,21 +4,50 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.br.CPF;
 
 public class Funcionario {
 
 	// Variáveis
 	
+    @NotNull
 	private long idFuncionario;
+    
+    @NotNull
+    @Size(min = 5, max = 50)
 	private String nome;
 	
+    @NotNull
 	@CPF
 	private String cpf;
+    
+    @NotNull
+    @Min(8)
 	private String cep;
+    
+    @Email
+    @Size(min = 7, max = 50)
+    @NotNull
 	private String contato;
+    
+    @NotNull
+    @Valid
 	private TipoContato tipoContato;
+    
+    @NotNull
+    @Max(50000)
 	private double salario;
+    
+    @NotNull
+    @Valid
 	private Departamento departamento = new Departamento();
 	private static Collection<Funcionario> funcionarioLista = new HashSet<Funcionario>();
 

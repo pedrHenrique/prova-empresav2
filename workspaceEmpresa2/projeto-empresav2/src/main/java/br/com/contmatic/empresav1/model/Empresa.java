@@ -7,6 +7,8 @@ import java.util.HashSet;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.joda.time.DateTime;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -35,12 +37,14 @@ public class Empresa {
 	private String cep;
     
 	private DateTime dtFundacao;
-	
-	@NotNull
+
+	@Email
 	@Size(min = 7, max = 50)
+	@NotNull
 	private String contato;
 	
 	@NotNull
+	@Valid
 	private TipoContato tipoContato;
 	
 	private static Collection<Empresa> empresaLista = new HashSet<Empresa>();
