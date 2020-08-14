@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 public class Departamento {
 
@@ -21,7 +22,9 @@ public class Departamento {
 	private long idDepartamento;
     
     @NotBlank
-    @Pattern(regexp="[a-zA-z]+", message = "Nome invalido. Recomenda-se mudar") //Não permite receber nada que não seja de A-z
+    @Size(max = 40)
+    //Modificação Final \/
+    @Pattern(regexp="[a-zA-z ]+", message = "Nome inapropriado. Recomenda-se mudar") //Nome não deveria ser registrado fora de um Padrão de A-z
     //@Pattern(regexp=".+@.+\\.[a-z]+", message="Email Invalido")
 	private String nome;
     
@@ -53,6 +56,9 @@ public class Departamento {
 	// Métodos
 
 	public Collection<Departamento> listarDepartamentos() {
+	    for(Departamento departamento : departamentoLista) {
+            System.out.println(departamento); //remover depois
+        }
 		return departamentoLista;
 	}
 
@@ -124,12 +130,14 @@ public class Departamento {
 
 	
 	public void setNome(String nome) {
-		if ((nome.length() >= 2) && !(nome.isEmpty())) {
-			this.nome = nome;
-		} else {
-			throw new IllegalArgumentException("Nome deve ter 5 ou mais caracteres!");
-		}
-
+	    nome = nome.replaceAll(("[ ]+"), " ");
+	    if (nome.matches("[^\\w ]|[\\d]")) { //Créditos Andre.Crespo
+	        throw new IllegalArgumentException("Por Favor, insira um nome sem caracteres especiais");
+	    } else if ((nome.length() < 2 || nome.length() > 30) || nome.isEmpty()) {
+	        throw new IllegalArgumentException("Nome deve ter 2 ou mais caracteres!");
+	    } else {
+	        this.nome = nome;
+	    }
 	}
 
 	public int getRamal() {

@@ -81,20 +81,17 @@ public class DepartamentoTest {
         }
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void teste_notifica_annotation_validator_incorreto() { 
-        ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
-        Validator validator = vf.getValidator();
-        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(departamento.registraDep(300, "PRËMØNÏÇÃØ", 99));
-
-        for(ConstraintViolation<Departamento> cv : constraintViolations) {
-            System.out.println(String.format("Erro Encontrado! propriedade: [%s], value: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()));
-        }
+        departamento.registraDep(300, "                ", 99);
+        departamento.listarDepartamentos();
     }
 
-    @Test //Refatorar Futuramente
+    @Test (expected = IllegalArgumentException.class)
     public void teste_notifica_annotation_validator_lista_incorreto() { 
-        departamento.registraDep(89, "             ", 285);
+        //Cadastrando diversos departamentos com nomes que não devem ser registrados
+        departamento.registraDep(89, "JuniorCleribeisonSilva457932JordinhoDoideiraTotal", 285);
+        departamento.registraDep(90, "PRËMØNÏÇÃØ", 285);
         departamento.registraDep(88, "_¢8²¹²³²7!|øYžÕ#b", 405);
 
         ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
@@ -111,6 +108,7 @@ public class DepartamentoTest {
                 System.out.println(String.format("Erro Encontrado! propriedade: [%s], value: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()));
             }
         }
+        departamento.listarDepartamentos();
     }
 
     @Test // Testa criando o obj pelo construtor
