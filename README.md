@@ -13,3 +13,5 @@
   <br> Início da Utilização do Guava
   <br> Início da remoção de todos os If/Else do Projeto (começando por Departamento)
   <br> descoberta de falhas no regex escrito recentemente
+  <br> Utilização de Annottations em todas as classes, fase de testes.
+ 
