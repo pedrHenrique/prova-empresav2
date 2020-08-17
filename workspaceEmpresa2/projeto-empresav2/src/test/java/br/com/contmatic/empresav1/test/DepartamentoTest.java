@@ -196,6 +196,11 @@ public class DepartamentoTest {
     public void teste_setNome_valor_vazio() {
         dep.setNome(EMPTYSTR);
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void teste_setNome_valor_nao_permitido() {
+        dep.setNome("¥$Õ¨¬Q@#%");
+    }
 
     @Test
     public void teste_setId_e_getId_correto() {
@@ -213,6 +218,11 @@ public class DepartamentoTest {
     public void teste_setId_valor_vazio() {
         dep.setIdDepartamento(EMPTYID);
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void teste_setId_valor_nao_permitido() {
+        dep.setIdDepartamento(-5);
+    }
 
     @Test
     public void teste_setRamal_e_getId_correto() {
@@ -228,6 +238,11 @@ public class DepartamentoTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void teste_setRamal_valor_vazio() {
+        dep.setRamal(EMPTYINT);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void teste_setRamal_valor_nao_permitido() {
         dep.setRamal(EMPTYINT);
     }
 
