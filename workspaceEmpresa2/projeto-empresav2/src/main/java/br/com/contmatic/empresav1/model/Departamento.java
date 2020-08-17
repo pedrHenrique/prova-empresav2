@@ -10,12 +10,8 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
-import com.google.common.base.Preconditions;
-import com.google.common.base.Verify;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.base.Verify.verify;
 
 public class Departamento {
@@ -34,7 +30,7 @@ public class Departamento {
     @PositiveOrZero
     private int ramal; // Adicionaro forma de contato recebendo Ramal e Email futuramente (se possível)
 
-    @NotEmpty // Maybe???
+    //@NotEmpty // Maybe???
     private static Collection<Departamento> departamentoLista = new HashSet<>();
 
     // Construtores
@@ -46,7 +42,6 @@ public class Departamento {
     }
 
     public Departamento() {
-        // Instância "Mascarada Para Enganar as Annotations"
 
     }
 
@@ -65,7 +60,8 @@ public class Departamento {
     }
 
     private void salvarRegistro(Departamento departamento) {
-        checkArgument(departamentoLista.contains(departamento), getIdDepartamento() + " já possui registro\n"); 
+        System.out.println("\n--Departamento: " + departamento); // <- Para Testes
+        verify(!(departamentoLista.contains(checkNotNull(departamento))), getIdDepartamento() + " já possui registro\n"); 
         departamentoLista.add(departamento);
     }
 

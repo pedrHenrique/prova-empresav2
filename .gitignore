@@ -2,4 +2,6 @@
 \workspaceEmpresa2\.metadata\.log
 \workspaceEmpresa2\.metadata\*.log
 *.log
+workspaceEmpresa2\.metadata\.plugins\org.eclipse.m2e.logback.configuration\0.log
+workspaceEmpresa2\.metadata\.plugins\org.eclipse.m2e.logback.configuration\0.log
 workspaceEmpresa2/.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log

@@ -21,6 +21,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import com.google.common.base.VerifyException;
+
 import br.com.contmatic.empresav1.model.Departamento;
 import br.com.contmatic.empresav1.model.Funcionario;
 
@@ -29,7 +31,7 @@ public class DepartamentoTest {
 
     private static final String NULLSTR = null;
     private static final String EMPTYSTR = "";
-    private static final Long NULLID = null;
+    private static final Long NULLONG = null;
     private static final Long EMPTYID = (long) 0;
     private static final Object NULLINT = null;
     private static final int EMPTYINT = 0;
@@ -130,7 +132,7 @@ public class DepartamentoTest {
 
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = VerifyException.class)
     public void teste_objeto_criado_ja_existente_() {
         long id = 1;
         dep.registraDep(id, "Financeiro", 226);
@@ -138,7 +140,7 @@ public class DepartamentoTest {
 
     @Test(expected = NullPointerException.class)
     public void teste_objeto_sendo_criado_nulo_() {
-        dep = new Departamento(NULLID, "Qualidade", 250);
+        dep = new Departamento(NULLONG, "Qualidade", 250);
 
     }
 
@@ -211,7 +213,7 @@ public class DepartamentoTest {
 
     @Test(expected = NullPointerException.class)
     public void teste_setId_valor_nulo() {
-        dep.setIdDepartamento(NULLID);
+        dep.setIdDepartamento(NULLONG);
     }
 
     @Test(expected = IllegalArgumentException.class)

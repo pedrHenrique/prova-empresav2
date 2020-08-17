@@ -16,8 +16,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Verify.verify;
 
 public class Empresa {
 
@@ -98,11 +101,8 @@ public class Empresa {
 	}
 
 	private void salvaRegistro(Empresa departamento) {
-		if (empresaLista.contains(departamento)) {
-			throw new IllegalArgumentException("A empresa: " + getIdEmpresa() + " já possui registro\n");
-		} else {
-			empresaLista.add(departamento);
-		}
+	    verify(!(empresaLista.contains(checkNotNull(departamento))), "A empresa: " + getIdEmpresa() + " já possui registro\n");
+		empresaLista.add(departamento);
 	}
 
 	public Empresa removeEmpresa(long id) {
@@ -128,11 +128,8 @@ public class Empresa {
 	}
 
 	public void setIdEmpresa(long idEmpresa) {
-		if (idEmpresa > 0 && idEmpresa <= 500) {
-			this.idEmpresa = idEmpresa;
-		} else {
-			throw new IllegalArgumentException("O ID da empresa deve ser maior que zero e menor que 500!");
-		}
+	    checkArgument(idEmpresa > 0 && idEmpresa <= 500, "O ID da empresa deve ser maior que zero e menor que 500!");
+		this.idEmpresa = checkNotNull(idEmpresa);
 	}
 
 	public String getNome() {
@@ -140,11 +137,10 @@ public class Empresa {
 	}
 
 	public void setNome(String nome) {
-		if ((nome.length() >= 5) && !(nome.isEmpty())) {
-			this.nome = nome;
-		} else {
-			throw new IllegalArgumentException("Nome deve ter 5 ou mais caracteres!");
-		}
+	    //Será modificado no futuro
+        nome = checkNotNull(nome.replaceAll(("[ ]+"), " "));
+        checkArgument(!(nome.matches("[^\\w ]|[\\d]")) && (nome.length() > 2 && nome.length() < 30), "Nome não pode conter caracteres especiais ou um tamanho muito grande"); // Créditos Andre.Crespo
+        this.nome = nome;
 	}
 
 	public String getCnpj() {
@@ -152,13 +148,11 @@ public class Empresa {
 	}
 
 	public void setCnpj(String cnpj) {
-		String aux = cnpj.replaceAll("\\D", "");
-		if (aux.length() == 14) {
-			this.cnpj = aux.substring(0,2) + "." + aux.substring(2,5) + "." + aux.substring(5,8) +
-					"/" + aux.substring(8,12) + "-" + aux.substring(12,14);
-		} else {
-			throw new IllegalArgumentException("Digite apenas os números do CNPJ!!"); //Ex CNPJ: 00.000.000/0001-00
-		}
+		cnpj = checkNotNull(cnpj.replaceAll("\\D", ""));
+		checkArgument(cnpj.length() == 14, "Digite apenas os números do CNPJ!!");
+		this.cnpj = cnpj.substring(0,2) + "." + cnpj.substring(2,5) + "." + cnpj.substring(5,8) +
+					"/" + cnpj.substring(8,12) + "-" + cnpj.substring(12,14);
+		
 	}
 
 	public String getCep() {
@@ -166,13 +160,9 @@ public class Empresa {
 	}
 
 	public void setCep(String cep) {
-		String aux = cep.replaceAll("\\D", "");
-		if (aux.length() == 8) {
-			this.cep = aux.substring(0,5) + "-" + aux.substring(5,8);
-		} else {
-			throw new IllegalArgumentException("Digite apenas os números do CEP"); //Ex CNPJ: 03575-090
-		}
-		
+		cep = checkNotNull(cep.replaceAll("\\D", ""));
+		checkArgument(cep.length() == 8, "Digite apenas os números do CEP");
+		this.cep = cep.substring(0,5) + "-" + cep.substring(5,8);
 	}
 
 	public String getContato() { //(11) 4564-9304 

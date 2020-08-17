@@ -20,7 +20,7 @@ public class EmpresaTest {
 	
 	private static final String NULLSTR = null;
 	private static final String EMPTYSTR = "";
-	private static final Long NULLID = (Long) null;
+	private static final Long NULLONG = (Long) null;
 	private static final Long EMPTYID = (long) 0;
 	private static Empresa EmpresaTest;
 	private Empresa empresa;  // criado para testar diferença de instâncias 
@@ -85,8 +85,8 @@ public class EmpresaTest {
 	
 	@Test(expected = java.lang.NullPointerException.class)
 	public void teste_objeto_sendo_criado_nulo_() {
-		empresa = new Empresa(NULLID, "HoHoHo", "89270828000173", "04789050", "1125064896");
-		empresa.registraEmpresa(NULLID, "HoHoHo", "89270828000173", "04789050", "1125064896");
+		empresa = new Empresa(NULLONG, "HoHoHo", "89270828000173", "04789050", "1125064896");
+		empresa.registraEmpresa(NULLONG, "HoHoHo", "89270828000173", "04789050", "1125064896");
 	}
 	
 	@Test
@@ -129,7 +129,7 @@ public class EmpresaTest {
 
 	@Test(expected = java.lang.NullPointerException.class)
 	public void teste_setId_valor_nulo() {
-		empresa.setIdEmpresa(NULLID);
+		empresa.setIdEmpresa(NULLONG);
 	}
 
 	@Test(expected = java.lang.IllegalArgumentException.class)
