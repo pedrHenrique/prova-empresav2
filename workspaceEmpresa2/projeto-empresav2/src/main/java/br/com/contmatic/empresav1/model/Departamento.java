@@ -5,32 +5,52 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.base.Verify.verify;
+
+/*
+ * From StackOverflow
+ * 
+ * Verify is used to ensure that Code which has been engineered to do a 
+ * certain thing is actually doing that thing. In spirit:
+ * 
+ * Preconditions are expected to fail when bad input is passed to a certain portion of the program 
+ * A precondition check ensures that the caller of a public method has obeyed the requirements of the method's specification
+ * 
+ * P.S.: Eu sei que isso é rambiarra, mas será útil ter essa informação para quando eu precisar decidir
+ */
 
 public class Departamento {
 
     // Variáveis
-    @Max(300) // 0 Valor de ADM
-    @PositiveOrZero
+    @NotBlank
+    @Max(300) 
+    @Positive
     private long idDepartamento;
 
-    @Size(max = 40)
-    // Modificação Final \/
-    @Pattern(regexp = "[a-zA-z ]+", message = "Nome inapropriado. Recomenda-se mudar") // Nome não deveria ser registrado fora de um Padrão de A-z
+    @NotBlank
+    @Length(min = 2, max = 40)
+    // TODO modificar e testar o [^\\w]+
+    @Pattern(regexp = "[^\\w]+", message = "Nome inapropriado. Recomenda-se mudar") // Nome não deveria ser registrado fora de um Padrão de A-z
     private String nome;
 
-    @Max(999)
-    @PositiveOrZero
+    @Range(min = 1, max = 999)
+    @Positive
     private int ramal; // Adicionaro forma de contato recebendo Ramal e Email futuramente (se possível)
 
-    //@NotEmpty // Maybe???
+    // @NotEmpty // Maybe???
     private static Collection<Departamento> departamentoLista = new HashSet<>();
 
     // Construtores
@@ -48,7 +68,7 @@ public class Departamento {
     // Métodos
 
     public Collection<Departamento> listarDepartamentos() {
-        for(Departamento departamento : departamentoLista) {
+        for(Departamento departamento : departamentoLista) {// remover depois
             System.out.println(departamento); // remover depois
 
         }
@@ -60,8 +80,7 @@ public class Departamento {
     }
 
     private void salvarRegistro(Departamento departamento) {
-        System.out.println("\n--Departamento: " + departamento); // <- Para Testes
-        verify(!(departamentoLista.contains(checkNotNull(departamento))), getIdDepartamento() + " já possui registro\n"); 
+        verify(!(departamentoLista.contains(checkNotNull(departamento))), getIdDepartamento() + " já possui registro\n");
         departamentoLista.add(departamento);
     }
 
@@ -69,33 +88,25 @@ public class Departamento {
         Iterator<Departamento> iterator = getDepartamentoLista().iterator();
         Departamento obj = new Departamento();
 
-        while (iterator.hasNext()) {
+        while (iterator.hasNext() && obj.getIdDepartamento() != id) {
             obj = iterator.next();
-            if (obj.getIdDepartamento() != id && !(iterator.hasNext())) {
-                throw new IllegalArgumentException("Departamento " + id + " não foi encontrado\n");
-            } else if (obj.getIdDepartamento() == id) {
-                return obj;
-            }
         }
-        return null;
-
+        
+        verify(obj.getIdDepartamento() == id, "O Departamento " + id + " não foi encontrado\n");
+        return obj;
     }
 
     public Departamento removeDep(long id) {
         Iterator<Departamento> iterator = getDepartamentoLista().iterator();
         Departamento obj = new Departamento();
-        while (iterator.hasNext()) {
-            obj = iterator.next();
 
-            if (obj.getIdDepartamento() != id && !(iterator.hasNext())) {
-                throw new IllegalArgumentException("O Departamento " + id + " não existe\n");
-            } else if (obj.getIdDepartamento() == id) {
-                iterator.remove();
-                break;
-            }
-            //checkArgument(obj.getIdDepartamento() != id && !(iterator.hasNext()), "O Departamento " + id + " não existe\n");
-            //verify(obj.getIdDepartamento() == id);
+        while (iterator.hasNext() && obj.getIdDepartamento() != id) {
+            obj = iterator.next();
         }
+        verify(obj.getIdDepartamento() == id, "Departamento " + id + " não existe\n");
+        iterator.remove();
+        listarDepartamentos().toString();
+        
         return obj;
     }
 
@@ -118,18 +129,8 @@ public class Departamento {
         // Formata campos com espaço vazio
         // Impede a utilização de números, caracteres especiais e valores nulos
         nome = nome.replaceAll(("[ ]+"), " ");
-        checkArgument(!(nome.matches("[^\\w ]|[\\d]")) && (nome.length() > 2 && nome.length() < 30), "Nome não pode conter caracteres especiais ou um tamanho muito grande"); // Créditos Andre.Crespo
+        checkArgument(nome.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕçÇ ]+") && (nome.length() > 2 && nome.length() < 30), "Departamento não pode conter caracteres especiais, acentos ou um tamanho muito grande");
         this.nome = checkNotNull(nome);
-
-        // Código Antigo
-        // nome = nome.replaceAll(("[ ]+"), " ");
-        // if (nome.matches("[^\\w ]|[\\d]")) { //Créditos Andre.Crespo
-        // throw new IllegalArgumentException("Por Favor, insira um nome sem caracteres especiais");
-        // } else if ((nome.length() < 2 || nome.length() > 30) || nome.isEmpty()) {
-        // throw new IllegalArgumentException("Nome deve ter 2 ou mais caracteres!");
-        // } else {
-        // this.nome = nome;
-
     }
 
     public int getRamal() {

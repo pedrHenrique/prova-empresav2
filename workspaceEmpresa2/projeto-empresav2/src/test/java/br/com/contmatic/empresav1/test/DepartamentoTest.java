@@ -4,7 +4,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -24,7 +23,6 @@ import org.junit.runners.MethodSorters;
 import com.google.common.base.VerifyException;
 
 import br.com.contmatic.empresav1.model.Departamento;
-import br.com.contmatic.empresav1.model.Funcionario;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DepartamentoTest {
@@ -70,6 +68,9 @@ public class DepartamentoTest {
      * Está seção de testes tem o intuito de testar os métodos de criação dos objetos da classe
      */
 
+    //TODO Testes de Departamento Precisam ser revistos e alguns removidos
+    
+    
     @Test
     public void teste_annotation_validator_correto() { // Código Retirado do Stack Overflow
         ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
@@ -84,17 +85,24 @@ public class DepartamentoTest {
     }
 
     @Test (expected = IllegalArgumentException.class)
-    public void teste_notifica_annotation_validator_incorreto() { 
-        departamento.registraDep(300, "                ", 99);
-        departamento.listarDepartamentos();
+    public void teste_registra_departamento_nome_espacosEmBranco() { 
+        departamento.registraDep(50, "                ", 99);
+    }
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void teste_registra_departamento_nome_comNumeros() { 
+        departamento.registraDep(88, "Cleber4578Araujo", 405);  
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void teste_notifica_annotation_validator_lista_incorreto() { 
         //Cadastrando diversos departamentos com nomes que não devem ser registrados
-        departamento.registraDep(89, "JuniorCleribeisonSilva457932JordinhoDoideiraTotal", 285);
-        departamento.registraDep(90, "PRËMØNÏÇÃØ", 285);
-        departamento.registraDep(88, "_¢8²¹²³²7!|øYžÕ#b", 405);
+        departamento.registraDep(80, "PRËMØNÏÇÃØ", 285);
+        departamento.registraDep(81, "_¢8²¹²³²7!|øYžÕ#b", 405);
+        departamento.registraDep(82, "Patrícia", 405);
+        departamento.registraDep(83, "Bárbara", 405);
+        departamento.registraDep(84, "[][][][]][", 405);
+        
 
         ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
         Validator validator = vf.getValidator();
@@ -148,14 +156,14 @@ public class DepartamentoTest {
      * Está seção de testes tem o intuito de testar os métodos de remoção dos objetos da classe
      */
 
-    @Test
+    @Test //TODO Testes de Remoção Precisão ser refatorados
     public void teste_remocao_objeto_existente() {
         long id = 250;
         assertThat("Os objetos deveriam ser iguais: ", new Departamento(id, "Rogerio", 145), equalTo(dep.removeDep(id)));
 
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = VerifyException.class)
     public void teste_remocao_objeto_nao_existente() {
         long id = 179;
         dep.removeDep(id);
@@ -172,7 +180,7 @@ public class DepartamentoTest {
         assertNotNull("Esperava receber um objeto", dep.solicitaDep(3));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = VerifyException.class)
     public void teste_busca_departamento_nao_existente() {
         dep.solicitaDep(50); // deve falhar
 
@@ -227,7 +235,7 @@ public class DepartamentoTest {
     }
 
     @Test
-    public void teste_setRamal_e_getId_correto() {
+    public void teste_setRamal_e_getRamal_correto() {
         int num = 456;
         dep.setRamal(num);
         assertThat("Os valores deveriam ser iguais: ", num, equalTo(dep.getRamal()));
@@ -245,7 +253,7 @@ public class DepartamentoTest {
     
     @Test(expected = IllegalArgumentException.class)
     public void teste_setRamal_valor_nao_permitido() {
-        dep.setRamal(EMPTYINT);
+        dep.setRamal(9420);
     }
 
     /*

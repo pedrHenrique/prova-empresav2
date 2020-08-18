@@ -15,6 +15,8 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.br.CPF;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -25,43 +27,50 @@ public class Funcionario {
 
     // Variáveis
 
-    @NotNull
-    @Max(1500)
+    //Número máximo de funcionarios é 3000 e seus valores só podem ser positivos
+    @Max(3000)
     @Positive
     private long idFuncionario;
 
-    @NotBlank
-    @Size(min = 5, max = 50)
-    @Pattern(regexp = "[a-zA-z]+", message = "Nome invalido. Recomenda-se mudar")
+    //Nome não pode estar vazio, possui um tamanho específico, e uma recomendação de expressão regular
+    @Length(min = 3, max = 40)
+    @Pattern(regexp = "[^\\w]+", message = "Nome invalido. Recomenda-se mudar")
     private String nome;
 
+    //CPF não pode estar vazio e possui seu próprio tipo de annotation
     @NotEmpty
     @CPF
-    // Adicionar mais uma necessária
     private String cpf;
 
-    @NotNull
+    //Cep não pode ser vazio e deve sempre ter o valor mínimo de 8 caracteres
+    @NotBlank
     @Min(8)
-    private String cep; // será um enum no futuro
+    @Pattern(regexp = "[\\D-]") // Testar Futuramente
+    private String cep; //TODO Cep será um enum no futuro
 
+    //Email possui sua própria annotation, tamanho, expressão regular, e não deve estar vazio
     @Email
     @Size(min = 7, max = 50)
-    @NotNull
     @Pattern(regexp = ".+@.+\\.[a-z]+", message = "Email Invalido")
     private String contato;
 
-    @NotEmpty
+    //tipoContato sempre será um valor de referência presente na classe, portanto ele não poderá ser nulo
+    @NotNull
     @Valid
     private TipoContato tipoContato;
-
-    @NotNull
-    @Max(50000)
+    
+    //Salario possui um valor mínimo, máximo e sempre deve ser positivo
+    @Positive
+    @NotBlank //aceita long
+    @Range(min = 1, max = 50000)
     private double salario;
 
     @NotNull
     @Valid
     private Departamento departamento = new Departamento();
-    private static Collection<Funcionario> funcionarioLista = new HashSet<Funcionario>();
+    private static Collection<Funcionario> funcionarioLista = new HashSet<>();
+    
+    //TODO Ajuste Salario.
 
     // Construtores
 
@@ -90,16 +99,12 @@ public class Funcionario {
     public Funcionario solicitaFuncionario(long id) {
         Iterator<Funcionario> iterator = getFuncionarioLista().iterator();
         Funcionario obj = new Funcionario();
-        while (iterator.hasNext()) {
+        while (iterator.hasNext() && obj.getIdFuncionario() != id) {
             obj = iterator.next();
-
-            if (obj.getIdFuncionario() != id && !(iterator.hasNext())) {
-                throw new IllegalArgumentException("O Funcionario com o ID: " + id + " não existe\n");
-            } else if (obj.getIdFuncionario() == id) {
-                break;
-            }
         }
+        verify(obj.getIdFuncionario() == id, "O Funcionario com o ID: " + id + " não existe\n");
         return obj;
+        
     }
 
     public Funcionario cadastraFuncionario(long id, String nome, String cpf, String cep, String email, long dep, double salario) {
@@ -110,16 +115,11 @@ public class Funcionario {
         Iterator<Funcionario> iterator = getFuncionarioLista().iterator();
         Funcionario obj = new Funcionario();
 
-        while (iterator.hasNext()) {
+        while (iterator.hasNext() && obj.getIdFuncionario() != id) {
             obj = iterator.next();
-
-            if (obj.getIdFuncionario() != id && !(iterator.hasNext())) {
-                throw new IllegalArgumentException(" com o ID: " + id + " não existe\n");
-            } else if (obj.getIdFuncionario() == id) {
-                iterator.remove();
-                break;
-            }
         }
+        verify(obj.getIdFuncionario() == id, "Funcionario com o ID: " + id + " não existe\n");
+        iterator.remove();
         return obj;
     }
 
@@ -155,7 +155,8 @@ public class Funcionario {
     public void setNome(String nome) {
         // Será modificado no futuro
         nome = checkNotNull(nome.replaceAll(("[ ]+"), " "));
-        checkArgument(!(nome.matches("[^\\w ]|[\\d]")) && (nome.length() > 2 && nome.length() < 30), "Nome não pode conter caracteres especiais ou um tamanho muito grande"); // Créditos Andre.Crespo
+        //Nome poderá ser completo, possuir acentos, espaços, e caracteres de caixa alta e baixa.
+        checkArgument(nome.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+") && (nome.length() >= 3 && nome.length() <= 40), "Nome não pode conter caracteres especiais ou um tamanho muito grande"); 
         this.nome = nome;
     }
 
@@ -176,6 +177,8 @@ public class Funcionario {
     }
 
     public void setContato(String contato) {
+      //TESTAR TRY-CATCH
+        
         if (contato.replaceAll("\\D", "").length() == 10) {
             this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 6) + "-" + contato.substring(6);
             tipoContato = TipoContato.FIXO;

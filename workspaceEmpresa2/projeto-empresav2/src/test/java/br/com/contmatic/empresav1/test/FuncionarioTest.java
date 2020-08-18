@@ -12,6 +12,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import com.google.common.base.VerifyException;
+
 import br.com.contmatic.empresav1.model.Departamento;
 import br.com.contmatic.empresav1.model.Funcionario;
 
@@ -37,6 +39,8 @@ public class FuncionarioTest {
 
         dep = new Departamento(1, " DepTestes", 256);
         funcionario.cadastraFuncionario(1, "Ana", "56495985096", "03575090", "testeMatic@cont.com", 1, 3500.00);
+        funcionario.cadastraFuncionario(2, "Patrícia Áurea Érica Júnior", "23818613940", "27971764", "testeMatic@cont.com", 1, 5500.00);
+        funcionario.cadastraFuncionario(3, "Irene Leonardi Biazibeti", "60178475971", "49082030", "testeMatic@cont.com", 1, 10000.00);
 
     }
 
@@ -64,28 +68,28 @@ public class FuncionarioTest {
 
     @Test
     public void teste_criando_objeto_construtor() {
-        long id = 2;
+        long id = 10;
         fun = new Funcionario(id, "Joana", "45495985096", "03575090", "testeMatic@cont.com", 1, 1500.00);
         assertThat("O Obj esperado era:", fun, equalTo(funcionario.solicitaFuncionario(id)));
     }
 
     @Test
     public void teste_objeto_criado_por_metodo_com_parametros() {
-        long id = 3;
+        long id = 11;
         assertThat("O Obj esperado era:", fun.cadastraFuncionario(id, "Cleber", "71477403000", "69915890", "testeMatic@cont.com", 1, 1500.79), equalTo(funcionario.solicitaFuncionario(id)));
         assertNotNull("O objeto não deveria estar nulo", Funcionario.getFuncionarioLista().contains(funcionario.solicitaFuncionario(id)));
     }
 
-    @Test(expected = java.lang.IllegalArgumentException.class)
+    @Test(expected = VerifyException.class)
     public void teste_pessoa_criada_ja_existente() {
         long id = 1;
         fun.cadastraFuncionario(id, "Rogerinho", "45664899804", "69915890", "junior@Junior.com", 1, 50.79);
     }
 
-    @Test(expected = java.lang.IllegalArgumentException.class)
-    @Ignore("Teste ignorado pois funcionalidade ainda não está presente")
+    @Test(expected = IllegalArgumentException.class)
+    @Ignore("Teste_ignorado_pois_funcionalidade_ainda_não_está_presente")
     public void teste_pessoa_criada_com_cpf_ja_existente() {
-        long id = 4;
+        long id = 13;
         fun.cadastraFuncionario(id, "Rogerinho", "56495985096", "69915890", "junior@Junior.com", 1, 50.79);
     }
 
@@ -106,13 +110,13 @@ public class FuncionarioTest {
 
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = VerifyException.class)
     public void teste_remocao_pessoa_nao_existente() {
         long id = 500;
         fun.removeFuncionario(id);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = VerifyException.class)
     public void teste_solicita_pessoa_nao_existente() {
         long id = 500;
         fun.solicitaFuncionario(id);
@@ -158,6 +162,12 @@ public class FuncionarioTest {
         String name = new String("Carlos Alberto");
         fun.setNome(name);
         assertThat("Os valores deveriam ser iguais", name, equalTo(fun.getNome()));
+    }
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void teste_setNome_e_getNome_nome_incorreto() {
+        String name = new String("PRËMØNÏÇÃØ");
+        fun.setNome(name);
     }
 
     @Test(expected = NullPointerException.class)
@@ -250,7 +260,7 @@ public class FuncionarioTest {
         assertThat("Os departamentos deveriam ser iguais", fun.buscaDepartamento(dep.solicitaDep(id)), equalTo(depart.solicitaDep(id)));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = VerifyException.class)
     public void teste_funcionario_busca_departamento_inexistente() {
         long id = 193;
         fun.buscaDepartamento(dep.solicitaDep(id));
