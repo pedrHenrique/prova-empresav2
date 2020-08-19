@@ -76,16 +76,21 @@ public class EmpresaTest {
     }
 
     @Test(expected = VerifyException.class)
-    public void teste_objeto_criado_ja_existente_() {
+    public void teste_objeto_criado_ja_existente() {
         long id = 1;
         empresa = new Empresa(id, "HoHoHo", "89270828000173", "04789050", "1125064896");
 
     }
 
     @Test(expected = NullPointerException.class)
-    public void teste_objeto_sendo_criado_nulo_() {
-        empresa = new Empresa(NULLONG, "HoHoHo", "89270828000173", "04789050", "1125064896");
-        empresa.registraEmpresa(NULLONG, "HoHoHo", "89270828000173", "04789050", "1125064896");
+    public void teste_objeto_sendo_criado_nulo() {
+        empresa = new Empresa(NULLONG, "HoHoHo", "89270828000173", "04789050", "1125064896");       
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void teste_objeto_sendo_criado_com_valores_de_contato_errado() {
+        empresa = new Empresa(65, "KakaKu", "89270828000173", "04789050", "tatATaTA!");        
+        System.out.println(empresa);
     }
 
     @Test

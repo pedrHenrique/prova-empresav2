@@ -27,41 +27,41 @@ public class Funcionario {
 
     // Variáveis
 
-    //Número máximo de funcionarios é 3000 e seus valores só podem ser positivos
+    // Número máximo de funcionarios é 3000 e seus valores só podem ser positivos
     @Max(3000)
     @Positive
     private long idFuncionario;
 
-    //Nome não pode estar vazio, possui um tamanho específico, e uma recomendação de expressão regular
+    // Nome não pode estar vazio, possui um tamanho específico, e uma recomendação de expressão regular
     @Length(min = 3, max = 40)
     @Pattern(regexp = "[^\\w]+", message = "Nome invalido. Recomenda-se mudar")
     private String nome;
 
-    //CPF não pode estar vazio e possui seu próprio tipo de annotation
+    // CPF não pode estar vazio e possui seu próprio tipo de annotation
     @NotEmpty
     @CPF
     private String cpf;
 
-    //Cep não pode ser vazio e deve sempre ter o valor mínimo de 8 caracteres
+    // Cep não pode ser vazio e deve sempre ter o valor mínimo de 8 caracteres
     @NotBlank
     @Min(8)
     @Pattern(regexp = "[\\D-]") // Testar Futuramente
-    private String cep; //TODO Cep será um enum no futuro
+    private String cep; // TODO Cep será um enum no futuro
 
-    //Email possui sua própria annotation, tamanho, expressão regular, e não deve estar vazio
+    // Email possui sua própria annotation, tamanho, expressão regular, e não deve estar vazio
     @Email
     @Size(min = 7, max = 50)
     @Pattern(regexp = ".+@.+\\.[a-z]+", message = "Email Invalido")
     private String contato;
 
-    //tipoContato sempre será um valor de referência presente na classe, portanto ele não poderá ser nulo
+    // tipoContato sempre será um valor de referência presente na classe, portanto ele não poderá ser nulo
     @NotNull
     @Valid
     private TipoContato tipoContato;
-    
-    //Salario possui um valor mínimo, máximo e sempre deve ser positivo
+
+    // Salario possui um valor mínimo, máximo e sempre deve ser positivo
     @Positive
-    @NotBlank //aceita long
+    @NotBlank // aceita long
     @Range(min = 1, max = 50000)
     private double salario;
 
@@ -69,8 +69,8 @@ public class Funcionario {
     @Valid
     private Departamento departamento = new Departamento();
     private static Collection<Funcionario> funcionarioLista = new HashSet<>();
-    
-    //TODO Ajuste Salario.
+
+    // TODO Ajuste Salario.
 
     // Construtores
 
@@ -104,7 +104,7 @@ public class Funcionario {
         }
         verify(obj.getIdFuncionario() == id, "O Funcionario com o ID: " + id + " não existe\n");
         return obj;
-        
+
     }
 
     public Funcionario cadastraFuncionario(long id, String nome, String cpf, String cep, String email, long dep, double salario) {
@@ -155,8 +155,8 @@ public class Funcionario {
     public void setNome(String nome) {
         // Será modificado no futuro
         nome = checkNotNull(nome.replaceAll(("[ ]+"), " "));
-        //Nome poderá ser completo, possuir acentos, espaços, e caracteres de caixa alta e baixa.
-        checkArgument(nome.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+") && (nome.length() >= 3 && nome.length() <= 40), "Nome não pode conter caracteres especiais ou um tamanho muito grande"); 
+        // Nome poderá ser completo, possuir acentos, espaços, e caracteres de caixa alta e baixa.
+        checkArgument(nome.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+") && (nome.length() >= 3 && nome.length() <= 40), "Nome não pode conter caracteres especiais ou um tamanho muito grande");
         this.nome = nome;
     }
 
@@ -177,22 +177,23 @@ public class Funcionario {
     }
 
     public void setContato(String contato) {
-      //TESTAR TRY-CATCH
+        checkNotNull(contato, "Contato não pode estar vazio");
+        int aux = (contato.replaceAll("\\D", "").length());
         
-        if (contato.replaceAll("\\D", "").length() == 10) {
-            this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 6) + "-" + contato.substring(6);
-            tipoContato = TipoContato.FIXO;
-
-        } else if (contato.replaceAll("\\D", "").length() == 11) {
-            this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 7) + "-" + contato.substring(7);
-            tipoContato = TipoContato.CELULAR;
-
-        } else if (contato.contains("@") && contato.contains(".com") && !(contato.length() < 7 || contato.length() > 50)) {
-            this.contato = contato;
-            tipoContato = TipoContato.EMAIL;
-
-        } else {
-            throw new IllegalArgumentException("Telefone ou Email cadastrados de forma errada. Apenas utilize números para cadastrar um telefone Ex: 11941063792");
+        switch (aux) {
+            case 10:
+                this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 6) + "-" + contato.substring(6);
+                tipoContato = TipoContato.FIXO; break;
+                
+            case 11:
+                this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 7) + "-" + contato.substring(7);
+                tipoContato = TipoContato.CELULAR; break;
+                
+            default:
+                checkArgument(contato.contains("@") && contato.contains(".com") && !(contato.length() < 7 || contato.length() > 50),
+                    "O contato inserido não corresponde a nenhum email ou telefone/celular." + "\n Digite apenas os números do telefone. ");
+                this.contato = contato;
+                tipoContato = TipoContato.EMAIL;
         }
     }
 

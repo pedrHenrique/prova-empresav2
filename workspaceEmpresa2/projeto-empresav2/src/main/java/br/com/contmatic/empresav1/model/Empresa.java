@@ -27,37 +27,37 @@ public class Empresa {
 
     // Variáveis
 
-    //ID terá de ser positivo e possui um valor máximo que pode ser atribuido
+    // ID terá de ser positivo e possui um valor máximo que pode ser atribuido
     @Max(500)
     @Positive
     private long idEmpresa;
 
-    //O nome da empresa não pode estar vazio, possui um tamanho específico, e uma recomendação de expressão regular
+    // O nome da empresa não pode estar vazio, possui um tamanho específico, e uma recomendação de expressão regular
     @NotBlank
     @Length(min = 2, max = 50)
     @Pattern(regexp = "[a-zA-Z0-9_-! ]+", message = "Nome invalido. Recomenda-se mudar")
     private String nome;
 
-    //CNPJ não pode estar vazio e possui seu próprio tipo de annotation
-    @NotEmpty 
+    // CNPJ não pode estar vazio e possui seu próprio tipo de annotation
+    @NotEmpty
     @CNPJ
     private String cnpj;
 
     @NotBlank
     @Min(8)
     @Pattern(regexp = "[\\D-]") // Testar Futuramente
-    private String cep; //TODO Cep será um enum no futuro
+    private String cep; // TODO Cep será um enum no futuro
 
     private DateTime dtFundacao;
-    
-    //Email possui sua própria annotation, tamanho, expressão regular, e não deve estar vazio
+
+    // Email possui sua própria annotation, tamanho, expressão regular, e não deve estar vazio
     @Email
     @Size(min = 7, max = 50)
     @Pattern(regexp = ".+@.+\\.[a-zA-z]+", message = "Email Invalido")
     private String contato;
 
-    //tipoContato sempre será um valor de referência presente na classe, portanto ele não poderá ser nulo
-    @NotNull 
+    // tipoContato sempre será um valor de referência presente na classe, portanto ele não poderá ser nulo
+    @NotNull
     @Valid
     private TipoContato tipoContato;
 
@@ -160,28 +160,30 @@ public class Empresa {
         this.cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
     }
 
-    public String getContato() { 
+    public String getContato() {
         return contato;
     }
 
     // Pensar em alguma forma de transformar estes if's para guava
     public void setContato(String contato) {
-        //TESTAR TRY-CATCH
+        // Selo Gambiarra Removido :D
+        checkNotNull(contato, "Contato não pode estar vazio");
+        int aux = (contato.replaceAll("\\D", "").length());
         
-        if (contato.replaceAll("\\D", "").length() == 10) {
-            this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 6) + "-" + contato.substring(6);
-            tipoContato = TipoContato.FIXO;
-
-        } else if (contato.replaceAll("\\D", "").length() == 11) {
-            this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 7) + "-" + contato.substring(7);
-            tipoContato = TipoContato.CELULAR;
-
-        } else if (contato.contains("@") && contato.contains(".com") && !(contato.length() < 7 || contato.length() > 50)) {
-            this.contato = contato;
-            tipoContato = TipoContato.EMAIL;
-
-        } else {
-            throw new IllegalArgumentException("Telefone ou Email cadastrados de forma errada. Apenas utilize números para cadastrar um telefone Ex: 11941063792");
+        switch (aux) {
+            case 10:
+                this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 6) + "-" + contato.substring(6);
+                tipoContato = TipoContato.FIXO; break;
+                
+            case 11:
+                this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 7) + "-" + contato.substring(7);
+                tipoContato = TipoContato.CELULAR; break;
+                
+            default:
+                checkArgument(contato.contains("@") && contato.contains(".com") && !(contato.length() < 7 || contato.length() > 50),
+                    "O contato inserido não corresponde a nenhum email ou telefone/celular." + "\n Digite apenas os números do telefone. ");
+                this.contato = contato;
+                tipoContato = TipoContato.EMAIL;
         }
     }
 
