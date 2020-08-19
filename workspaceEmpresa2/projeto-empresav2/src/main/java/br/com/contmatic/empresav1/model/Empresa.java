@@ -160,6 +160,15 @@ public class Empresa {
         this.cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
     }
 
+    public DateTime getDtFundacao() {
+        return dtFundacao;
+    }
+
+    public void setDtFundacao(DateTime dtFundacao) {
+        
+        this.dtFundacao = dtFundacao;
+    }
+
     public String getContato() {
         return contato;
     }
