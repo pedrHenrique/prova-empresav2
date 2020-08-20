@@ -220,6 +220,38 @@ public class EmpresaTest {
     public void teste_criando_telefone_com_letras() {
         empresa.setContato("DDoitodois");
     }
+    
+    @Test
+    public void teste_setdtFundacao_e_getDtFundacao_correto() {
+        String data = "16/02/1970";
+        empresa.setDtFundacao(data);
+        assertThat("Os valores deveriam ser iguais", data, equalTo(empresa.getDtFundacao()));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void teste_setDtFundacao_data_nula() {
+        empresa.setDtFundacao(NULLSTR);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void teste_setDtFundacao_data_vazia() {
+        empresa.setDtFundacao(EMPTYSTR);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void teste_setDtFundacao_data_errada() {
+        empresa.setDtFundacao("ab/de/efgh");
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void teste_setDtFundacao_data_impossivel() {
+        empresa.setDtFundacao("31/02/1900");
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void teste_setDtFundacao_data_sem_formatacao() {
+        empresa.setDtFundacao("05022011");
+    }
 
     /*
      * Está seção de testes tem o intuito de testar os métodos de listagem

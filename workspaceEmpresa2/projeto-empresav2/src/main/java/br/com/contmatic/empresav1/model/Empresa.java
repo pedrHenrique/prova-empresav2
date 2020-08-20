@@ -49,6 +49,7 @@ public class Empresa {
     @Pattern(regexp = "[\\D-]") // Testar Futuramente
     private String cep; // TODO Cep será um enum no futuro
 
+    @Valid
     private DateTime dtFundacao;
 
     // Email possui sua própria annotation, tamanho, expressão regular, e não deve estar vazio
