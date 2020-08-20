@@ -33,9 +33,9 @@ public class EmpresaTest {
     public static void setUpBeforeClass() throws Exception {
         EmpresaTest = new Empresa();
 
-        EmpresaTest.registraEmpresa(1, "TestMatic", "57695925000111", "03575090", "1145649304");
-        EmpresaTest.registraEmpresa(2, "Yahoo!123", "89138206000196", "72150704", "11941063792");
-        EmpresaTest.registraEmpresa(3, "Cond-volt_Fios_e_Cabos", "60449385000109", "57071401", "1104028922");
+        EmpresaTest.registraEmpresa(1, "TestMatic", "57695925000111", "03575090", "1145649304", "05/04/1985");
+        EmpresaTest.registraEmpresa(2, "Yahoo!123", "89138206000196", "72150704", "11941063792", "04/12/1986");
+        EmpresaTest.registraEmpresa(3, "Cond-volt_Fios_e_Cabos", "60449385000109", "57071401", "1104028922", "22/01/1938");
     }
 
     @AfterClass
@@ -61,7 +61,7 @@ public class EmpresaTest {
     @Test // Testa criando o obj pelo construtor
     public void teste_objeto_criado_por_construtor() {
         long id = 5;
-        empresa = new Empresa(id, "HoHoHo", "89270828000173", "04789050", "junior@Junior.com");
+        empresa = new Empresa(id, "HoHoHo", "89270828000173", "04789050", "junior@Junior.com", "16/07/1941");
         assertThat("O Obj esperado era: ", empresa, equalTo(empresa.solicitaEmpresa(id)));
         assertNotNull("O objeto não deveria estar nulo", empresa.solicitaEmpresa(id));
         System.out.println(empresa.listaEmpresas());
@@ -71,32 +71,32 @@ public class EmpresaTest {
     public void teste_objeto_criado_por_metodo_com_parametros() {
         long id = 6;
 
-        assertThat("O Obj esperado era:", empresa.registraEmpresa(id, "HoHoHo", "89270828000173", "04789050", "1125064896"), equalTo(empresa.solicitaEmpresa(id)));
+        assertThat("O Obj esperado era:", empresa.registraEmpresa(id, "HoHoHo", "89270828000173", "04789050", "1125064896", "06/10/1972"), equalTo(empresa.solicitaEmpresa(id)));
         assertNotNull("O objeto não deveria estar nulo", empresa.solicitaEmpresa(id));
     }
 
     @Test(expected = VerifyException.class)
     public void teste_objeto_criado_ja_existente() {
         long id = 1;
-        empresa = new Empresa(id, "HoHoHo", "89270828000173", "04789050", "1125064896");
+        empresa = new Empresa(id, "HoHoHo", "89270828000173", "04789050", "1125064896", "12/08/1948");
 
     }
 
     @Test(expected = NullPointerException.class)
     public void teste_objeto_sendo_criado_nulo() {
-        empresa = new Empresa(NULLONG, "HoHoHo", "89270828000173", "04789050", "1125064896");       
+        empresa = new Empresa(NULLONG, "HoHoHo", "89270828000173", "04789050", "1125064896", "01/08/1986");       
     }
     
     @Test(expected = IllegalArgumentException.class)
     public void teste_objeto_sendo_criado_com_valores_de_contato_errado() {
-        empresa = new Empresa(65, "KakaKu", "89270828000173", "04789050", "tatATaTA!");        
+        empresa = new Empresa(65, "KakaKu", "89270828000173", "04789050", "tatATaTA!", "02/02/1940");        
         System.out.println(empresa);
     }
 
     @Test
     public void teste_remocao_objeto_existente() {
         long id = 250;
-        assertThat("O Obj esperado era:", new Empresa(id, "HoHoHo", "89270828000173", "04789050", "1125064896"), equalTo(empresa.removeEmpresa(id)));
+        assertThat("O Obj esperado era:", new Empresa(id, "HoHoHo", "89270828000173", "04789050", "1125064896", "02/10/1959"), equalTo(empresa.removeEmpresa(id)));
 
     }
 

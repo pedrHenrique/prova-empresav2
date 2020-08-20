@@ -7,6 +7,7 @@ import java.util.HashSet;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -64,12 +65,13 @@ public class Empresa {
     private static Collection<Empresa> empresaLista = new HashSet<>();
 
     // Construtores
-    public Empresa(long idEmpresa, String nome, String cnpj, String endereco, String contato) {
+    public Empresa(long idEmpresa, String nome, String cnpj, String endereco, String contato, String dtFundacao) {
         setIdEmpresa(idEmpresa);
         setNome(nome);
         setCnpj(cnpj);
         setCep(endereco);
         setContato(contato);
+        setDtFundacao(dtFundacao);
         salvaRegistro(this);
     }
 
@@ -83,8 +85,8 @@ public class Empresa {
         return empresaLista;
     }
 
-    public Empresa registraEmpresa(long idEmpresa, String nome, String cnpj, String endereco, String telefone) {
-        return new Empresa(idEmpresa, nome, cnpj, endereco, telefone);
+    public Empresa registraEmpresa(long idEmpresa, String nome, String cnpj, String endereco, String telefone, String dtFundacao) { 
+        return new Empresa(idEmpresa, nome, cnpj, endereco, telefone, dtFundacao);
     }
 
     private void salvaRegistro(Empresa departamento) {
@@ -164,9 +166,13 @@ public class Empresa {
         return dtFundacao;
     }
 
-    public void setDtFundacao(DateTime dtFundacao) {
+    public void setDtFundacao(String dtFundacao) {
+        checkNotNull(dtFundacao, "Data não pode estar vazia");
+        checkArgument(dtFundacao.matches("[\\d/]+") && (dtFundacao.length() == 10 || dtFundacao.length() == 8), "Data deveria ser em número e estar no formato dd/mm/yyyy");
         
-        this.dtFundacao = dtFundacao;
+        DataJoda dt = new DataJoda(dtFundacao);
+        this.dtFundacao = dt.getData();
+        
     }
 
     public String getContato() {
@@ -228,7 +234,7 @@ public class Empresa {
 
     @Override
     public String toString() {
-        return "Empresa: [" + getIdEmpresa() + ", Nome: " + getNome() + ", CNPJ: " + getCnpj() + ", Cep: " + getCep() + ", " + getTipoContato() + ":" + getContato() + "]";
+        return "\nEmpresa: [" + getIdEmpresa() + ", Nome: " + getNome() + ", CNPJ: " + getCnpj() + ", Cep: " + getCep() + ", " + getTipoContato() + ":" + getContato() + ", Data Fundação: " + getDtFundacao();
     }
 
 }
