@@ -25,7 +25,7 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId> org.apache.commons </groupId>
+			<groupId>org.apache.commons</groupId>
 			<artifactId> commons-lang3 </artifactId>
 			<version> 3.5 </version>
 		</dependency>
@@ -55,6 +55,36 @@
 			<version>6.1.5.Final</version>
 			<classifier>wildfly-19.0.0.Final-patch</classifier>
 			<type>zip</type>
+		</dependency>
+		<dependency>
+			<groupId>br.com.caelum.stella</groupId>
+			<artifactId>caelum-stella-core</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.caelum.stella</groupId>
+			<artifactId>caelum-stella-bean-validation</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.caelum.stella</groupId>
+			<artifactId>caelum-stella-faces</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.caelum.stella</groupId>
+			<artifactId>caelum-stella-hibernate-user-types</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.caelum.stella</groupId>
+			<artifactId>caelum-stella-boleto</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>29.0-jre</version>
 		</dependency>
 	</dependencies>
 	<build>
