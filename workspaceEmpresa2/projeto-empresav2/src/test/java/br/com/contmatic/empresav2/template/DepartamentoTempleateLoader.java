@@ -3,13 +3,14 @@ package br.com.contmatic.empresav2.template;
 import java.util.Random;
 
 import br.com.contmatic.empresav2.model.Departamento;
+
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.TemplateLoader;
 
 public class DepartamentoTempleateLoader implements TemplateLoader {
 
-    private static final String[] NOMES = {"Gilberto Araujo", "Pedro Henrique", "Andre Crespo", "Ana Oliveira","Julio Machado", "Gabriel Bueno", "Paula Cristina"};
+    private static final String[] NOMES = {"Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"};
 
     private String nome;
     /*
@@ -22,9 +23,9 @@ public class DepartamentoTempleateLoader implements TemplateLoader {
     
     @Override
     public void load() {
-        Fixture.of(Departamento.class).addTemplate("valid", new Rule(){{
-            add("id", random(Long.class, range(10L, 300L))); //Os primeiros 10 serão exclusivos.
-            add("nome", random((new Random().nextInt(NOMES.length))));
+        Fixture.of(Departamento.class).addTemplate("valido", new Rule(){{
+            add("idDepartamento", random(Long.class, range(10L, 299L))); //Os primeiros 10 serão exclusivos.
+            add("nome", random("Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"));//new Random().nextInt(NOMES.length) Não Funcionou
             add("ramal", random(Integer.class, range(1, 999)));
         }});
         
