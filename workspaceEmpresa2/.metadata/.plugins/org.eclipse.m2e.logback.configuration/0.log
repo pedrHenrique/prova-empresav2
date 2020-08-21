@@ -9296,3 +9296,462 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact com.google.gu
 2020-08-20 16:31:45,869 [Worker-159: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
 2020-08-20 16:31:45,870 [Worker-159: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2020-08-20 16:31:45,870 [Worker-159: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:10:32,481 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:10:32,501 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:10:32,503 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:10:32,503 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:10:40,890 [Worker-8: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: br.com.contmatic:projeto-prova1:0.0.1-SNAPSHOT @ C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\pom.xml.
+2020-08-21 10:10:42,236 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:10:42,236 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:10:42,238 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:10:42,238 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:10:54,029 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-08-21 10:18:29,091 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:18:29,092 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:18:29,093 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:18:29,093 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:22:46,202 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:22:46,202 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:22:46,204 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:22:46,204 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:23:06,372 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:23:06,372 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:23:06,374 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:23:06,374 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:23:41,258 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:23:41,258 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:23:41,259 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:23:41,259 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:24:10,195 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:24:10,196 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:24:10,197 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:24:10,197 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:24:24,139 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:24:24,139 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:24:24,141 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:24:24,141 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:27:01,790 [Worker-26: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:27:01,790 [Worker-26: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:27:01,793 [Worker-26: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:27:01,793 [Worker-26: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:27:18,939 [Worker-26: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:27:18,940 [Worker-26: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:27:18,941 [Worker-26: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:27:18,941 [Worker-26: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:27:36,131 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:27:36,131 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:27:36,133 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:27:36,133 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:27:47,621 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:27:47,622 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:27:47,626 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:27:47,626 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:27:52,661 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:27:52,662 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:27:52,664 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:27:52,664 [Worker-31: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:32:51,924 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:32:51,926 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:32:51,927 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:32:51,927 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:33:24,589 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:33:24,589 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:33:24,590 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:33:24,590 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:33:40,556 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:33:40,557 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:33:40,558 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:33:40,558 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:33:44,778 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:33:44,778 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:33:44,782 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:33:44,782 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:33:55,685 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:33:55,685 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:33:55,686 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:33:55,686 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:34:31,882 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:34:31,883 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:34:31,884 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:34:31,884 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:36:26,858 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:36:26,859 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:36:26,861 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:36:26,861 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:36:44,833 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:36:44,833 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:36:44,834 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:36:44,834 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:37:08,582 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:37:08,583 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:37:08,584 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:37:08,584 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:38:05,771 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:38:05,772 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:38:05,773 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:38:05,773 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:38:09,927 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:38:09,927 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:38:09,928 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:38:09,928 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:38:15,300 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:38:15,300 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:38:15,302 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:38:15,302 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:38:22,571 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:38:22,571 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:38:22,572 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:38:22,572 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:39:34,687 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:39:34,687 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:39:34,688 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:39:34,688 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:39:36,810 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:39:36,810 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:39:36,812 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:39:36,812 [Worker-32: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:39:57,016 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:39:57,017 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:39:57,018 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:39:57,018 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:40:10,113 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:40:10,114 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:40:10,115 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:40:10,116 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:40:14,593 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:40:14,593 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:40:14,594 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:40:14,594 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:46:06,549 [Worker-37: Launching EmpresaTest] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:46:06,549 [Worker-37: Launching EmpresaTest] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:46:06,553 [Worker-37: Launching EmpresaTest] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:46:06,553 [Worker-37: Launching EmpresaTest] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:46:47,050 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:46:47,050 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:46:47,052 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:46:47,052 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:47:16,066 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:47:16,067 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:47:16,068 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:47:16,068 [Worker-41: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:47:38,073 [Worker-34: Launching EmpresaTest.teste_registra_cnpj_ja_cadastrado] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:47:38,073 [Worker-34: Launching EmpresaTest.teste_registra_cnpj_ja_cadastrado] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:47:38,074 [Worker-34: Launching EmpresaTest.teste_registra_cnpj_ja_cadastrado] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:47:38,075 [Worker-34: Launching EmpresaTest.teste_registra_cnpj_ja_cadastrado] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:49:21,064 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:49:21,064 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:49:21,065 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:49:21,065 [Worker-43: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:52:01,405 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:52:01,405 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:52:01,418 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:52:01,418 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:52:10,957 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:52:10,957 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:52:10,958 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:52:10,958 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:52:21,587 [Worker-50: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:52:21,588 [Worker-50: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:52:21,589 [Worker-50: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:52:21,589 [Worker-50: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:53:04,509 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:53:04,509 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:53:04,510 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:53:04,510 [Worker-51: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:53:21,578 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:53:21,578 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:53:21,579 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:53:21,580 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:55:06,002 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:55:06,002 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:55:06,003 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:55:06,003 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 10:56:44,841 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:56:44,842 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 10:56:44,842 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 10:56:44,843 [Worker-40: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:06:42,601 [Worker-46: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: br.com.contmatic:projeto-prova1:0.0.1-SNAPSHOT @ C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\pom.xml.
+2020-08-21 11:06:43,675 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/br/com/six2six/fixture-factory/3.1.0/fixture-factory-3.1.0.pom
+2020-08-21 11:06:43,896 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/br/com/six2six/fixture-factory/3.1.0/fixture-factory-3.1.0.pom
+2020-08-21 11:06:44,061 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6.pom
+2020-08-21 11:06:44,383 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6.pom
+2020-08-21 11:06:44,562 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/br/com/six2six/bfgex/1.1.1/bfgex-1.1.1.pom
+2020-08-21 11:06:44,757 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/br/com/six2six/bfgex/1.1.1/bfgex-1.1.1.pom
+2020-08-21 11:06:44,926 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/log4j/log4j/1.2.14/log4j-1.2.14.pom
+2020-08-21 11:06:45,120 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/log4j/log4j/1.2.14/log4j-1.2.14.pom
+2020-08-21 11:06:45,282 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/commons/commons-math/2.2/commons-math-2.2.pom
+2020-08-21 11:06:45,474 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/commons/commons-math/2.2/commons-math-2.2.pom
+2020-08-21 11:06:45,643 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/18/commons-parent-18.pom
+2020-08-21 11:06:45,980 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/18/commons-parent-18.pom
+2020-08-21 11:06:46,181 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/rubiconproject/oss/jchronic/0.2.6/jchronic-0.2.6.pom
+2020-08-21 11:06:46,363 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/rubiconproject/oss/jchronic/0.2.6/jchronic-0.2.6.pom
+2020-08-21 11:06:46,520 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/junit/junit/4.8.1/junit-4.8.1.pom
+2020-08-21 11:06:46,688 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/junit/junit/4.8.1/junit-4.8.1.pom
+2020-08-21 11:06:46,869 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/thoughtworks/paranamer/paranamer/2.5/paranamer-2.5.pom
+2020-08-21 11:06:47,032 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/thoughtworks/paranamer/paranamer/2.5/paranamer-2.5.pom
+2020-08-21 11:06:47,208 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/thoughtworks/paranamer/paranamer-parent/2.5/paranamer-parent-2.5.pom
+2020-08-21 11:06:47,387 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/thoughtworks/paranamer/paranamer-parent/2.5/paranamer-parent-2.5.pom
+2020-08-21 11:06:47,540 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/codehaus/codehaus-parent/1/codehaus-parent-1.pom
+2020-08-21 11:06:47,715 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/codehaus/codehaus-parent/1/codehaus-parent-1.pom
+2020-08-21 11:06:47,890 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/net/vidageek/mirror/1.6.1/mirror-1.6.1.pom
+2020-08-21 11:06:48,080 [Worker-46: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/net/vidageek/mirror/1.6.1/mirror-1.6.1.pom
+2020-08-21 11:06:48,371 [AetherRepositoryConnector-repo.maven.apache.org-0-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar
+2020-08-21 11:06:48,813 [AetherRepositoryConnector-repo.maven.apache.org-0-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6.jar
+2020-08-21 11:06:48,817 [AetherRepositoryConnector-repo.maven.apache.org-0-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/br/com/six2six/fixture-factory/3.1.0/fixture-factory-3.1.0.jar
+2020-08-21 11:06:48,864 [AetherRepositoryConnector-repo.maven.apache.org-0-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/log4j/log4j/1.2.14/log4j-1.2.14.jar
+2020-08-21 11:06:48,865 [AetherRepositoryConnector-repo.maven.apache.org-0-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/br/com/six2six/bfgex/1.1.1/bfgex-1.1.1.jar
+2020-08-21 11:06:49,025 [AetherRepositoryConnector-repo.maven.apache.org-0-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar
+2020-08-21 11:06:49,162 [AetherRepositoryConnector-repo.maven.apache.org-0-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/commons/commons-math/2.2/commons-math-2.2.jar
+2020-08-21 11:06:49,292 [AetherRepositoryConnector-repo.maven.apache.org-0-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/br/com/six2six/fixture-factory/3.1.0/fixture-factory-3.1.0.jar
+2020-08-21 11:06:49,433 [AetherRepositoryConnector-repo.maven.apache.org-0-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/rubiconproject/oss/jchronic/0.2.6/jchronic-0.2.6.jar
+2020-08-21 11:06:49,484 [AetherRepositoryConnector-repo.maven.apache.org-0-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/br/com/six2six/bfgex/1.1.1/bfgex-1.1.1.jar
+2020-08-21 11:06:49,628 [AetherRepositoryConnector-repo.maven.apache.org-0-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/thoughtworks/paranamer/paranamer/2.5/paranamer-2.5.jar
+2020-08-21 11:06:49,763 [AetherRepositoryConnector-repo.maven.apache.org-0-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6.jar
+2020-08-21 11:06:49,763 [AetherRepositoryConnector-repo.maven.apache.org-0-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/rubiconproject/oss/jchronic/0.2.6/jchronic-0.2.6.jar
+2020-08-21 11:06:49,882 [AetherRepositoryConnector-repo.maven.apache.org-0-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/thoughtworks/paranamer/paranamer/2.5/paranamer-2.5.jar
+2020-08-21 11:06:49,957 [AetherRepositoryConnector-repo.maven.apache.org-0-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/log4j/log4j/1.2.14/log4j-1.2.14.jar
+2020-08-21 11:06:51,421 [AetherRepositoryConnector-repo.maven.apache.org-0-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/commons/commons-math/2.2/commons-math-2.2.jar
+2020-08-21 11:06:53,976 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:06:53,976 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:06:53,978 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:06:53,978 [Worker-46: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:06:55,530 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/br/com/six2six/fixture-factory/3.1.0/fixture-factory-3.1.0-sources.jar
+2020-08-21 11:06:55,874 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:06:55,874 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:06:55,875 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:06:55,875 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:06:56,236 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/br/com/six2six/fixture-factory/3.1.0/fixture-factory-3.1.0-sources.jar
+2020-08-21 11:06:56,391 [Worker-46: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for br.com.six2six:fixture-factory:3.1.0
+2020-08-21 11:06:56,984 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3-sources.jar
+2020-08-21 11:06:57,950 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3-sources.jar
+2020-08-21 11:06:58,077 [Worker-46: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for commons-beanutils:commons-beanutils:1.8.3
+2020-08-21 11:06:58,672 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6-sources.jar
+2020-08-21 11:06:59,847 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6-sources.jar
+2020-08-21 11:07:00,070 [Worker-46: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for commons-lang:commons-lang:2.6
+2020-08-21 11:07:00,664 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/br/com/six2six/bfgex/1.1.1/bfgex-1.1.1-sources.jar
+2020-08-21 11:07:01,316 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/br/com/six2six/bfgex/1.1.1/bfgex-1.1.1-sources.jar
+2020-08-21 11:07:01,487 [Worker-46: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for br.com.six2six:bfgex:1.1.1
+2020-08-21 11:07:02,086 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/log4j/log4j/1.2.14/log4j-1.2.14-sources.jar
+2020-08-21 11:07:03,158 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/log4j/log4j/1.2.14/log4j-1.2.14-sources.jar
+2020-08-21 11:07:03,362 [Worker-46: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for log4j:log4j:1.2.14
+2020-08-21 11:07:03,939 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/commons/commons-math/2.2/commons-math-2.2-sources.jar
+2020-08-21 11:07:06,764 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/commons/commons-math/2.2/commons-math-2.2-sources.jar
+2020-08-21 11:07:06,965 [Worker-46: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.apache.commons:commons-math:2.2
+2020-08-21 11:07:07,562 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/rubiconproject/oss/jchronic/0.2.6/jchronic-0.2.6-sources.jar
+2020-08-21 11:07:08,030 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/rubiconproject/oss/jchronic/0.2.6/jchronic-0.2.6-sources.jar
+2020-08-21 11:07:08,281 [Worker-46: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for com.rubiconproject.oss:jchronic:0.2.6
+2020-08-21 11:07:08,878 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/thoughtworks/paranamer/paranamer/2.5/paranamer-2.5-sources.jar
+2020-08-21 11:07:09,318 [Worker-46: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/thoughtworks/paranamer/paranamer/2.5/paranamer-2.5-sources.jar
+2020-08-21 11:07:09,678 [Worker-46: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for com.thoughtworks.paranamer:paranamer:2.5
+2020-08-21 11:07:09,913 [Worker-57: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:07:09,913 [Worker-57: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:07:09,914 [Worker-57: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:07:09,915 [Worker-57: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:14:33,953 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:14:33,954 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:14:33,954 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:14:33,955 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:14:53,275 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:14:53,275 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:14:53,276 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:14:53,276 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:15:46,390 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:15:46,390 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:15:46,391 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:15:46,391 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:16:32,760 [Worker-67: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:16:32,761 [Worker-67: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:16:32,762 [Worker-67: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:16:32,762 [Worker-67: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:17:10,273 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:17:10,273 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:17:10,275 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:17:10,275 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:17:22,062 [Worker-65: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:17:22,063 [Worker-65: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:17:22,063 [Worker-65: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:17:22,063 [Worker-65: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:17:32,821 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:17:32,821 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:17:32,822 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:17:32,822 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:17:50,646 [Worker-66: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:17:50,647 [Worker-66: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:17:50,647 [Worker-66: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:17:50,647 [Worker-66: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:18:22,124 [Worker-65: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:18:22,124 [Worker-65: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:18:22,125 [Worker-65: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:18:22,125 [Worker-65: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:18:23,196 [Worker-67: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:18:23,196 [Worker-67: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:18:23,197 [Worker-67: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:18:23,197 [Worker-67: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:19:05,489 [Worker-61: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:19:05,490 [Worker-61: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:19:05,491 [Worker-61: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:19:05,491 [Worker-61: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:19:29,170 [Worker-61: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:19:29,171 [Worker-61: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:19:29,172 [Worker-61: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:19:29,172 [Worker-61: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:21:51,553 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:21:51,553 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:21:51,555 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:21:51,555 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:22:57,868 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:22:57,869 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:22:57,870 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:22:57,870 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:23:53,582 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:23:53,582 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:23:53,583 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:23:53,583 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:24:00,819 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:24:00,819 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:24:00,820 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:24:00,820 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:24:21,303 [Worker-70: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:24:21,303 [Worker-70: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:24:21,304 [Worker-70: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:24:21,304 [Worker-70: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:24:33,130 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:24:33,130 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:24:33,131 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:24:33,131 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:25:11,277 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:25:11,277 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:25:11,278 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:25:11,278 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:25:30,973 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:25:30,974 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:25:30,975 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:25:30,976 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:25:34,140 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:25:34,141 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:25:34,142 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:25:34,142 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:25:39,369 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:25:39,369 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:25:39,371 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:25:39,371 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:26:12,698 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:26:12,698 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:26:12,699 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:26:12,699 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:26:36,523 [Worker-70: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:26:36,523 [Worker-70: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:26:36,524 [Worker-70: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:26:36,524 [Worker-70: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:26:38,602 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:26:38,602 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:26:38,603 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:26:38,603 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:27:03,501 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:27:03,501 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:27:03,502 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:27:03,502 [Worker-64: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:27:37,136 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:27:37,137 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:27:37,138 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:27:37,138 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:29:49,890 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:29:49,890 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:29:49,891 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:29:49,891 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:29:54,591 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:29:54,591 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:29:54,592 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:29:54,592 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:30:00,403 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:30:00,403 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:30:00,404 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:30:00,404 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:30:01,509 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:30:01,510 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:30:01,510 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:30:01,510 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:30:10,637 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:30:10,637 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:30:10,638 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:30:10,638 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:30:47,987 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:30:47,987 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:30:47,988 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:30:47,988 [Worker-72: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:31:57,535 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:31:57,536 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:31:57,537 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:31:57,537 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:32:34,410 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:32:34,411 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:32:34,413 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:32:34,413 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:32:49,884 [Worker-75: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:32:49,885 [Worker-75: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:32:49,885 [Worker-75: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:32:49,885 [Worker-75: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:33:26,760 [Worker-70: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:33:26,761 [Worker-70: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:33:26,761 [Worker-70: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:33:26,761 [Worker-70: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:33:43,943 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:33:43,943 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:33:43,946 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:33:43,946 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:34:13,034 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:34:13,035 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:34:13,036 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:34:13,036 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:34:30,286 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:34:30,287 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:34:30,288 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:34:30,288 [Worker-62: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:36:59,850 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:36:59,850 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:36:59,851 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:36:59,851 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:37:49,407 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:37:49,408 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:37:49,408 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:37:49,408 [Worker-74: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:37:58,433 [Worker-76: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:37:58,434 [Worker-76: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:37:58,435 [Worker-76: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:37:58,435 [Worker-76: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:38:12,383 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:38:12,383 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:38:12,384 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:38:12,384 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:38:26,403 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:38:26,403 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:38:26,404 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:38:26,404 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:38:50,863 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:38:50,863 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:38:50,864 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:38:50,864 [Worker-73: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:39:08,269 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:39:08,269 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:39:08,270 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:39:08,270 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:39:13,116 [Worker-76: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:39:13,116 [Worker-76: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:39:13,117 [Worker-76: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:39:13,117 [Worker-76: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:39:33,329 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:39:33,329 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:39:33,330 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:39:33,330 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:40:25,583 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:40:25,583 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:40:25,584 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:40:25,584 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:40:34,869 [Worker-78: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:40:34,869 [Worker-78: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:40:34,870 [Worker-78: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:40:34,870 [Worker-78: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
+2020-08-21 11:40:41,605 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:40:41,605 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\main\resources
+2020-08-21 11:40:41,606 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-08-21 11:40:41,606 [Worker-77: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Pedro\Documents\GitHub\prova-empresav2\workspaceEmpresa2\projeto-empresav2\src\test\resources
