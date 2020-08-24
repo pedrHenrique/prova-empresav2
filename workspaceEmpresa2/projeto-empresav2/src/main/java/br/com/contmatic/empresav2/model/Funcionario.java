@@ -23,6 +23,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Verify.verify;
 
+//TODO JAutoDoc Funcionario
 public class Funcionario {
 
     // Variáveis
@@ -34,7 +35,7 @@ public class Funcionario {
 
     // Nome não pode estar vazio, possui um tamanho específico, e uma recomendação de expressão regular
     @Length(min = 3, max = 40)
-    @Pattern(regexp = "[^\\w]+", message = "Nome invalido. Recomenda-se mudar")
+    @Pattern(regexp = "regexp = \"[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕçÇ ]+", message = "Nome invalido. Recomenda-se mudar")
     private String nome;
 
     // CPF não pode estar vazio e possui seu próprio tipo de annotation
@@ -143,7 +144,7 @@ public class Funcionario {
     }
 
     public void setIdFuncionario(long idFuncionario) {
-        checkArgument(idFuncionario > 0, "ID para pessoa precisa ser mais de 0");
+        checkArgument(idFuncionario > 0 && idFuncionario < 3000, "ID para pessoa precisa ser maior que 0 e menor que 3000");
         this.idFuncionario = checkNotNull(idFuncionario);
     }
 

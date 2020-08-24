@@ -227,6 +227,13 @@ public class EmpresaTest {
         empresa.setDtFundacao(data);
         assertThat("Os valores deveriam ser iguais", data, equalTo(empresa.getDtFundacao()));
     }
+    
+    @Test
+    public void teste_setdtFundacao_e_getDtFundacao_sem_barra() {
+        String data = "16021970";
+        empresa.setDtFundacao(data);
+        assertThat("Os valores deveriam ser iguais", data, equalTo(empresa.getDtFundacao()));
+    }
 
     @Test(expected = NullPointerException.class)
     public void teste_setDtFundacao_data_nula() {

@@ -38,9 +38,9 @@ public class FuncionarioTest {
         funcionario = new Funcionario();
 
         dep = new Departamento(1, " DepTestes", 256);
-        funcionario.cadastraFuncionario(1, "Ana", "56495985096", "03575090", "testeMatic@cont.com", 1, 3500.00);
-        funcionario.cadastraFuncionario(2, "Patrícia Áurea Érica Júnior", "23818613940", "27971764", "testeMatic@cont.com", 1, 5500.00);
-        funcionario.cadastraFuncionario(3, "Irene Leonardi Biazibeti", "60178475971", "49082030", "testeMatic@cont.com", 1, 10000.00);
+        funcionario.cadastraFuncionario(1, "Ana", "56495985096", "03575090", "ridouane8626@uorak.com", 1, 3500.00);
+        funcionario.cadastraFuncionario(2, "Patrícia Áurea Érica Júnior", "23818613940", "27971764", "mina4298@uorak.com", 1, 5500.00);
+        funcionario.cadastraFuncionario(3, "Irene Leonardi Biazibeti", "60178475971", "49082030", "11998563792", 1, 10000.00);
 
     }
 

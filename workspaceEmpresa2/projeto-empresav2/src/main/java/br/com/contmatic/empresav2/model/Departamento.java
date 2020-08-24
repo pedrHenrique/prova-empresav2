@@ -32,18 +32,17 @@ import static com.google.common.base.Verify.verify;
  * P.S.: Eu sei que isso é rambiarra, mas será útil ter essa informação para quando eu precisar decidir
  */
 
+//TODO JAutoDoc Departamento
 public class Departamento {
 
     // Variáveis
-    @NotBlank
-    @Max(300) 
+    @Max(300)
     @Positive
     private long idDepartamento;
 
     @NotBlank
     @Length(min = 2, max = 40)
-    // TODO modificar e testar o [^\\w]+
-    @Pattern(regexp = "[^\\w]+", message = "Nome inapropriado. Recomenda-se mudar") // Nome não deveria ser registrado fora de um Padrão de A-z
+    @Pattern(regexp = "[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕçÇ ]+", message = "Nome inapropriado. Recomenda-se mudar") // Nome não deveria ser registrado fora de um Padrão de A-z
     private String nome;
 
     @Range(min = 1, max = 999)
@@ -91,7 +90,7 @@ public class Departamento {
         while (iterator.hasNext() && obj.getIdDepartamento() != id) {
             obj = iterator.next();
         }
-        
+
         verify(obj.getIdDepartamento() == id, "O Departamento " + id + " não foi encontrado\n");
         return obj;
     }
@@ -106,7 +105,7 @@ public class Departamento {
         verify(obj.getIdDepartamento() == id, "Departamento " + id + " não existe\n");
         iterator.remove();
         listarDepartamentos().toString();
-        
+
         return obj;
     }
 
@@ -129,8 +128,10 @@ public class Departamento {
         // Formata campos com espaço vazio
         // Impede a utilização de números, caracteres especiais e valores nulos
         nome = nome.replaceAll(("[ ]+"), " ");
-        checkArgument(nome.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕçÇ ]+") && (nome.length() > 2 && nome.length() < 30), "Departamento não pode conter caracteres especiais, acentos ou um tamanho muito grande");
+        checkArgument(nome.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕçÇ ]+") && (nome.length() > 2 && nome.length() < 30),
+            "Departamento não pode conter caracteres especiais, ou um tamanho muito grande");
         this.nome = checkNotNull(nome);
+
     }
 
     public int getRamal() {

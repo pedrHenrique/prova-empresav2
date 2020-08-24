@@ -24,6 +24,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Verify.verify;
 
+//TODO JAutoDoc Empresa
 public class Empresa {
 
     // Variáveis
@@ -36,7 +37,7 @@ public class Empresa {
     // O nome da empresa não pode estar vazio, possui um tamanho específico, e uma recomendação de expressão regular
     @NotBlank
     @Length(min = 2, max = 50)
-    @Pattern(regexp = "[a-zA-Z0-9_-! ]+", message = "Nome invalido. Recomenda-se mudar")
+    @Pattern(regexp = "[a-zA-Z0-9_-!&. ]+", message = "Nome invalido. Recomenda-se mudar")
     private String nome;
 
     // CNPJ não pode estar vazio e possui seu próprio tipo de annotation
@@ -137,7 +138,7 @@ public class Empresa {
     public void setNome(String nome) {
         // Será modificado no futuro
         nome = checkNotNull(nome.replaceAll(("[ ]+"), " "));
-        // Nome de empresa neste formato, aceita uma grande variedade de caracteres especiais que seria mais interessante eles não serem aceitos
+        // Nome de empresa neste formato, aceita uma grande variedade de caracteres especiais que seria mais interessante eles não serem aceitos. 24/08: Wtf??
         checkArgument(!(nome.matches("[\\W ]+")) && (nome.length() > 2 && nome.length() < 50), "Nome muito pequeno ou muito grande"); // Créditos Andre.Crespo
         this.nome = nome;
     }
@@ -169,7 +170,8 @@ public class Empresa {
 
     public void setDtFundacao(String dtFundacao) {
         checkNotNull(dtFundacao, "Data não pode estar vazia");
-        checkArgument(dtFundacao.matches("[\\d/]+") && (dtFundacao.length() == 10 || dtFundacao.length() == 8), "Data deveria ser em número e estar no formato dd/mm/yyyy");
+        //Se a Data for apenas conter números e ter um tamanho igual a 10
+        checkArgument(dtFundacao.matches("[\\d/]+") && (dtFundacao.length() == 10), "Data deveria ser em número e estar no formato dd/mm/yyyy");
         
         DataJoda dt = new DataJoda(dtFundacao);
         this.dtFundacao = dt.getData();

@@ -1,5 +1,6 @@
 package br.com.contmatic.empresav2.model;
 
+//TODO JAutoDoc TipoContato
 public enum TipoContato {
     
     //Enums

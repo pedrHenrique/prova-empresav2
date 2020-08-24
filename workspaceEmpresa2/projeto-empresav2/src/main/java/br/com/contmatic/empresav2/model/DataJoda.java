@@ -15,6 +15,8 @@ import org.joda.time.format.ISODateTimeFormat;
  * Versão 1.0
  * 
  */
+
+//TODO JAutoDoc Data
 public class DataJoda {
 
     private static final DateTime DT = new DateTime();
@@ -37,6 +39,8 @@ public class DataJoda {
         int mes = Integer.parseInt(aux[1].replaceFirst("0", ""));
         int ano = Integer.parseInt(aux[2]);
         
+        //TODO Formatar para que datas não possam ser inseridas no futuro.. Ver a utilização de Notification
+        //no lugar de uma exception: https://martinfowler.com/articles/replaceThrowWithNotification.html
         return new DateTime(ano, mes, dia, DT.getHourOfDay(), DT.getMinuteOfHour()); // ano/mes/dia/horaDoDia/minutosDaHora
     }
 
