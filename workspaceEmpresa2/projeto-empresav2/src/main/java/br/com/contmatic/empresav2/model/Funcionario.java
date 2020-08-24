@@ -47,7 +47,7 @@ public class Funcionario {
     @NotBlank
     @Min(8)
     @Pattern(regexp = "[\\D-]") // Testar Futuramente
-    private String cep; // TODO Cep será um enum no futuro
+    //private Endereco cep; // TODO Cep será um enum no futuro
 
     // Email possui sua própria annotation, tamanho, expressão regular, e não deve estar vazio
     @Email
@@ -79,7 +79,7 @@ public class Funcionario {
         setIdFuncionario(idFuncionario);
         setNome(nome);
         setCpf(cpf);
-        setCep(cep);
+        //setCep(cep);
         setContato(contato);
         buscaDepartamento(departamento.solicitaDep(dep));
         setSalario(salario);
@@ -167,9 +167,9 @@ public class Funcionario {
     }
 
     public void setCpf(String cpf) {
-        cep = cpf.replaceAll("\\D", "");
-        checkArgument(cep.length() == 11, "Digite apenas os números do CPF");
-        this.cpf = checkNotNull(cep.substring(0, 3) + "." + cep.substring(3, 6) + "." + cep.substring(6, 9) + "-" + cep.substring(9, 11));
+        cpf = cpf.replaceAll("\\D", "");
+        checkArgument(cpf.length() == 11, "Digite apenas os números do CPF");
+        this.cpf = checkNotNull(cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11));
     }
 
     public String getContato() {
@@ -199,15 +199,15 @@ public class Funcionario {
     }
 
     public String getCep() {
-        return cep;
+        return cpf;
 
     }
 
-    public void setCep(String cep) {
-        cep = cep.replaceAll("\\D", ""); // Cep deve sair no formato: 03575-090
-        checkArgument(cep.length() == 8, "Digite apenas os números do CEP");
-        this.cep = checkNotNull(cep.substring(0, 5) + "-" + cep.substring(5, 8));
-    }
+//    public void setCep(String cep) { Desativado
+//        cep = checkNotNull(cep.replaceAll("\\D", "")); // Cep deve sair no formato: 03575-090
+//        checkArgument(cep.length() == 8, "Digite apenas os números do CEP");
+//        this.cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
+//    }
 
     public double getSalario() {
         return salario;

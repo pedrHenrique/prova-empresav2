@@ -3,7 +3,7 @@ package br.com.contmatic.empresav2.model;
 //TODO JAutoDoc TipoContato
 public enum TipoContato {
     
-    //Enums
+    //Enums Tipo/Quantidade de Dígitos
     CELULAR("Celular", 11), 
     FIXO("Fixo", 10), 
     EMAIL("Email", 50);

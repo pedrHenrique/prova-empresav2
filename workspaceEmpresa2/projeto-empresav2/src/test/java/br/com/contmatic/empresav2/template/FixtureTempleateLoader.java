@@ -12,7 +12,7 @@ import br.com.six2six.fixturefactory.loader.TemplateLoader;
 
 public class FixtureTempleateLoader implements TemplateLoader {
 
-    private final String[] NOMES = {"Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"};
+    private static final String[] NOMES = {"Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"};
 
     private String nome;
     /*
@@ -29,11 +29,12 @@ public class FixtureTempleateLoader implements TemplateLoader {
             // Departamentos Válidos
             {
             add("idDepartamento", random(Long.class, range(10L, 299L))); //Os primeiros 10 serão exclusivos.
-            add("nome", random("Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"));//new Random().nextInt(NOMES.length) Não Funcionou
+            add("nome", NOMES[new Random().nextInt(NOMES.length)]);//new Random().nextInt(NOMES.length) Não Funcionou
             add("ramal", random(Integer.class, range(1, 999)));
         }});
         
         Fixture.of(Departamento.class).addTemplate("invalido", new Rule(){ //para testes
+            
             //Departamentos Com valores inválidos
             {
             add("idDepartamento", random(Long.class, range(170L, 200L))); 
