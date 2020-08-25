@@ -1,6 +1,5 @@
 package br.com.contmatic.empresav2.template;
 
-import java.util.Arrays;
 import java.util.Random;
 
 import br.com.contmatic.empresav2.model.Departamento;
@@ -12,16 +11,11 @@ import br.com.six2six.fixturefactory.loader.TemplateLoader;
 
 public class FixtureTempleateLoader implements TemplateLoader {
 
-    private static final String[] NOMES = {"Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"};
-
-    private String nome;
-    /*
-     * Departamento Possui
-     * ID
-     * NOME
-     * RAMAL
-     *      
-     */
+    private static final String[] NOMESDEP = {"Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"};
+    private static final String[] NOMESEMP = {"Yahoo!", "AMD", "Clube do Hardware", "Dafiti", "Tifany&CO", "Mercedez-Benz", "Amazon.com, Itaú", "HLC"};
+    private static final String[] CNPJS = {"71420773000175", "08887547000162", "10000944000112", "34237642000120", "14628526000125", "61589319000199"};
+    private static final String[] DATAS = {"25/07/2029", "15/05/1971", "14/04/1959", "24/12/1968", "14/06/1999", "02/02/1990"};
+    private static final String[] CONTATOS = {"28211740711", "10749174420", "2558693247", "4448956789", "testeMatic@cont.com", "PhoenixTest@contmatic.com"}; //Telefone/Celular/Email
     
     @Override
     public void load() {
@@ -29,7 +23,7 @@ public class FixtureTempleateLoader implements TemplateLoader {
             // Departamentos Válidos
             {
             add("idDepartamento", random(Long.class, range(10L, 299L))); //Os primeiros 10 serão exclusivos.
-            add("nome", NOMES[new Random().nextInt(NOMES.length)]);//new Random().nextInt(NOMES.length) Não Funcionou
+            add("nome", NOMESDEP[new Random().nextInt(NOMESDEP.length)]);//new Random().nextInt(NOMES.length) Não Funcionou
             add("ramal", random(Integer.class, range(1, 999)));
         }});
         
@@ -46,11 +40,11 @@ public class FixtureTempleateLoader implements TemplateLoader {
             //Exemplo empresa Com valores válidos
             {
             add("idEmpresa", random(Long.class, range(10L, 499L))); 
-            add("nome", random("Yahoo!", "AMD", "Clube do Hardware", "Dafiti", "Tifany&CO", "Mercedez-Benz", "Amazon.com, Itaú", "HLC"));
-            add("cnpj", random("71420773000175", "08887547000162", "10000944000112", "34237642000120", "14628526000125", "61589319000199"));
+            add("nome", NOMESEMP[new Random().nextInt(NOMESEMP.length)]);
+            add("cnpj", CNPJS[new Random().nextInt(CNPJS.length)]);
             //add("cep", random("77021688", "79043063", "32145340", "32145340", "68557816", "91250640", "49085030")); Primeiro Transformar Cep em ENUM, depois adicionar o fixture
-            add("dtFundacao", random("25/07/2029", "15/05/1971", "14/04/1959", "24/12/1968", "14/06/1999", "02/02/1990"));
-            add("contato", random("28211740711", "10749174420", "2558693247", "4448956789", "testeMatic@cont.com", "PhoenixTest@contmatic.com"));
+            //add("dtFundacao", DATAS[new Random().nextInt(DATAS.length)]); //enquanto getDtFundacao tiver tipo de retorno DateTime, está forma do fixture não vai funcionar
+            add("contato", CONTATOS[new Random().nextInt(CONTATOS.length)]);
         }});
         
         Fixture.of(Funcionario.class).addTemplate("valido", new Rule(){ //para testes
@@ -64,6 +58,11 @@ public class FixtureTempleateLoader implements TemplateLoader {
             add("salario", random(Double.class, range(800.00, 10000.00)));
             
         }});
+    }
+
+    //Método (provisório) criado para retorno literal da String. Ao Inves de um DateTime 
+    public static String getData() {
+        return DATAS[new Random().nextInt(DATAS.length)];
     }
     
 

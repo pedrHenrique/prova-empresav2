@@ -71,7 +71,7 @@ public class Empresa {
         setIdEmpresa(idEmpresa);
         setNome(nome);
         setCnpj(cnpj);
-        setCep(endereco);
+        //setCep(endereco);
         setContato(contato);
         setDtFundacao(dtFundacao);
         salvaRegistro(this);
@@ -238,7 +238,7 @@ public class Empresa {
 
     @Override
     public String toString() {
-        return "\nEmpresa: [" + getIdEmpresa() + ", Nome: " + getNome() + ", CNPJ: " + getCnpj() + ", Cep: " + getCep() + ", " + getTipoContato() + ":" + getContato() + ", Data Fundação: " + getDtFundacao();
+        return "\nEmpresa: [" + getIdEmpresa() + ", Nome: " + getNome() + ", CNPJ: " + getCnpj() + ", Cep: " /*+ getCep() */ + "CEP está desativado para está versão " + ", " + getTipoContato() + ":" + getContato() + ", Data Fundação: " + getDtFundacao();
     }
 
 }

@@ -32,11 +32,13 @@ import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DepartamentoTest {
+    
+    // Variáveis
 
     private static final String NULLSTR = null;
     private static final String EMPTYSTR = "";
     private static final Long NULLONG = null;
-    private static final Long EMPTYID = (long) 0;
+    private static final Long EMPTYLONG = (long) 0;
     private static final Integer NULLINT = null;
     private static final int EMPTYINT = 0;
 
@@ -46,6 +48,8 @@ public class DepartamentoTest {
     private ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 
     private Validator validator;
+    
+    //Configuração do Teste
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -78,40 +82,24 @@ public class DepartamentoTest {
     }
 
     /*
-     * Está seção de testes tem o intuito de testar os métodos de criação dos objetos da classe
+     * Seção de testes dos métodos de criação dos objetos da classe
      */
 
     // TODO Testes de Departamento Precisam ser revistos e alguns removidos
 
-    /**
-     * Teste Específico: Não Registra nome apenas com espaços em branco.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void nao_deve_registra_nome_com_espacos_emBranco() {
-        dep.registraDep(4, "                ", 99);
-    }
-
-    /**
-     * Teste Específico: Não Registra nome que apresente números.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void nao_deve_registra_nome_com_numeros() {
-        dep.registraDep(5, "Cleber4578Araujo", 405);
-    }
-
+    
     @Test
-    public void deve_criar_departamento_valido_atraves_de_metodo_utilizando_Fixture() {
-        dep.registraDep(dep.getIdDepartamento(), dep.getNome(), dep.getRamal());
-        assertThat("O departamento devia ter sido criado e armazenado: ", Departamento.getDepartamentoLista().contains(dep), equalTo(true));
-        assertNotNull(dep);
-    }
-
-    @Test
-    public void deve_criar_departamento_valido_atraves_de_construtor_utilizando_Fixture() {
+    public void deve_criar_departamento_valido_atraves_deConstrutor_utilizando_Fixture() {
         dep = new Departamento(dep.getIdDepartamento(), dep.getNome(), dep.getRamal()); // Sobrescrita de Objeto!!
         assertThat("O departamento devia ter sido criado e armazenado: ", Departamento.getDepartamentoLista().contains(dep), equalTo(true));
-        assertNotNull(dep);
-
+        assertNotNull("O objeto não deveria estar nulo", dep);
+    }
+    
+    @Test
+    public void deve_criar_departamento_valido_atraves_deMetodo_utilizando_Fixture() {
+        dep.registraDep(dep.getIdDepartamento(), dep.getNome(), dep.getRamal());
+        assertThat("O departamento devia ter sido criado e armazenado: ", Departamento.getDepartamentoLista().contains(dep), equalTo(true));
+        assertNotNull("O objeto não deveria estar nulo", dep);
     }
 
     @Test(expected = VerifyException.class)
@@ -154,7 +142,7 @@ public class DepartamentoTest {
     }
 
     @Test(expected = VerifyException.class)
-    public void nao_deve_buscar_departamento_nao_existente() {
+    public void nao_deve_retornar_departamento_nao_existente() {
         dep.solicitaDep(1050);
     }
 
@@ -162,6 +150,27 @@ public class DepartamentoTest {
      * Seção de testes dos getters/setters da classe
      */
 
+    @Test
+    public void teste_setId_e_getId_corretos() {
+        departamento.setIdDepartamento(dep.getIdDepartamento());
+        assertThat("Os valores deveriam ser iguais: ", departamento.getIdDepartamento(), equalTo(dep.getIdDepartamento()));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void setIdDepartamento_nao_deve_aceitar_valores_nulos() {
+        dep.setIdDepartamento(NULLONG);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setIdDepartamento_nao_deve_aceitar_valores_vazios() {
+        dep.setIdDepartamento(EMPTYLONG);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setIdDepartamento_nao_deve_aceitar_valores_incorretos() {
+        dep.setIdDepartamento(-5);
+    }
+    
     @Test
     public void teste_setNome_e_getNome_corretos() {
         departamento.setNome(dep.getNome());
@@ -181,27 +190,6 @@ public class DepartamentoTest {
     @Test(expected = IllegalArgumentException.class)
     public void setNome_nao_deve_aceitar_caracteres_especiais() {
         dep.setNome("¥$Õ¨¬Q@#%");
-    }
-
-    @Test
-    public void teste_setId_e_getId_corretos() {
-        departamento.setIdDepartamento(dep.getIdDepartamento());
-        assertThat("Os valores deveriam ser iguais: ", departamento.getIdDepartamento(), equalTo(dep.getIdDepartamento()));
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void setIdDepartamento_nao_deve_aceitar_valores_nulos() {
-        dep.setIdDepartamento(NULLONG);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void setIdDepartamento_nao_deve_aceitar_valores_vazios() {
-        dep.setIdDepartamento(EMPTYID);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void setIdDepartamento_nao_deve_aceitar_valores_incorretos() {
-        dep.setIdDepartamento(-5);
     }
 
     @Test
@@ -239,6 +227,22 @@ public class DepartamentoTest {
     public void toString_deve_retornar_lista_de_departamentos() { // teste com falha
         // System.out.println(Departamento.getDepartamentoLista().toString());
         assertNotNull("Esperava receber uma lista", Departamento.getDepartamentoLista().toString());
+    }
+    
+    /**
+     * Teste Específico: Não Registra nome apenas com espaços em branco.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void nao_deve_registra_nome_com_espacos_emBranco() {
+        dep.registraDep(4, "                ", 99);
+    }
+
+    /**
+     * Teste Específico: Não Registra nome que apresente números.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void nao_deve_registra_nome_com_numeros() {
+        dep.registraDep(5, "Cleber4578Araujo", 405);
     }
 
     // @Test // (expected = IllegalArgumentException.class)
