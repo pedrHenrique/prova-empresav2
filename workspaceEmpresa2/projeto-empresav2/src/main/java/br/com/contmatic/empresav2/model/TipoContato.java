@@ -32,4 +32,10 @@ public enum TipoContato {
         return tamanho;
     }
     
+    /*
+     * Remover o Formater das Clases que utilizam contato e inserir ele aqui
+     * Link para remoção de dúvidas: http://blog.triadworks.com.br/enums-sao-mais-que-constantes
+     * 
+     */
+    
 }

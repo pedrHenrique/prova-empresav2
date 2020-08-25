@@ -182,7 +182,7 @@ public class Funcionario {
         int aux = (contato.replaceAll("\\D", "").length());
         
         switch (aux) {
-            case 10:
+            case 10: //Enum Poderia conter a formatação que acontece dentro desse bloco de código
                 this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 6) + "-" + contato.substring(6);
                 tipoContato = TipoContato.FIXO; break;
                 
