@@ -255,7 +255,7 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return "Funcionario: [ID= " + getIdFuncionario() + ", Nome= " + getNome() + ", Cpf= " + getCpf() + " Cep= " + getCep() + ", Contato= " + getContato() + " Salario=  " + getSalario() + " " +
+        return "Funcionario: [ID= " + getIdFuncionario() + ", Nome= " + getNome() + ", Cpf= " + getCpf() + " Cep= " + " Desativado para está versão."/*getCep()*/ + ", Contato= " + getContato() + " Salario=  " + getSalario() + " " +
             getDepartamento() + "]";
     }
 

@@ -93,12 +93,6 @@ public class EmpresaTest {
         emp = new Empresa(NULLONG, NULLSTR, NULLSTR, NULLSTR, NULLSTR, NULLSTR);
     }
 
-    @Test
-    public void teste_remocao_objeto_existente() {
-        long id = 250;
-        assertThat("O Obj esperado era:", new Empresa(id, "HoHoHo", "89270828000173", "04789050", "1125064896", "02/10/1959"), equalTo(emp.removeEmpresa(id)));
-
-    }
     
     /*
      * Seção de testes dos métodos de remoção de objetos da Collection.
@@ -188,13 +182,19 @@ public class EmpresaTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void teste_setCNPJ_valor_nulo() {
+    public void setCnpj_nao_deve_aceitar_valor_nulo() {
         emp.setCnpj(NULLSTR);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void teste_setCNPJ_valor_vazio() {
+    public void setCnpj_nao_deve_aceitar_valor_vazio() {
         emp.setCnpj(EMPTYSTR);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void setCnpj_nao_deve_aceitar_valor_naoValido() {
+        String CNPJ = "ABCDEFGHIJOLMN";
+        emp.setCnpj(CNPJ);
     }
 
 //    @Test
@@ -204,14 +204,20 @@ public class EmpresaTest {
 //    }
 //
 //    @Test(expected = NullPointerException.class)
-//    public void setCep_nao_deve_aceitar_valores_nulos() {
+//    public void setCep_nao_deve_aceitar_valor_nulo() {
 //        emp.setCep(NULLSTR);
 //    }
 //
 //    @Test(expected = IllegalArgumentException.class)
-//    public void setCep_nao_deve_aceitar_valores_vazios() {
+//    public void setCep_nao_deve_aceitar_valor_vazio() {
 //        emp.setCep(EMPTYSTR);
 //    }
+    
+//  @Test
+//  public void setCep_nao_deve_aceitar_valor_naoValido() {
+//      empresa.setCep(emp.getCep());
+//      assertThat("Os valores deveriam ser iguais", empresa.getCep(), equalTo(emp.getCep().replaceAll("\\D", "")));
+//  }
 
     @Test
     public void teste_setTelefone_e_getTelefone_correto() {

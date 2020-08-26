@@ -83,14 +83,17 @@ public class Departamento {
         departamentoLista.add(departamento);
     }
 
-    public Departamento solicitaDep(long id) {
+    public Departamento solicitaDep(long id) { 
+        /* 
+         * -> Está Forma de buscar departamentos não é muito "adequada"
+         * Pensar em outra forma de solicitar departamentos, seja atráves de uma enum ou até mesmo atraves de um contain this
+         */
         Iterator<Departamento> iterator = getDepartamentoLista().iterator();
         Departamento obj = new Departamento();
 
         while (iterator.hasNext() && obj.getIdDepartamento() != id) {
             obj = iterator.next();
         }
-
         verify(obj.getIdDepartamento() == id, "O Departamento " + id + " não foi encontrado\n");
         return obj;
     }

@@ -11,7 +11,7 @@ import br.com.six2six.fixturefactory.loader.TemplateLoader;
 
 public class FixtureTempleateLoader implements TemplateLoader {
 
-    private static final String[] NOMESDEP = {"Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"};
+    private static final String[] NOMESDEP = {"Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"}; //tem um nome aqui com erro
     private static final String[] NOMESEMP = {"Yahoo!", "AMD", "Clube do Hardware", "Dafiti", "Tifany&CO", "Mercedez-Benz", "Amazon.com, Itaú", "HLC"};
     private static final String[] CNPJS = {"71420773000175", "08887547000162", "10000944000112", "34237642000120", "14628526000125", "61589319000199"};
     private static final String[] DATAS = {"25/07/2029", "15/05/1971", "14/04/1959", "24/12/1968", "14/06/1999", "02/02/1990"};
