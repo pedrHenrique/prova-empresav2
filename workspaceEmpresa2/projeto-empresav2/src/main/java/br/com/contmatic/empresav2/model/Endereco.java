@@ -18,54 +18,24 @@ public class Endereco { //Endereco ainda está em fase de testes. Porém já pos
      * que Endereço vai ser o responsável por armazenar os objetos, deve-se se ter as opções de > Registrar/Remover/Solicitar
      */
 
-    public enum Estados { // Rua Mangericao - N.: 83 - Jardim Eliane -
- 
-        AC("Teste"),
-        ES,
-        SC,
-        SP;
+    public enum EnderecoEnum { // Rua Mangericao - N.: 83 - Jardim Eliane -
+        ;
 
-       protected static EnumSet<Estados> estadoLista = EnumSet.allOf(Estados.class); //Talvez será uma boa forma de armazenar todas as constantes
+       protected static EnumSet<EnderecoEnum> estadoLista = EnumSet.allOf(EnderecoEnum.class); //Talvez será uma boa forma de armazenar todas as constantes
 
         private String descricao;
         private String valor;
-        private Estados formatador;
 
-        Estados(String descricao, Endereco valor) {
+        EnderecoEnum(String descricao, Endereco valor) {
             this.descricao = descricao;
         }
         
-        Estados(String descricao) {
+        EnderecoEnum(String descricao) {
             this.descricao = descricao;
         }
         
-        Estados() {
+        EnderecoEnum() {
             
-        }
-        
-        public String getDescricaoViaLista() { //método mais efetivo na busca de comportamentos, porém ficará visualmente menos elegante.
-            if(estadoLista.contains(this));
-            return this.descricao;
-        }
-
-        public String getDescricao() { //Visualmente a Enum Estados Ficará mais organizada, porém com um método de retorno de descrição muito chulo
-            switch (this) {
-                case AC:
-                    descricao = AC.descricao = "Acre";
-                    break;
-                case ES:
-                    descricao = ES.descricao = "Espírito Santo";
-                    break;
-                case SC:
-                    descricao = SC.descricao = "Santa Catarina";
-                    break;
-                case SP:
-                    descricao = SP.descricao = "São Paulo";
-                    break;
-                default:
-                    System.out.println("Algo deu errado");
-            }
-            return descricao;
         }
         
         public String formata() {
@@ -78,12 +48,12 @@ public class Endereco { //Endereco ainda está em fase de testes. Porém já pos
     private String rua;
     private String bairro;
     private String cidade;
-    private Estados estado;
+    private Estado estado;
     private static Set<Endereco> cepMap = new HashSet<>();
     // Map Regras.
     // Chaves Não Podem ser repetidas.
 
-    public Endereco(String rua, String bairro, String cep, String cidade, Estados estado) {
+    public Endereco(String rua, String bairro, String cep, String cidade, Estado estado) {
         this.rua = rua;
         this.bairro = bairro;
         this.cidade = cidade;
@@ -105,7 +75,7 @@ public class Endereco { //Endereco ainda está em fase de testes. Porém já pos
         }
     }
 
-    public Endereco cadastraEndereco(String rua, String bairro, String cep, String cidade, Estados estado) {
+    public Endereco cadastraEndereco(String rua, String bairro, String cep, String cidade, Estado estado) {
         return new Endereco(rua, bairro, cep, cidade, estado);
     }
     
@@ -128,7 +98,7 @@ public class Endereco { //Endereco ainda está em fase de testes. Porém já pos
         System.out.println();
         //new Endereco().cadastraEndereco("Mangericao", "Eliane", "03575090", "São Paulo", "SP");
         //new Endereco().cadastraEndereco("Mangericao", "Eliane", "03575090", "São Paulo", "SP");
-        Endereco end = new Endereco().cadastraEndereco("Nespereira", "Eliane", "03575090","São Paulo", Estados.SP);
+        Endereco end = new Endereco().cadastraEndereco("Nespereira", "Eliane", "03575090","São Paulo", Estado.SC);
         System.out.println(end.estado.getDescricaoViaLista());
     }
 
