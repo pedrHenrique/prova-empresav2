@@ -191,7 +191,7 @@ public class FuncionarioTest {
     
     @Test
     public void teste_setCpf_e_getCpf_nome_correto() {
-        funcionario.setCpf(fun.getCpf());                       //Remoção de pontuação para comparação efetiva dos dois valores
+        funcionario.setCpf(fun.getCpf()); //Set adiciona uma formatação a variável. Replace remove essa formatação para a real comparação
         assertThat("Os valores deveriam ser iguais", funcionario.getCpf().replaceAll("\\D", ""), equalTo(fun.getCpf()));
     }
 
@@ -213,9 +213,8 @@ public class FuncionarioTest {
 
 //    @Test
 //    public void teste_seCep_e_getCep_nome_correto() {
-//        String cep = new String("03575090");
-//        fun.setCep(cep);
-//        assertThat("Os valores deveriam ser iguais", cep, equalTo(fun.getCep().replaceAll("\\D", ""))); // "\\D" remove formatação
+//        funcionario.setCep(fun.getCep(fun)); //Set adiciona uma formatação a variável. Replace remove essa formatação para a real comparação
+//        assertThat("Os valores deveriam ser iguais", funcionario.getCep().replaceAll("\\D", ""), equalTo(fun.getCep())); // "\\D" remove formatação
 //    }
 //
 //    @Test(expected = NullPointerException.class)
@@ -230,19 +229,19 @@ public class FuncionarioTest {
     
 //  @Test
 //  public void setCep_nao_deve_aceitar_valor_naoValido() {
-//      String cep = new String("03575090");
+//      String cep = new String("REFATORAR");
 //      fun.setCep(cep);
 //      assertThat("Os valores deveriam ser iguais", cep, equalTo(fun.getCep().replaceAll("\\D", ""))); // "\\D" remove formatação
 //  }
 
     @Test
     public void teste_setContato_e_getContato_nome_correto() {
-        funcionario.setContato(fun.getContato());
-        assertThat("Os valores deveriam ser iguais", funcionario.getContato(), equalTo(fun.getContato()));
+        funcionario.setContato(fun.getContato());//Set adiciona uma formatação a variável. Replace remove essa formatação para a real comparação       
+        assertThat("Os valores deveriam ser iguais", funcionario.getContato().replaceAll("\\D", ""), equalTo(fun.getContato()));
 
     }
 
-    @Test(expected = java.lang.NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void teste_setContato_valor_nulo() {
         fun.setContato(NULLSTR);
     }

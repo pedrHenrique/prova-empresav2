@@ -54,12 +54,9 @@ public class DepartamentoTest {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         FixtureFactoryLoader.loadTemplates("br.com.contmatic.empresav2.template");
-        departamento = new Departamento();
-
-        departamento.registraDep(1, "Financeiro", 155);
-        departamento.registraDep(2, "Recursos Humanos", 285);
-        departamento.registraDep(3, "Tecnologias", 405);
-
+        departamento = new Departamento(1, "Financeiro", 155);
+        departamento = new Departamento(2, "Recursos Humanos", 285);
+        departamento = new Departamento(3, "Tecnologias", 405);
     }
 
     @Before

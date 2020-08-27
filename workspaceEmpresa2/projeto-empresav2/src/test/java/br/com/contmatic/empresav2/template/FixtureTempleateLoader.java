@@ -11,6 +11,8 @@ import br.com.six2six.fixturefactory.loader.TemplateLoader;
 
 public class FixtureTempleateLoader implements TemplateLoader {
 
+    private static final String[] NOMES = {"Claudia Vasconcelos Pinto", "Eduardo Araujo Ribeiro", "Sofia Dantas", "Danton Camargo", "Bárbara Luz", "Jônatas, Oséias Amós Tomás"}; 
+    private static final String[] CPF = {"78964260058", "74967040080", "79641635077", "39687447052", "13690061016", "47782562040"}; 
     private static final String[] NOMESDEP = {"Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"}; //tem um nome aqui com erro
     private static final String[] NOMESEMP = {"Yahoo!", "AMD", "Clube do Hardware", "Dafiti", "Tifany&CO", "Mercedez-Benz", "Amazon.com, Itaú", "HLC"};
     private static final String[] CNPJS = {"71420773000175", "08887547000162", "10000944000112", "34237642000120", "14628526000125", "61589319000199"};
@@ -51,10 +53,10 @@ public class FixtureTempleateLoader implements TemplateLoader {
             //Exemplo Funcionario Com valores válidos
             {
             add("idFuncionario", random(Long.class, range(10L, 3000L))); 
-            add("nome", random("Claudia Vasconcelos Pinto", "Eduardo Araujo Ribeiro", "Sofia Dantas", "Danton Camargo", "Bárbara Luz", "Jônatas, Oséias Amós Tomás"));
-            add("cpf", random("78964260058", "74967040080", "79641635077", "39687447052", "13690061016", "47782562040"));
+            add("nome", NOMES[new Random().nextInt(NOMES.length)]);
+            add("cpf", CPF[new Random().nextInt(CPF.length)]);
             //add("cep", random("06853040", "73813762", "76807700", "66840370", "49009079", "60331295", "78058673")); Primeiro Transformar Cep em ENUM, depois adicionar o fixture
-            add("contato", random("28211740711", "10749174420", "2558693247", "4448956789", "junior@Junior.com", "ridouane8626@uorak.com"));
+            add("contato", CONTATOS[new Random().nextInt(CONTATOS.length)]);
             add("salario", random(Double.class, range(800.00, 10000.00)));
             
         }});

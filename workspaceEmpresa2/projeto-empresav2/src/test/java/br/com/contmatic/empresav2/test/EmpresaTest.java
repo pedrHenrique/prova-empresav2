@@ -38,22 +38,20 @@ public class EmpresaTest {
     public static void setUpBeforeClass() throws Exception {
         FixtureFactoryLoader.loadTemplates("br.com.contmatic.empresav2.template");
         fixtureData = FixtureTempleateLoader.getData();
-        empresa = new Empresa();
-
-        empresa.registraEmpresa(1, "TestMatic", "57695925000111", "03575090", "1145649304", "05/04/1985");
-        empresa.registraEmpresa(2, "TiãoIndustries", "89138206000196", "72150704", "11941063792", "04/12/1986");
-        empresa.registraEmpresa(3, "Cond-volt_Fios_e_Cabos", "60449385000109", "57071401", "Sony@Sony.com", "22/01/1938");
+        empresa = new Empresa(1, "TestMatic", "57695925000111", "03575090", "1145649304", "05/04/1985");
+        empresa = new Empresa(2, "TiãoIndustries", "89138206000196", "72150704", "11941063792", "04/12/1986");
+        empresa = new Empresa(3, "Cond-volt_Fios_e_Cabos", "60449385000109", "57071401", "Sony@Sony.com", "22/01/1938");
     }
 
     @Before
     public void setUp() throws Exception {
-        this.emp = new Empresa();
+        emp = new Empresa();
         emp = Fixture.from(Empresa.class).gimme("valido");
     }
 
     @After
     public void tearDown() throws Exception {
-        this.emp = null;
+        emp = null;
     }
 
     @AfterClass
@@ -177,8 +175,8 @@ public class EmpresaTest {
 
     @Test
     public void teste_setCNPJ_e_getCNPJ_correto() {
-        empresa.setCnpj(emp.getCnpj());
-        assertThat("Os valores deveriam ser iguais", empresa.getCnpj()/*.replaceAll("\\D", "")*/, equalTo(emp.getCnpj()));
+        empresa.setCnpj(emp.getCnpj()); //Set adiciona uma formatação a variável. Replace remove essa formatação para a real comparação
+        assertThat("Os valores deveriam ser iguais", empresa.getCnpj().replaceAll("\\D", ""), equalTo(emp.getCnpj()));
     }
 
     @Test(expected = NullPointerException.class)
@@ -199,8 +197,8 @@ public class EmpresaTest {
 
 //    @Test
 //    public void teste_setCep_e_getCep_correto() {
-//        empresa.setCep(emp.getCep());
-//        assertThat("Os valores deveriam ser iguais", empresa.getCep(), equalTo(emp.getCep().replaceAll("\\D", "")));
+//        empresa.setCep(emp.getCep()); //Set adiciona uma formatação a variável. Replace remove essa formatação para a real comparação
+//        assertThat("Os valores deveriam ser iguais", empresa.getCep().replaceAll("\\D", ""), equalTo(emp.getCep()));
 //    }
 //
 //    @Test(expected = NullPointerException.class)
@@ -215,14 +213,14 @@ public class EmpresaTest {
     
 //  @Test
 //  public void setCep_nao_deve_aceitar_valor_naoValido() {
-//      empresa.setCep(emp.getCep());
+//      empresa.setCep(emp.getCep()); //Set adiciona uma formatação a variável. Replace remove essa formatação para a real comparação
 //      assertThat("Os valores deveriam ser iguais", empresa.getCep(), equalTo(emp.getCep().replaceAll("\\D", "")));
 //  }
 
     @Test
     public void teste_setTelefone_e_getTelefone_correto() {
-        empresa.setContato(emp.getContato());
-        assertThat("Os valores deveriam ser iguais", empresa.getContato(), equalTo(emp.getContato()));
+        empresa.setContato(emp.getContato()); //Set adiciona uma formatação a variável. Replace remove essa formatação para a real comparação
+        assertThat("Os valores deveriam ser iguais", empresa.getContato().replaceAll("\\D", ""), equalTo(emp.getContato()));
     }
 
     @Test(expected = NullPointerException.class)

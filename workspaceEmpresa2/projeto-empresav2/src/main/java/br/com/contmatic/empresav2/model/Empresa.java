@@ -158,11 +158,11 @@ public class Empresa {
         return cep;
     }
 
-    public void setCep(String cep) {
-        cep = checkNotNull(cep.replaceAll("\\D", ""));
-        checkArgument(cep.length() == 8, "Digite apenas os números do CEP");
-        this.cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
-    }
+//    public void setCep(String cep) {
+//        cep = checkNotNull(cep.replaceAll("\\D", ""));
+//        checkArgument(cep.length() == 8, "Digite apenas os números do CEP");
+//        this.cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
+//    }
 
     public DateTime getDtFundacao() {
         return dtFundacao;
