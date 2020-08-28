@@ -6,10 +6,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 import static com.google.common.base.Preconditions.checkArgument;
+
 /*
- * Desenvolver Endereco com calma e ser Simples na Construção - 1º Endereço Precisar ser um Enum - 2º Endereço Precisa ser um SET. E Permitir somente um item do mesmo tipo (Mesmo Endereco) - 3º Já
- * que Endereço vai ser o responsável por armazenar os objetos, deve-se se ter as opções de > Registrar/Remover/Solicitar
+ * Classe Estado.
+ * Contem a lista de todos os estados do Brasil, mais os seus respectivos nomes.
  */
 
 public enum Estado {
