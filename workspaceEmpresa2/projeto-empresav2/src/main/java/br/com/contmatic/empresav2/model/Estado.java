@@ -1,9 +1,11 @@
 package br.com.contmatic.empresav2.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -55,8 +57,27 @@ public enum Estado {
     Estado() {
 
     }
+    
+    //funcional porém precisa ser refatorado
+    public static Estado formata(String uf) {
+        List<Estado> list = new ArrayList<Estado>(EnumSet.allOf(Estado.class));
+        System.out.println(list);
+        for (int i = 0; i < list.size(); i++){
+            if(list.get(i).name().equals(uf)) {
+               System.out.println("Deu Certo");
+               break;
+            }
+            return Enum.valueOf(Estado.class, uf);
+        }
+        return null;
+    }
 
-    public String getDescricaoViaLista() { // método mais efetivo na busca de comportamentos, porém ficará visualmente menos elegante.
+    /**
+     * Retorna a descrição da instância que solicitou a descrição. 
+     *
+     * @return the descricao via lista
+     */
+    public String getDescricaoViaLista() { 
         checkArgument(estadoLista.contains(this));
         return this.descricao;
     }

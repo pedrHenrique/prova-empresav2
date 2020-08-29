@@ -20,8 +20,11 @@ public class Endereco implements ViaCEPEvents {
      * E assim só depois de receber todo os parâmetros, deve salva-los no set... Se isso ainda for acontecer.
      * 
      */
-    
+    private String rua; //VIACEP Logradouro
+    private String bairro;
+    private String cidade; //VIACEP Localidade
     private String cep;
+    private String viaEstado;
     private Estado estado;
     private static Set<Endereco> enderecoLista = new HashSet<>();
     // Map Regras.
@@ -29,13 +32,20 @@ public class Endereco implements ViaCEPEvents {
 
 
     public Endereco(String rua, String bairro, String cep, String cidade, Estado estado) {
+        this.rua = rua;
+        this.bairro = bairro;
         this.cep = cep;
+        this.cidade = cidade;
         this.estado = estado;
         registraEndereco(this);
     }
-
-    public Endereco(String cep) {
+    
+    public Endereco(String rua, String bairro, String cep, String cidade, String estado) {
+        this.rua = rua;
+        this.bairro = bairro;
         this.cep = cep;
+        this.cidade = cidade;
+        this.estado = Estado.formata(estado);
         registraEndereco(this);
     }
     
@@ -54,18 +64,23 @@ public class Endereco implements ViaCEPEvents {
     }
 
     /**
-     * Verifica seu CEP e busca seu endereco completo.
+     * Verifica e busca seu endereço se existente nos bancos do VIACEP.
+     *<br> Está é a forma recomendada e mais simples de cadastrar seu endereco.
      *
      * @param Cep Ex.: 03575090
      * @throws ViaCEPException caso o CEP não seja encontrado
      */
-    public String buscaEndereco(String CEP) throws ViaCEPException {
-        this.cep = CEP;
+    public Endereco cadastraEnderecoViaCEP(String CEP) throws ViaCEPException {
+        //Talvez um try/catch no futuro seja necessário aqui.
         ViaCEP viaCEP = new ViaCEP(this);
-        viaCEP.buscar(cep.replaceAll("\\D", ""));
-        new Endereco(viaCEP.getCep());
-        System.out.println(cep);
-        return cep;
+        viaCEP.buscar(CEP.replaceAll("\\D", ""));
+        
+        
+        return new Endereco(viaCEP.getLogradouro(), viaCEP.getBairro(), viaCEP.getCep(), viaCEP.getLocalidade(), viaCEP.getUf());
+    }
+    
+    public Endereco alteraEndereco(String CEP) {
+        return null;
     }
 
     public Endereco cadastraEndereco(String rua, String bairro, String cep, String cidade, Estado estado) {
@@ -73,7 +88,7 @@ public class Endereco implements ViaCEPEvents {
     }
 
     public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(cep);
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
     public boolean equals(Object obj) {
@@ -83,8 +98,7 @@ public class Endereco implements ViaCEPEvents {
     // Para Testes
     public static void main(String[] args) throws ViaCEPException {
         Endereco end = new Endereco();
-        end.buscaEndereco("03575090");
-        System.out.println(getEnderecoLista());   
+        end.cadastraEnderecoViaCEP("26385-270");
         
         // Endereco end = new Endereco().cadastraEndereco("Nespereira", "Eliane", "03575090", "São Paulo", Estado.SC);
         // System.out.println(end.estado.getDescricaoViaLista());
@@ -103,6 +117,11 @@ public class Endereco implements ViaCEPEvents {
     public void onCEPError(String cep) {
         throw new IllegalArgumentException("O CEP inserido não é válido");
 
+    }
+
+    @Override
+    public String toString() {
+        return "Endereco [rua=" + rua + ", bairro=" + bairro + ", cidade=" + cidade + ", cep=" + cep + ", viaEstado=" + viaEstado + ", estado=" + estado + "]";
     }
 
 }
