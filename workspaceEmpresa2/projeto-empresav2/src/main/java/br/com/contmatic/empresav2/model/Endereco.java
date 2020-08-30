@@ -10,21 +10,18 @@ import br.com.parg.viacep.ViaCEP;
 import br.com.parg.viacep.ViaCEPEvents;
 import br.com.parg.viacep.ViaCEPException;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class Endereco implements ViaCEPEvents {
 
     /* Anotação para o Futuro
-     * 
-     * Pensar em uma lógica melhor...
-     * Para Endereco Funcionar
-     * Cada atributo do mesmo deve receber um parâmetro específico de VIACEP
-     * E assim só depois de receber todo os parâmetros, deve salva-los no set... Se isso ainda for acontecer.
+     *
      * 
      */
     private String rua; //VIACEP Logradouro
     private String bairro;
     private String cidade; //VIACEP Localidade
     private String cep;
-    private String viaEstado;
     private Estado estado;
     private static Set<Endereco> enderecoLista = new HashSet<>();
     // Map Regras.
@@ -45,7 +42,7 @@ public class Endereco implements ViaCEPEvents {
         this.bairro = bairro;
         this.cep = cep;
         this.cidade = cidade;
-        this.estado = Estado.formata(estado);
+        this.estado = checkNotNull(Estado.formata(estado), "UF não pode ter sido encontrada, por favor utilize a outra forma de cadastro");
         registraEndereco(this);
     }
     
@@ -72,7 +69,7 @@ public class Endereco implements ViaCEPEvents {
      */
     public Endereco cadastraEnderecoViaCEP(String CEP) throws ViaCEPException {
         //Talvez um try/catch no futuro seja necessário aqui.
-        ViaCEP viaCEP = new ViaCEP(this);
+        ViaCEP viaCEP = new ViaCEP();
         viaCEP.buscar(CEP.replaceAll("\\D", ""));
         
         
@@ -99,8 +96,12 @@ public class Endereco implements ViaCEPEvents {
     public static void main(String[] args) throws ViaCEPException {
         Endereco end = new Endereco();
         end.cadastraEnderecoViaCEP("26385-270");
+        Endereco end2 = new Endereco();
+        end2.cadastraEnderecoViaCEP("83829-310");
+        Endereco end3 = new Endereco();
+        end3.cadastraEnderecoViaCEP("41502-280");
         
-        // Endereco end = new Endereco().cadastraEndereco("Nespereira", "Eliane", "03575090", "São Paulo", Estado.SC);
+        new Endereco().cadastraEndereco("Nespereira", "Eliane", "03575090", "São Paulo", Estado.SC);
         // System.out.println(end.estado.getDescricaoViaLista());
     }
     
@@ -121,7 +122,7 @@ public class Endereco implements ViaCEPEvents {
 
     @Override
     public String toString() {
-        return "Endereco [rua=" + rua + ", bairro=" + bairro + ", cidade=" + cidade + ", cep=" + cep + ", viaEstado=" + viaEstado + ", estado=" + estado + "]";
+        return "Endereco [rua=" + rua + ", bairro=" + bairro + ", cidade=" + cidade + ", cep=" + cep + ", estado=" + estado + "]";
     }
 
 }

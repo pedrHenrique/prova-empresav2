@@ -1,15 +1,11 @@
 package br.com.contmatic.empresav2.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Verify.verify;
 
 /*
  * Classe Estado.
@@ -58,18 +54,19 @@ public enum Estado {
 
     }
     
-    //funcional porém precisa ser refatorado
+    //funcional porém precisa ser refatorado, novamente.
     public static Estado formata(String uf) {
-        List<Estado> list = new ArrayList<Estado>(EnumSet.allOf(Estado.class));
-        System.out.println(list);
-        for (int i = 0; i < list.size(); i++){
-            if(list.get(i).name().equals(uf)) {
-               System.out.println("Deu Certo");
-               break;
+        List<Estado> list = new ArrayList<>(EnumSet.allOf(Estado.class));
+        int i = 0;
+        try {
+            while(/*(i < list.size()) &&*/ !list.get(i).name().equals(uf)) {
+                i++;
             }
-            return Enum.valueOf(Estado.class, uf);
+        } catch (IndexOutOfBoundsException e) { //se chegou nesse ponto, nenhuma UF correspondete foi achada pelo VIACEP
+            return null;
         }
-        return null;
+        verify(list.get(i).name().equals(uf), "UF não encontrada."); //Verificação extra para garantir que a UF certa foi encontrada
+        return Enum.valueOf(Estado.class, uf);
     }
 
     /**
