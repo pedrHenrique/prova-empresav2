@@ -15,7 +15,7 @@ public class TestCep implements ViaCEPEvents {
     }
 
     public void run() {
-        setCep("03575090");
+        setCep("79070602");
         viaCEP = new ViaCEP(this); // this deve ser passado caso queremos utilizar o implements
 
         System.out.println("Iniciando o Processo");

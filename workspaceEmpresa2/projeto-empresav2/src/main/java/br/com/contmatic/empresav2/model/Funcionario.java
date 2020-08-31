@@ -47,7 +47,7 @@ public class Funcionario {
     @NotBlank
     @Min(8)
     @Pattern(regexp = "[\\D-]") // Testar Futuramente
-    //private Endereco cep; // TODO Cep será um enum no futuro
+    private Endereco endereco; 
 
     // Email possui sua própria annotation, tamanho, expressão regular, e não deve estar vazio
     @Email
