@@ -112,7 +112,7 @@ public class Funcionario {
         return new Funcionario(id, nome, cpf, cep, email, dep, salario);
     }
 
-    public Funcionario removeFuncionario(long id) {
+    public void removeFuncionario(long id) {
         Iterator<Funcionario> iterator = getFuncionarioLista().iterator();
         Funcionario obj = new Funcionario();
 
@@ -121,12 +121,12 @@ public class Funcionario {
         }
         verify(obj.getIdFuncionario() == id, "Funcionario com o ID: " + id + " não existe\n");
         iterator.remove();
-        return obj;
+        
     }
 
     private void salvaRegistro(Funcionario funcionario) {
         // Analisar melhor depois \/
-        verify(!(funcionarioLista.contains(checkNotNull(funcionario))), "O Funcionario: " + getNome() + " de ID: " + getIdFuncionario() + " já possui registro\n");
+        verify(!(funcionarioLista.contains(funcionario)), "O Funcionario: " + getNome() + " de ID: " + getIdFuncionario() + " já possui registro\n");
         funcionarioLista.add(funcionario);
     }
 
