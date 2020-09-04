@@ -17,6 +17,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Verify.verify;
 
+// Classe Endereco Será futuramente trabalhada de melhor forma...
 public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
 
     // Variáveis
@@ -258,20 +259,20 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     }
 
     // Para Testes
-    public static void main(String[] args) throws ViaCEPException {
-        Endereco end = new Endereco();
-        end.cadastraEnderecoViaCEP("58052232", "105");
-        Endereco end2 = new Endereco();
-        end2.cadastraEnderecoViaCEP("58020673", "2098");
-        Endereco end3 = new Endereco();
-        end3.cadastraEnderecoViaCEP("41502-280", "21A");
-        end.cadastraEnderecoViaCEP("41502-280", "304C");
-        end.cadastraEnderecoViaCEP("41502-280", "304C");
-
-        new Endereco().cadastraEndereco("rua São José", "Eliane", "83", "03575-090", "Santa Catarina", Estado.SC);
-        new Endereco().cadastraEndereco("RUA Vila Viana", "Boa Vista", "205", "60860-660", "Ceara", Estado.CE);
-        new Endereco().cadastraEndereco("", "Boa Vista", "205", "60860-660", "Ceara", Estado.CE); // deve falhar
-    }
+//    public static void main(String[] args) throws ViaCEPException {
+//        Endereco end = new Endereco();
+//        end.cadastraEnderecoViaCEP("58052232", "105");
+//        Endereco end2 = new Endereco();
+//        end2.cadastraEnderecoViaCEP("58020673", "2098");
+//        Endereco end3 = new Endereco();
+//        end3.cadastraEnderecoViaCEP("41502-280", "21A");
+//        end.cadastraEnderecoViaCEP("41502-280", "304C");
+//        end.cadastraEnderecoViaCEP("41502-280", "304C");
+//
+//        new Endereco().cadastraEndereco("rua São José", "Eliane", "83", "03575-090", "Santa Catarina", Estado.SC);
+//        new Endereco().cadastraEndereco("RUA Vila Viana", "Boa Vista", "205", "60860-660", "Ceara", Estado.CE);
+//        new Endereco().cadastraEndereco("", "Boa Vista", "205", "60860-660", "Ceara", Estado.CE); // deve falhar
+//    }
 
     public static Set<Endereco> getEnderecoLista() {
         return enderecoLista;

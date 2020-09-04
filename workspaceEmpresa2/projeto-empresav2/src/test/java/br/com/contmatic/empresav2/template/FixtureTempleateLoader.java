@@ -27,14 +27,14 @@ public class FixtureTempleateLoader implements TemplateLoader {
     private static final String[] CNPJS = {"71420773000175", "08887547000162", "10000944000112", "34237642000120", "14628526000125", "61589319000199"};
     private static final String[] DATAS = {"25/07/2029", "15/05/1971", "14/04/1959", "24/12/1968", "14/06/1999", "02/02/1990"};
     private static final String[] CONTATOS = {"28211740711", "10749174420", "2558693247", "4448956789", "testeMatic@cont.com", "PhoenixTest@contmatic.com"}; //Telefone/Celular/Email
-    private static final EnumSet<Estado> ESTADOS = EnumSet.allOf(Estado.class);
+    //private static final EnumSet<Estado> ESTADOS = EnumSet.allOf(Estado.class);
     
     @Override
     public void load() {
         Fixture.of(Departamento.class).addTemplate("valido", new Rule(){
             // Departamentos Válidos
             {
-            add("idDepartamento", uniqueRandom(Long.class, range(10L, 299L))); //Os primeiros 10 serão exclusivos.
+            add("idDepartamento", random(Long.class, range(10L, 299L))); //Os primeiros 10 serão exclusivos.
             add("nome", NOMESDEP[new Random().nextInt(NOMESDEP.length)]);
             add("ramal", random(Integer.class, range(1, 999)));
         }});
@@ -43,7 +43,7 @@ public class FixtureTempleateLoader implements TemplateLoader {
             
             //Departamentos com valores inválidos
             {
-            add("idDepartamento", uniqueRandom(Long.class, range(170L, 200L))); 
+            add("idDepartamento", random(Long.class, range(170L, 200L))); 
             add("nome", random("PRËMØNÏÇÃØ", "_¢8²¹²³²7!|øYžÕ#b", "[][][][]][", "チキンパステル"));
             add("ramal", random(Integer.class, range(1, 999)));
         }});
@@ -51,7 +51,7 @@ public class FixtureTempleateLoader implements TemplateLoader {
         Fixture.of(Empresa.class).addTemplate("valido", new Rule(){ //para testes
             //Exemplo empresa com valores válidos
             {
-            add("idEmpresa", uniqueRandom(Long.class, range(10L, 499L))); 
+            add("idEmpresa", random(Long.class, range(10L, 499L))); 
             add("nome", NOMESEMP[new Random().nextInt(NOMESEMP.length)]);
             add("cnpj", CNPJS[new Random().nextInt(CNPJS.length)]);
             add("cep", CEP [new Random().nextInt(CEP.length)]);
@@ -59,61 +59,54 @@ public class FixtureTempleateLoader implements TemplateLoader {
             add("contato", CONTATOS[new Random().nextInt(CONTATOS.length)]);
         }});
         
-        Fixture.of(Funcionario.class).addTemplate("valido", new Rule(){ //para testes
-            //Exemplo Funcionario Com valores válidos
-            {
-            add("idFuncionario", uniqueRandom(Long.class, range(10L, 3000L))); 
-            add("nome", NOMES[new Random().nextInt(NOMES.length)]);
-            add("cpf", uniqueRandom(CPF[new Random().nextInt(CPF.length)]));
-            add("cep", CEP[new Random().nextInt(CEP.length)]);
-            add("contato", CONTATOS[new Random().nextInt(CONTATOS.length)]);
-            add("salario", random(Double.class, range(800.00, 10000.00)));
+        /* DESATIVADO ATÉ POSSÍVEL REFATORAÇÃO DE ESTRUTURA.*/
+//        Fixture.of(Funcionario.class).addTemplate("valido", new Rule(){ //para testes
+//            //Exemplo Funcionario Com valores válidos
+//            {
+//            add("idFuncionario", random(Long.class, range(10L, 3000L))); 
+//            add("nome", NOMES[new Random().nextInt(NOMES.length)]);
+//            add("cpf", uniqueRandom(CPF[new Random().nextInt(CPF.length)]));
+//            //add("cep", CEP[new Random().nextInt(CEP.length)]);
+//            add("contato", CONTATOS[new Random().nextInt(CONTATOS.length)]);
+//            add("salario", random(Double.class, range(800.00, 10000.00)));
+//            
+//        }});
+//   
+//
+//        Fixture.of(Endereco.class).addTemplate("valido", new Rule(){ //para testes
+//            //Exemplo Endereco com valores válidos, todos gerador pelo 4devs
+//            {
+//            add("rua", random("Avenida Dedo de Deus", "Rua Primeiro de Maio", "Rua H12B", "Travessa Niterói", "Rua Projetada 899", "Rua Nove")); 
+//            add("bairro", random("Vila União", "Paraíso", "Parque Jardim Santanense", "Maruípe", "Setor Habitacional Samambaia (Vicente Pires)", "Santo Antônio", "Bela Vista"));
+//            add("num", random("4458", "205", "8", "702B", "4089C", "17", "35A", "35B", "701A", "6158", "54a", "54b", "27", "48B", "205", "777")); //O motivo de ter tantas numerações, é para evitar repetição de números.
+//            add("cep", CEP[new Random().nextInt(CEP.length)]);
+//            add("cidade", random("Teresina", "Lages", "Cariacica", "Parnamirim", "Florianópolis", "Nova Iguaçu", "Boa Vista", "Campo Grande"));            
+//            //add("estado", has(2).of(Estado.class, "aleatorio"));
             
-        }});
-
-        Fixture.of(Endereco.class).addTemplate("valido", new Rule(){ //para testes
-            //Exemplo Endereco com valores válidos, todos gerador pelo 4devs
-            {
-            add("rua", random("Avenida Dedo de Deus", "Rua Primeiro de Maio", "Rua H12B", "Travessa Niterói", "Rua Projetada 899", "Rua Nove")); 
-            add("bairro", random("Vila União", "Paraíso", "Parque Jardim Santanense", "Maruípe", "Setor Habitacional Samambaia (Vicente Pires)", "Santo Antônio", "Bela Vista"));
-            add("num", uniqueRandom("4458", "205", "8", "702B", "4089C", "17", "35A", "35B", "701A", "6158", "54a", "54b", "27", "48B", "205", "777")); //O motivo de ter tantas numerações, é para evitar repetição de números.
-            add("cep", CEP[new Random().nextInt(CEP.length)]);
-            add("cidade", random("Teresina", "Lages", "Cariacica", "Parnamirim", "Florianópolis", "Nova Iguaçu", "Boa Vista", "Campo Grande"));
-            System.out.println(ESTADOS);
-            add("estado", has(2).of(Estado.class, "aleatorio"));
-            ufStringTest();
-            
-        }});
-        
-        Fixture.of(Estado.class).addTemplate("aleatorio", new Rule(){ //para testes
-            //Exemplo Endereco com valores válidos, todos gerador pelo 4devs
-            {
-          
-              //add("uf", ESTADOS[new Random().nextInt(ESTADOS.toArray().length)]);
-                
-        }});
+//        }});
     }
+ 
 
     //Método (provisório) criado para retorno literal da String. Ao Inves de um DateTime 
     public static String getData() {
         return DATAS[new Random().nextInt(DATAS.length)];
     }
     
-    private String[] ufStringTest() {
-        
-        List<String> enumNames = Stream.of(Estado.values())
-                .map(Enum::name)
-                .collect(Collectors.toList());
-        
-        System.out.println(enumNames.toString());
-        
-//        for (String str : enumNames) {
-//            str = enumNames;
-//        }
-        
-        return null;
-        
-    }
+//    private static List<String> ufStringTest() {
+//        
+//        List<String> enumNames = Stream.of(Estado.values())
+//                .map(Enum::name)
+//                .collect(Collectors.toList());
+//        String[] enumStr = {};
+//        System.out.println(enumNames.toString()); 
+//        
+//        return enumNames;
+//        
+//    }
+    
+//    public static void main (String[] args) {
+//        ufStringTest();
+//    }
     
 
 }
