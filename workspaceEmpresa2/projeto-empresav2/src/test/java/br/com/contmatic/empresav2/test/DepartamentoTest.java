@@ -32,7 +32,7 @@ import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DepartamentoTest {
-    
+
     // Variáveis
 
     private static final String NULLSTR = null;
@@ -48,8 +48,8 @@ public class DepartamentoTest {
     private ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 
     private Validator validator;
-    
-    //Configuração do Teste
+
+    // Configuração do Teste
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -77,6 +77,39 @@ public class DepartamentoTest {
         Departamento.getDepartamentoLista().clear();
         departamento = null;
     }
+    
+    
+    /*
+     * Seção de testes sobre Validation
+     */
+    
+    @Test
+    public void teste_annotation_validator_incorreto() { // Código Retirado do Stack Overflow
+        ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
+        Validator validator = vf.getValidator();
+        Departamento exDepErrado = new Departamento();
+        exDepErrado = Fixture.from(Departamento.class).gimme("invalido");
+                                                                                                                                                    // NotBlank não permite registrar nomes com (             )
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(exDepErrado.registraDep(exDepErrado.getIdDepartamento(), exDepErrado.getNome(), exDepErrado.getRamal()));
+
+        for(ConstraintViolation<Departamento> cv : constraintViolations) {
+            System.out.println(String.format("Erro Encontrado! propriedade: [%s], value: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()));
+        }
+    }
+    
+    @Test
+    public void teste_annotation_validator_correto() { // Código Retirado do Stack Overflow
+        ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
+        Validator validator = vf.getValidator();
+        Departamento exDepErrado = new Departamento();
+        exDepErrado = Fixture.from(Departamento.class).gimme("valido");
+
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(exDepErrado.registraDep(exDepErrado.getIdDepartamento(), exDepErrado.getNome(), exDepErrado.getRamal()));
+
+        for(ConstraintViolation<Departamento> cv : constraintViolations) {
+            System.out.println(String.format("Erro Encontrado! propriedade: [%s], value: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()));
+        }
+    }
 
     /*
      * Seção de testes dos métodos de criação dos objetos da classe
@@ -84,14 +117,13 @@ public class DepartamentoTest {
 
     // TODO Testes de Departamento Precisam ser revistos e alguns removidos
 
-    
     @Test
     public void deve_criar_departamento_valido_atraves_deConstrutor_utilizando_Fixture() {
         dep = new Departamento(dep.getIdDepartamento(), dep.getNome(), dep.getRamal()); // Sobrescrita de Objeto!!
         assertThat("O departamento devia ter sido criado e armazenado: ", Departamento.getDepartamentoLista().contains(dep), equalTo(true));
         assertNotNull("O objeto não deveria estar nulo", dep);
     }
-    
+
     @Test
     public void deve_criar_departamento_valido_atraves_deMetodo_utilizando_Fixture() {
         dep.registraDep(dep.getIdDepartamento(), dep.getNome(), dep.getRamal());
@@ -115,7 +147,7 @@ public class DepartamentoTest {
 
     @Test
     public void deve_remover_objeto_ja_existente_daCollection_com_sucesso() {
-        //Registra para depois remover
+        // Registra para depois remover
         dep.registraDep(dep.getIdDepartamento(), dep.getNome(), dep.getRamal());
         departamento.removeDep(dep.getIdDepartamento());
         assertThat("O departamento não deve estar registrado", Departamento.getDepartamentoLista().contains(dep), equalTo(false));
@@ -167,7 +199,7 @@ public class DepartamentoTest {
     public void setIdDepartamento_nao_deve_aceitar_valores_incorretos() {
         dep.setIdDepartamento(-5);
     }
-    
+
     @Test
     public void teste_setNome_e_getNome_corretos() {
         departamento.setNome(dep.getNome());
@@ -225,7 +257,7 @@ public class DepartamentoTest {
         // System.out.println(Departamento.getDepartamentoLista().toString());
         assertNotNull("Esperava receber uma lista", Departamento.getDepartamentoLista().toString());
     }
-    
+
     /**
      * Teste Específico: Não Registra nome apenas com espaços em branco.
      */
@@ -281,19 +313,6 @@ public class DepartamentoTest {
     // System.out.println("e");
     // }
     //
-    // }
-    // }
-
-    // @Test TESTES DESATIVADOS PARA REFORMULAÇÃO
-    // public void teste_annotation_validator_correto() { // Código Retirado do Stack Overflow
-    // ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
-    // Validator validator = vf.getValidator();
-    // dep = new Departamento();
-    //
-    // Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(dep.registraDep(5, "Gilberto", 450));
-    //
-    // for(ConstraintViolation<Departamento> cv : constraintViolations) {
-    // System.out.println(String.format("Erro Encontrado! propriedade: [%s], value: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()));
     // }
     // }
 }

@@ -43,9 +43,9 @@ public class FixtureTempleateLoader implements TemplateLoader {
             
             //Departamentos com valores inválidos
             {
-            add("idDepartamento", random(Long.class, range(170L, 200L))); 
-            add("nome", random("PRËMØNÏÇÃØ", "_¢8²¹²³²7!|øYžÕ#b", "[][][][]][", "チキンパステル"));
-            add("ramal", random(Integer.class, range(1, 999)));
+            add("idDepartamento", random(Long.class, range(300L, 500L))); 
+            add("nome", random("PRËMØNÏÇÃØ", "_¢8²¹²³²7!|øYžÕ#b", "[][][][]][", "チキンパステル", "             "));
+            add("ramal", random(Integer.class, range(999L, 2000L)));
         }});
         
         Fixture.of(Empresa.class).addTemplate("valido", new Rule(){ //para testes

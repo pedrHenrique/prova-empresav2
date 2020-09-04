@@ -36,17 +36,17 @@ import static com.google.common.base.Verify.verify;
 public class Departamento {
 
     // Variáveis
-    @Max(300)
-    @Positive
+    @Max(value = 300, message = "O número máximo de departamentos que podem ser cadastrados é 300")
+    @Positive(message = "Id não pode ser um valor negativo")
     private long idDepartamento;
 
-    @NotBlank
-    @Length(min = 2, max = 40)
-    @Pattern(regexp = "[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕçÇ ]+", message = "Nome inapropriado. Recomenda-se mudar") // Nome não deveria ser registrado fora de um Padrão de A-z
+    @NotBlank(message = "Campo nome não pode ficar vázio")
+    @Length(min = 2, max = 40, message = "Nome de departamento não deve ser tão grande.")
+    @Pattern(regexp = "[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕçÇ ]+", message = "Nome para departamento inapropriado. Recomenda-se mudar") // Nome não deveria ser registrado fora de um Padrão de A-z
     private String nome;
 
-    @Range(min = 1, max = 999)
-    @Positive
+    @Range(min = 1, max = 999, message = "Ramal não deve ser tão longo assim, respeite a regra de 3 dígitos apenas.")
+    @Positive(message = "Ramal não pode ser um valor negativo")
     private int ramal; // Adicionaro forma de contato recebendo Ramal e Email futuramente (se possível)
 
     // @NotEmpty // Maybe???
@@ -119,8 +119,8 @@ public class Departamento {
     }
 
     public void setIdDepartamento(long idDepartamento) {
-        checkArgument(idDepartamento > 0 && idDepartamento <= 300, "O ID do departamento deve ser maior que zero e menor que 300!");
-        this.idDepartamento = checkNotNull(idDepartamento, "O valor não pode estar nulo");
+//        checkArgument(idDepartamento > 0 && idDepartamento <= 300, "O ID do departamento deve ser maior que zero e menor que 300!");
+        this.idDepartamento = idDepartamento;
     }
 
     public String getNome() {
@@ -130,10 +130,10 @@ public class Departamento {
     public void setNome(String nome) {
         // Formata campos com espaço vazio
         // Impede a utilização de números, caracteres especiais e valores nulos
-        nome = nome.replaceAll(("[ ]+"), " ");
-        checkArgument(nome.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕçÇ ]+") && (nome.length() > 2 && nome.length() < 30),
-            "Departamento não pode conter caracteres especiais, ou um tamanho muito grande");
-        this.nome = checkNotNull(nome);
+//        nome = nome.replaceAll(("[ ]+"), " ");
+//        checkArgument(nome.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕçÇ ]+") && (nome.length() > 2 && nome.length() < 30),
+//            "Departamento não pode conter caracteres especiais, ou um tamanho muito grande");
+        this.nome = nome;
 
     }
 
@@ -142,8 +142,8 @@ public class Departamento {
     }
 
     public void setRamal(int ramal) {
-        checkArgument(ramal > 0 && ramal <= 999, "Ramal pode ser apenas de 1 a 999");
-        this.ramal = checkNotNull(ramal, "Ramal não pode estar vazio");
+//        checkArgument(ramal > 0 && ramal <= 999, "Ramal pode ser apenas de 1 a 999");
+        this.ramal = ramal;
     }
 
     public static Collection<Departamento> getDepartamentoLista() {
