@@ -24,8 +24,8 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     private String rua; // VIACEP Logradouro
     private String bairro;
     private String num;
-    private String cidade; // VIACEP Localidade
     private String cep;
+    private String cidade; // VIACEP Localidade
     private Estado estado;
     private static Set<Endereco> enderecoLista = new HashSet<>();
     // Map Regras.

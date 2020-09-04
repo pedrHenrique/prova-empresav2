@@ -61,7 +61,7 @@ public class DepartamentoTest {
 
     @Before
     public void setUp() throws Exception {
-        this.dep = new Departamento();
+        dep = new Departamento();
         dep = Fixture.from(Departamento.class).gimme("valido");
         // ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         // this.validator = factory.getValidator();
@@ -69,7 +69,7 @@ public class DepartamentoTest {
 
     @After
     public void tearDown() throws Exception {
-        this.dep = null;
+        dep = null;
     }
 
     @AfterClass

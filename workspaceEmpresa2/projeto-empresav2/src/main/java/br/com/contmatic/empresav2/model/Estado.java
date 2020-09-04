@@ -72,10 +72,19 @@ public enum Estado {
     /**
      * Retorna a descrição da instância que solicitou a descrição. 
      *
-     * @return the descricao via lista
+     * @return A descricao da ENUM instânciada.
      */
     public String getDescricaoViaLista() { 
         checkArgument(estadoLista.contains(this));
         return this.descricao;
+    }
+
+    public static EnumSet<Estado> getEstadoLista() {
+        return estadoLista;
+    }
+    
+    @Override
+    public String toString(){
+        return descricao;
     }
 }
