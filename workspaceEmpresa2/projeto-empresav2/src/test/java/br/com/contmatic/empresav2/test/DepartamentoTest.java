@@ -93,7 +93,7 @@ public class DepartamentoTest {
         Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(exDepErrado.registraDep(exDepErrado.getIdDepartamento(), exDepErrado.getNome(), exDepErrado.getRamal()));
 
         for(ConstraintViolation<Departamento> cv : constraintViolations) {
-            System.out.println(String.format("Erro Encontrado! propriedade: [%s], value: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()));
+            System.out.println(String.format("Erro Encontrado! propriedade: [%s], value: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage())); //Confirmar se existe uma forma melhor de exbir oq não estiver válido
         }
     }
     
@@ -133,7 +133,8 @@ public class DepartamentoTest {
 
     @Test(expected = VerifyException.class)
     public void nao_deve_registrar_departamento_com_ID_ja_utilizado() {
-        dep.registraDep(1, "Financeiro", 226);
+          //dep.registraDep(1, "Abacate", 155);
+        dep.registraDep(1, "TesteQueDeveSacar", 250);
     }
 
     @Test(expected = NullPointerException.class)

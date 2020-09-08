@@ -16,6 +16,7 @@ import com.google.common.base.VerifyException;
 
 import br.com.contmatic.empresav2.model.Departamento;
 import br.com.contmatic.empresav2.model.Funcionario;
+import br.com.contmatic.empresav2.model.Util;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 
@@ -48,17 +49,17 @@ public class FuncionarioTest {
 
     @Before
     public void setUp() {
-        fun = Fixture.from(Funcionario.class).gimme("valido"); 
-        dep = Fixture.from(Departamento.class).gimme("valido");   
+        fun = Fixture.from(Funcionario.class).gimme("valido");
+        dep = Fixture.from(Departamento.class).gimme("valido");
     }
 
     @After
     public void tearDown() throws Exception {
-        //Isso é feito para impedir o possível caso do Fixture devolver um ID de registro já cadastrado
+        // Isso é feito para impedir o possível caso do Fixture devolver um ID de registro já cadastrado
         fun = null;
         dep = null;
     }
-    
+
     @AfterClass
     public static void tearDownAfterClass() {
         Funcionario.getFuncionarioLista().clear();
@@ -74,28 +75,26 @@ public class FuncionarioTest {
     @Test
     public void deve_criar_funcionario_valido_atraves_doConstrutor_utilizando_Fixture() {
         dep.registraDep(dep.getIdDepartamento(), dep.getNome(), dep.getRamal());
-        fun = new Funcionario(fun.getIdFuncionario(), fun.getNome(), fun.getCpf(), "03575090", fun.getContato(), dep.getIdDepartamento(), 1500.00);
-        
-        assertThat("O Funcionario deveria ter sido criado e aramazenado:", Funcionario.getFuncionarioLista().contains(fun), equalTo(true));
+        fun = new Funcionario(fun.getIdFuncionario(), fun.getNome(), fun.getCpf(), "03575090", fun.getContato(), dep.getIdDepartamento(), fun.getSalario());
+        System.out.println(fun.toString());
+        assertThat("O Funcionario deveria ter sido criado e armazenado:", Funcionario.getFuncionarioLista().contains(fun), equalTo(true));
         assertNotNull("O objeto não deveria estar nulo", fun);
-        System.out.println(fun.listaFuncionario());
+
     }
 
     @Test
     public void deve_criar_funcionario_valido_atraves_deMetodo_utilizando_Fixture() {
         dep.registraDep(dep.getIdDepartamento(), dep.getNome(), dep.getRamal());
-        fun.cadastraFuncionario(fun.getIdFuncionario(), fun.getNome(), fun.getCpf(), "69915890", fun.getContato(), dep.getIdDepartamento(), 5000.00);
-        
-        assertThat("O Funcionario deveria ter sido criado e aramazenado:", Funcionario.getFuncionarioLista().contains(fun), equalTo(true));
+        fun = fun.cadastraFuncionario(fun.getIdFuncionario(), fun.getNome(), fun.getCpf(), "69915890", fun.getContato(), dep.getIdDepartamento(), fun.getSalario());
+        assertThat("O Funcionario deveria ter sido criado e armazenado:", Funcionario.getFuncionarioLista().contains(fun), equalTo(true)); // Mensagem p/ Falha
         assertNotNull("O objeto não deveria estar nulo", fun);
-        System.out.println(fun.listaFuncionario());
+
     }
-    
+
     @Test(expected = VerifyException.class)
     public void nao_deve_registrar_funcionario_com_ID_ja_utilizado() {
         funcionario.cadastraFuncionario(1, fun.getNome(), fun.getCpf(), "69915890", fun.getContato(), dep.getIdDepartamento(), 50.79);
     }
-
 
     @Test(expected = NullPointerException.class)
     public void nao_deve_criar_funcionario_nulo() {
@@ -106,7 +105,7 @@ public class FuncionarioTest {
     public void nao_deve_criar_funcionario_vazio() {
         fun.cadastraFuncionario(EMPTYLONG, EMPTYSTR, EMPTYSTR, EMPTYSTR, EMPTYSTR, EMPTYLONG, EMPTYINT);
     }
-    
+
     /*
      * Seção de testes dos métodos de remoção de objetos da Collection.
      */
@@ -128,19 +127,18 @@ public class FuncionarioTest {
     /*
      * Seção de testes dos métodos de busca de objetos da Collection
      */
-    
+
     @Test
     public void deve_retornar_funcionario_ja_cadastrado() {
         assertNotNull("Esperava receber um objeto", fun.solicitaFuncionario(1));
         assertNotNull("Esperava receber um objeto", fun.solicitaFuncionario(2));
         assertNotNull("Esperava receber um objeto", fun.solicitaFuncionario(3));
     }
-    
+
     @Test(expected = VerifyException.class)
     public void nao_deve_retornar_funcionario_nao_existente() {
         fun.solicitaFuncionario(1041);
     }
-
 
     /*
      * Seção de testes dos getters/setters da classe
@@ -161,7 +159,7 @@ public class FuncionarioTest {
     public void setId_nao_deve_aceitar_vazios() {
         fun.setIdFuncionario(EMPTYLONG);
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void setId_nao_deve_aceitar_valores_incorretos() {
         fun.setIdFuncionario(-6);
@@ -183,15 +181,15 @@ public class FuncionarioTest {
         fun.setNome(EMPTYSTR);
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void setNome_nao_deve_aceitar_caracteres_naoValidos() {
         String name = new String("PRËMØNÏÇÃØ");
         fun.setNome(name);
     }
-    
+
     @Test
     public void teste_setCpf_e_getCpf_nome_correto() {
-        funcionario.setCpf(fun.getCpf()); //Set adiciona uma formatação a variável. Replace remove essa formatação para a real comparação
+        funcionario.setCpf(fun.getCpf()); // Set adiciona uma formatação a variável. Replace remove essa formatação para a real comparação
         assertThat("Os valores deveriam ser iguais", funcionario.getCpf().replaceAll("\\D", ""), equalTo(fun.getCpf()));
     }
 
@@ -204,39 +202,39 @@ public class FuncionarioTest {
     public void setCpf_nao_deve_aceitar_valor_vazio() {
         fun.setCpf(EMPTYSTR);
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void setCpf_nao_deve_aceitar_valor_naoValido() {
         String CPF = "ABCDFEHIJKL";
         fun.setCpf(CPF);
     }
 
-//    @Test
-//    public void teste_seCep_e_getCep_nome_correto() {
-//        funcionario.setCep(fun.getCep(fun)); //Set adiciona uma formatação a variável. Replace remove essa formatação para a real comparação
-//        assertThat("Os valores deveriam ser iguais", funcionario.getCep().replaceAll("\\D", ""), equalTo(fun.getCep())); // "\\D" remove formatação
-//    }
-//
-//    @Test(expected = NullPointerException.class)
-//    public void setCep_nao_deve_aceitar_valor_nulo() {
-//        fun.setCep(NULLSTR);
-//    }
-//
-//    @Test(expected = IllegalArgumentException.class)
-//    public void setCep_nao_deve_aceitar_valor_vazio() {
-//        fun.setCep(EMPTYSTR);
-//    }
-    
-//  @Test
-//  public void setCep_nao_deve_aceitar_valor_naoValido() {
-//      String cep = new String("REFATORAR");
-//      fun.setCep(cep);
-//      assertThat("Os valores deveriam ser iguais", cep, equalTo(fun.getCep().replaceAll("\\D", ""))); // "\\D" remove formatação
-//  }
+    // @Test
+    // public void teste_seCep_e_getCep_nome_correto() {
+    // funcionario.setCep(fun.getCep(fun)); //Set adiciona uma formatação a variável. Replace remove essa formatação para a real comparação
+    // assertThat("Os valores deveriam ser iguais", funcionario.getCep().replaceAll("\\D", ""), equalTo(fun.getCep())); // "\\D" remove formatação
+    // }
+    //
+    // @Test(expected = NullPointerException.class)
+    // public void setCep_nao_deve_aceitar_valor_nulo() {
+    // fun.setCep(NULLSTR);
+    // }
+    //
+    // @Test(expected = IllegalArgumentException.class)
+    // public void setCep_nao_deve_aceitar_valor_vazio() {
+    // fun.setCep(EMPTYSTR);
+    // }
+
+    // @Test
+    // public void setCep_nao_deve_aceitar_valor_naoValido() {
+    // String cep = new String("REFATORAR");
+    // fun.setCep(cep);
+    // assertThat("Os valores deveriam ser iguais", cep, equalTo(fun.getCep().replaceAll("\\D", ""))); // "\\D" remove formatação
+    // }
 
     @Test
     public void teste_setContato_e_getContato_nome_correto() {
-        funcionario.setContato(fun.getContato());//Set adiciona uma formatação a variável. Replace remove essa formatação para a real comparação       
+        funcionario.setContato(fun.getContato());// Set adiciona uma formatação a variável. Replace remove essa formatação para a real comparação
         assertThat("Os valores deveriam ser iguais", funcionario.getContato().replaceAll("\\D", ""), equalTo(fun.getContato()));
 
     }
@@ -250,16 +248,16 @@ public class FuncionarioTest {
     public void teste_setContato_valor_vazio() {
         fun.setContato(EMPTYSTR);
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void setEmail_nao_deve_aceitar_email_naoValido() {
-        String email = new String("Rogerinho85.com.br"); //Email precisa conter um @
+        String email = new String("Rogerinho85.com.br"); // Email precisa conter um @
         fun.setContato(email);
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void setEmail_nao_deve_aceitar_telefone_naoValido() {
-        String telefone = new String("449968410186248"); //Telefone precisa ter o DDD + a numeração do tel/cel
+        String telefone = new String("449968410186248"); // Telefone precisa ter o DDD + a numeração do tel/cel
         fun.setContato(telefone);
     }
 
@@ -278,10 +276,10 @@ public class FuncionarioTest {
     public void setSalario_nao_deve_aceitar_valor_naoVazio() {
         fun.setSalario(EMPTYINT);
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void setSalario_nao_deve_aceitar_valor_naoValido() {
-        fun.setSalario(-500); //Salario negativo ninguém merece né?
+        fun.setSalario(-500); // Salario negativo ninguém merece né?
     }
 
     @Test
@@ -311,7 +309,7 @@ public class FuncionarioTest {
     public void teste_buscaDepartamento_valor_vazio() {
         fun.buscaDepartamento(new Departamento(EMPTYLONG, EMPTYSTR, EMPTYINTEGER));
     }
-    
+
     /*
      * Está seção de testes tem o intuito de testar os métodos de listagem
      */
@@ -325,14 +323,14 @@ public class FuncionarioTest {
     public void teste_toString() {
         assertNotNull("Os valores deveriam ser iguais", funcionario.toString());
     }
-    
+
     /**
      * Teste Específico: Não deveria registrar Funcionario que já possui CPF existente.
      */
-    
+
     @Test(expected = IllegalArgumentException.class)
-    @Ignore("Teste_ignorado_pois_funcionalidade_ainda_não_está_presente")
-    public void teste_pessoa_criada_com_cpf_ja_existente() {
+    // @Ignore("Teste_ignorado_pois_funcionalidade_ainda_não_está_presente")
+    public void teste_pessoa_criada_com_cpf_ja_existente() { // Teste com novo HashCode e Equals :D
         long id = 13;
         fun.cadastraFuncionario(id, "Rogerinho", "56495985096", "69915890", "junior@Junior.com", 1, 50.79);
     }

@@ -15,6 +15,10 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.br.CPF;
@@ -29,25 +33,30 @@ public class Funcionario {
     // Variáveis
 
     // Número máximo de funcionarios é 3000 e seus valores só podem ser positivos
-    @Max(3000)
-    @Positive
+    @Max(value = 3000, message = "Numero máximo de funcionarios não pode ser maior que 3000")
+    @Positive(message = "ID não pode ser negativo")
     private long idFuncionario;
 
     // Nome não pode estar vazio, possui um tamanho específico, e uma recomendação de expressão regular
-    @Length(min = 3, max = 40)
-    @Pattern(regexp = "regexp = \"[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕçÇ ]+", message = "Nome invalido. Recomenda-se mudar")
+    @NotBlank(message = "Campo nome não pode ficar vázio")
+    @Length(min = 3, max = 40, message = "Nome não pode ser desse tamanho.")
+    @Pattern(regexp = "regexp = \"[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+", message = "Nome invalido. Recomenda-se mudar")
     private String nome;
 
     // CPF não pode estar vazio e possui seu próprio tipo de annotation
-    @NotEmpty
+    @NotEmpty(message = "CPF não pode ficar vázio")
     @CPF
     private String cpf;
 
     // Cep não pode ser vazio e deve sempre ter o valor mínimo de 8 caracteres
-    @NotBlank
-    @Min(8)
-    @Pattern(regexp = "[\\D-]") // Testar Futuramente
-    private Endereco endereco; 
+    /*
+     * @NotBlank
+     * 
+     * @Min(8)
+     * 
+     * @Pattern(regexp = "[\\D-]") // Testar Futuramente
+     */
+    private Endereco endereco;
 
     // Email possui sua própria annotation, tamanho, expressão regular, e não deve estar vazio
     @Email
@@ -58,11 +67,11 @@ public class Funcionario {
     // tipoContato sempre será um valor de referência presente na classe, portanto ele não poderá ser nulo
     @NotNull
     @Valid
-    private TipoContato tipoContato;
+    private Util tipoContato;
 
     // Salario possui um valor mínimo, máximo e sempre deve ser positivo
-    @Positive
-    @NotBlank // aceita long
+    @Positive(message = "Salario não pode ser negativo")
+    @NotBlank(message = "Salario não pode estar vazio")
     @Range(min = 1, max = 50000)
     private double salario;
 
@@ -71,18 +80,17 @@ public class Funcionario {
     private Departamento departamento = new Departamento();
     private static Collection<Funcionario> funcionarioLista = new HashSet<>();
 
-    // TODO Ajuste Salario.
-
     // Construtores
 
     public Funcionario(long idFuncionario, String nome, String cpf, String cep, String contato, long dep, double salario) {
-        setIdFuncionario(idFuncionario);
-        setNome(nome);
-        setCpf(cpf);
-        //setCep(cep);
-        setContato(contato);
-        buscaDepartamento(departamento.solicitaDep(dep));
-        setSalario(salario);
+        this.idFuncionario = idFuncionario;
+        this.nome = nome;
+        this.cpf = Util.formataCPF(cpf);
+        // setCep(cep);
+        this.contato = Util.formataContato(contato);
+        this.tipoContato = Util.tipoContato(contato);
+        this.departamento = buscaDepartamento(departamento.solicitaDep(dep));
+        this.salario = salario;
         salvaRegistro(this);
     }
 
@@ -109,7 +117,8 @@ public class Funcionario {
     }
 
     public Funcionario cadastraFuncionario(long id, String nome, String cpf, String cep, String email, long dep, double salario) {
-        return new Funcionario(id, nome, cpf, cep, email, dep, salario);
+        Funcionario fn = new Funcionario(id, nome, cpf, cep, email, dep, salario);
+        return fn;
     }
 
     public void removeFuncionario(long id) {
@@ -121,7 +130,7 @@ public class Funcionario {
         }
         verify(obj.getIdFuncionario() == id, "Funcionario com o ID: " + id + " não existe\n");
         iterator.remove();
-        
+
     }
 
     private void salvaRegistro(Funcionario funcionario) {
@@ -144,8 +153,8 @@ public class Funcionario {
     }
 
     public void setIdFuncionario(long idFuncionario) {
-        checkArgument(idFuncionario > 0 && idFuncionario < 3000, "ID para pessoa precisa ser maior que 0 e menor que 3000");
-        this.idFuncionario = checkNotNull(idFuncionario);
+        // checkArgument(idFuncionario > 0 && idFuncionario < 3000, "ID para pessoa precisa ser maior que 0 e menor que 3000");
+        this.idFuncionario = idFuncionario;
     }
 
     public String getNome() {
@@ -155,9 +164,9 @@ public class Funcionario {
 
     public void setNome(String nome) {
         // Será modificado no futuro
-        nome = checkNotNull(nome.replaceAll(("[ ]+"), " "));
+        // nome = checkNotNull(nome.replaceAll(("[ ]+"), " "));
         // Nome poderá ser completo, possuir acentos, espaços, e caracteres de caixa alta e baixa.
-        checkArgument(nome.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+") && (nome.length() >= 3 && nome.length() <= 40), "Nome não pode conter caracteres especiais ou um tamanho muito grande");
+        // checkArgument(nome.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+") && (nome.length() >= 3 && nome.length() <= 40), "Nome não pode conter caracteres especiais ou um tamanho muito grande");
         this.nome = nome;
     }
 
@@ -167,9 +176,9 @@ public class Funcionario {
     }
 
     public void setCpf(String cpf) {
-        cpf = cpf.replaceAll("\\D", "");
-        checkArgument(cpf.length() == 11, "Digite apenas os números do CPF");
-        this.cpf = checkNotNull(cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11));
+        // cpf = cpf.replaceAll("\\D", "");
+        // checkArgument(cpf.length() == 11, "Digite apenas os números do CPF");
+        this.cpf = Util.formataCPF(cpf);
     }
 
     public String getContato() {
@@ -178,36 +187,19 @@ public class Funcionario {
     }
 
     public void setContato(String contato) {
-        checkNotNull(contato, "Contato não pode estar vazio");
-        int aux = (contato.replaceAll("\\D", "").length());
-        
-        switch (aux) {
-            case 10: //Enum Poderia conter a formatação que acontece dentro desse bloco de código
-                this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 6) + "-" + contato.substring(6);
-                tipoContato = TipoContato.FIXO; break;
-                
-            case 11:
-                this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 7) + "-" + contato.substring(7);
-                tipoContato = TipoContato.CELULAR; break;
-                
-            default:
-                checkArgument(contato.contains("@") && contato.contains(".com") && !(contato.length() < 7 || contato.length() > 50),
-                    "O contato inserido não corresponde a nenhum email ou telefone/celular." + "\n Digite apenas os números do telefone. ");
-                this.contato = contato;
-                tipoContato = TipoContato.EMAIL;
-        }
+        this.contato = Util.formataContato(contato);
     }
 
-    public String getCep() {
-        return cpf;
+    public String getCep() { // Alterar isso depois
+        return endereco.toString();
 
     }
 
-//    public void setCep(String cep) { Desativado
-//        cep = checkNotNull(cep.replaceAll("\\D", "")); // Cep deve sair no formato: 03575-090
-//        checkArgument(cep.length() == 8, "Digite apenas os números do CEP");
-//        this.cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
-//    }
+    // public void setCep(String cep) { Desativado
+    // cep = checkNotNull(cep.replaceAll("\\D", "")); // Cep deve sair no formato: 03575-090
+    // checkArgument(cep.length() == 8, "Digite apenas os números do CEP");
+    // this.cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
+    // }
 
     public double getSalario() {
         return salario;
@@ -215,8 +207,8 @@ public class Funcionario {
     }
 
     public void setSalario(double salario) {
-        checkArgument(salario > 0 && salario <= 10000.00, "Salario está incorreto!");
-        this.salario = checkNotNull(salario);
+        // checkArgument(salario > 0 && salario <= 10000.00, "Salario está incorreto!");
+        this.salario = salario;
     }
 
     public Departamento getDepartamento() {
@@ -224,8 +216,12 @@ public class Funcionario {
 
     }
 
-    public TipoContato getTipoContato() {
+    public Util getTipoContato() {
         return tipoContato;
+    }
+
+    public void setTipoContato(Util tipoContato) {
+        this.tipoContato = tipoContato;
     }
 
     public static Collection<Funcionario> getFuncionarioLista() {
@@ -234,29 +230,28 @@ public class Funcionario {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (int) (idFuncionario ^ (idFuncionario >>> 32));
-        return result;
+    public int hashCode() { // Não entendi pq quando dando new, podemos utilizar o append e o hashcode...
+        return new HashCodeBuilder().append(this.idFuncionario).append(this.cpf).hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
             return true;
-        if (!(obj instanceof Funcionario))
+        }
+        if (obj.getClass() != getClass()) {
             return false;
-        Funcionario other = (Funcionario) obj;
-        if (idFuncionario != other.idFuncionario)
-            return false;
-        return true;
+        }
+        Funcionario fn = (Funcionario) obj;
+        return new EqualsBuilder().append(this.idFuncionario, fn.idFuncionario).append(this.cpf, fn.cpf).isEquals();
     }
 
     @Override
     public String toString() {
-        return "Funcionario: [ID= " + getIdFuncionario() + ", Nome= " + getNome() + ", Cpf= " + getCpf() + " Cep= " + " Desativado para está versão."/*getCep()*/ + ", Contato= " + getContato() + " Salario=  " + getSalario() + " " +
-            getDepartamento() + "]";
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE).concat("\n");
     }
 
 }

@@ -4,6 +4,10 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.HashSet;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.joda.time.DateTime;
@@ -62,7 +66,7 @@ public class Empresa {
     // tipoContato sempre será um valor de referência presente na classe, portanto ele não poderá ser nulo
     @NotNull
     @Valid
-    private TipoContato tipoContato;
+    private Util tipoContato;
 
     private static Collection<Empresa> empresaLista = new HashSet<>();
 
@@ -191,21 +195,21 @@ public class Empresa {
         switch (aux) {
             case 10:
                 this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 6) + "-" + contato.substring(6);
-                tipoContato = TipoContato.FIXO; break;
+                tipoContato = Util.FIXO; break;
                 
             case 11:
                 this.contato = "(" + contato.substring(0, 2) + ") " + contato.substring(2, 7) + "-" + contato.substring(7);
-                tipoContato = TipoContato.CELULAR; break;
+                tipoContato = Util.CELULAR; break;
                 
             default:
                 checkArgument(contato.contains("@") && contato.contains(".com") && !(contato.length() < 7 || contato.length() > 50),
                     "O contato inserido não corresponde a nenhum email ou telefone/celular." + "\n Digite apenas os números do telefone. ");
                 this.contato = contato;
-                tipoContato = TipoContato.EMAIL;
+                tipoContato = Util.EMAIL;
         }
     }
 
-    public TipoContato getTipoContato() {
+    public Util getTipoContato() {
         return tipoContato;
     }
 
@@ -214,31 +218,29 @@ public class Empresa {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (int) (idEmpresa ^ (idEmpresa >>> 32));
-        return result;
+    public int hashCode() { 
+        return new HashCodeBuilder().append(this.idEmpresa).hashCode();
     }
     
-
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
             return true;
-        if (obj == null)
+        }
+        if (obj.getClass() != getClass()) {
             return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Empresa other = (Empresa) obj;
-        if (idEmpresa != other.idEmpresa)
-            return false;
-        return true;
+        }
+        Empresa emp = (Empresa) obj;
+        return new EqualsBuilder()                
+                .append(this.idEmpresa, emp.idEmpresa).isEquals();
     }
-
+    
     @Override
     public String toString() {
-        return "\nEmpresa: [" + getIdEmpresa() + ", Nome: " + getNome() + ", CNPJ: " + getCnpj() + ", Cep: " /*+ getCep() */ + "CEP está desativado para está versão " + ", " + getTipoContato() + ":" + getContato() + ", Data Fundação: " + getDtFundacao();
-    }
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.NO_CLASS_NAME_STYLE);
+      }
 
 }

@@ -12,6 +12,10 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
@@ -79,14 +83,16 @@ public class Departamento {
     }
 
     private void salvarRegistro(Departamento departamento) {
-        verify(!(departamentoLista.contains(checkNotNull(departamento))), getIdDepartamento() + " já possui registro\n");
+        verify(!(departamentoLista.contains(departamento)), getIdDepartamento() + " já possui registro\n");
+        if (departamentoLista.contains(departamento)) {
+            System.out.println("Departamento já presente.");
+        }
         departamentoLista.add(departamento);
     }
 
-    public Departamento solicitaDep(long id) { 
-        /* 
-         * -> Está Forma de buscar departamentos não é muito "adequada"
-         * Pensar em outra forma de solicitar departamentos, seja atráves de uma enum ou até mesmo atraves de um contain this
+    public Departamento solicitaDep(long id) {
+        /*
+         * -> Está Forma de buscar departamentos não é muito "adequada" Pensar em outra forma de solicitar departamentos, seja atráves de uma enum ou até mesmo atraves de um contain this
          */
         Iterator<Departamento> iterator = getDepartamentoLista().iterator();
         Departamento obj = new Departamento();
@@ -119,7 +125,7 @@ public class Departamento {
     }
 
     public void setIdDepartamento(long idDepartamento) {
-//        checkArgument(idDepartamento > 0 && idDepartamento <= 300, "O ID do departamento deve ser maior que zero e menor que 300!");
+        // checkArgument(idDepartamento > 0 && idDepartamento <= 300, "O ID do departamento deve ser maior que zero e menor que 300!");
         this.idDepartamento = idDepartamento;
     }
 
@@ -130,9 +136,9 @@ public class Departamento {
     public void setNome(String nome) {
         // Formata campos com espaço vazio
         // Impede a utilização de números, caracteres especiais e valores nulos
-//        nome = nome.replaceAll(("[ ]+"), " ");
-//        checkArgument(nome.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕçÇ ]+") && (nome.length() > 2 && nome.length() < 30),
-//            "Departamento não pode conter caracteres especiais, ou um tamanho muito grande");
+        // nome = nome.replaceAll(("[ ]+"), " ");
+        // checkArgument(nome.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕçÇ ]+") && (nome.length() > 2 && nome.length() < 30),
+        // "Departamento não pode conter caracteres especiais, ou um tamanho muito grande");
         this.nome = nome;
 
     }
@@ -142,7 +148,7 @@ public class Departamento {
     }
 
     public void setRamal(int ramal) {
-//        checkArgument(ramal > 0 && ramal <= 999, "Ramal pode ser apenas de 1 a 999");
+        // checkArgument(ramal > 0 && ramal <= 999, "Ramal pode ser apenas de 1 a 999");
         this.ramal = ramal;
     }
 
@@ -151,31 +157,30 @@ public class Departamento {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (int) (idDepartamento ^ (idDepartamento >>> 32));
-        return result;
+    public int hashCode() { // Não entendi pq quando dando new, podemos utilizar o append e o hashcode...
+        return new HashCodeBuilder().append(this.idDepartamento).append(this.ramal).hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
             return true;
-        if (obj == null)
+        }
+        if (obj.getClass() != getClass()) {
             return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Departamento other = (Departamento) obj;
-        if (idDepartamento != other.idDepartamento)
-            return false;
-        return true;
+        }
+        Departamento dp = (Departamento) obj;
+        return new EqualsBuilder()
+                // .appendSuper(super.equals(obj)), remover isso, faz com que o código funcione como esperado
+                .append(this.idDepartamento, dp.idDepartamento).append(this.ramal, dp.ramal).isEquals();
     }
 
     @Override
     public String toString() {
-        return ("Departamento: " + nome + ", idDepartamento: " + idDepartamento + ", Ramal: " + ramal);
-
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
 }
