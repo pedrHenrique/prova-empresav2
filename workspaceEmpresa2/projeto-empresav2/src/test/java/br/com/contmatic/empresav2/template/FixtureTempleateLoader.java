@@ -27,6 +27,7 @@ public class FixtureTempleateLoader implements TemplateLoader {
     private static final String[] CNPJS = {"71420773000175", "08887547000162", "10000944000112", "34237642000120", "14628526000125", "61589319000199"};
     private static final String[] DATAS = {"25/07/2029", "15/05/1971", "14/04/1959", "24/12/1968", "14/06/1999", "02/02/1990"};
     private static final String[] CONTATOS = {"28211740711", "10749174420", "2558693247", "4448956789", "testeMatic@cont.com", "PhoenixTest@contmatic.com"}; //Telefone/Celular/Email
+    private static final String[] ESTADO = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "PA", "PB", "PR", "PE", "PE", "PI", "RJ", "SP", "SE", "TO"};
     //private static final EnumSet<Estado> ESTADOS = EnumSet.allOf(Estado.class);
     
     @Override
@@ -72,20 +73,20 @@ public class FixtureTempleateLoader implements TemplateLoader {
             
             
         }});
-        /* DESATIVADO ATÉ POSSÍVEL REFATORAÇÃO DE ESTRUTURA.*/
-//   
-//
-//        Fixture.of(Endereco.class).addTemplate("valido", new Rule(){ //para testes
-//            //Exemplo Endereco com valores válidos, todos gerador pelo 4devs
-//            {
-//            add("rua", random("Avenida Dedo de Deus", "Rua Primeiro de Maio", "Rua H12B", "Travessa Niterói", "Rua Projetada 899", "Rua Nove")); 
-//            add("bairro", random("Vila União", "Paraíso", "Parque Jardim Santanense", "Maruípe", "Setor Habitacional Samambaia (Vicente Pires)", "Santo Antônio", "Bela Vista"));
-//            add("num", random("4458", "205", "8", "702B", "4089C", "17", "35A", "35B", "701A", "6158", "54a", "54b", "27", "48B", "205", "777")); //O motivo de ter tantas numerações, é para evitar repetição de números.
-//            add("cep", CEP[new Random().nextInt(CEP.length)]);
-//            add("cidade", random("Teresina", "Lages", "Cariacica", "Parnamirim", "Florianópolis", "Nova Iguaçu", "Boa Vista", "Campo Grande"));            
-//            //add("estado", has(2).of(Estado.class, "aleatorio"));
+        /* DESATIVADO ATÉ POSSÍVEL REFATORAÇÃO DE ESTRUTURA.*/   
+
+        Fixture.of(Endereco.class).addTemplate("valido", new Rule(){ //para testes
+            //Exemplo Endereco com valores válidos, todos gerador pelo 4devs
+            {
+            add("rua", random("Avenida Dedo de Deus", "Rua Primeiro de Maio", "Rua H12B", "Travessa Niterói", "Rua Projetada 899", "Rua Nove")); 
+            add("bairro", random("Vila União", "Paraíso", "Parque Jardim Santanense", "Maruípe", "Setor Habitacional Samambaia (Vicente Pires)", "Santo Antônio", "Bela Vista"));
+            add("num", random("4458", "205", "8", "702B", "4089C", "17", "35A", "35B", "701A", "6158", "54a", "54b", "27", "48B", "205", "777")); //O motivo de ter tantas numerações, é para evitar repetição de números.
+            add("cep", CEP[new Random().nextInt(CEP.length)]);
+            add("cidade", random("Teresina", "Lages", "Cariacica", "Parnamirim", "Florianópolis", "Nova Iguaçu", "Boa Vista", "Campo Grande"));            
+            //add("estado", ESTADO[new Random().nextInt(ESTADO.length)]);
+            //TODO descobrir se o fixture consegue utilizar Enums
             
-//        }});
+        }});
     }
  
 

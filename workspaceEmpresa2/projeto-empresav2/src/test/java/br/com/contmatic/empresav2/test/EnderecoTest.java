@@ -24,7 +24,7 @@ public class EnderecoTest {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         FixtureFactoryLoader.loadTemplates("br.com.contmatic.empresav2.template");
-        //endereco = new Endereco("Rua Francisco de Assis do Nascimento", "Doutor Juvêncio de Andrade", "A245", "62039-245", "Sobral", "CE");
+        endereco = new Endereco("Rua Francisco de Assis do Nascimento", "Doutor Juvêncio de Andrade", "A245", "62039-245", "Sobral", "CE");
     }
 
     @Before
@@ -40,6 +40,7 @@ public class EnderecoTest {
 
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
+        Endereco.getEnderecoLista().clear();
         endereco = null;
     }
 
@@ -49,33 +50,37 @@ public class EnderecoTest {
 
     
     @Test
-    public void teste_setRua_e_getRua_nome_correto() {
+    public void teste_setRua_e_getRua_nome_correto() {        
         endereco.setRua(end.getRua());
         assertThat(endereco.getRua(), equalTo(end.getRua()));
     }
 
     
-    @Ignore
     @Test
-    public void teste_registra_endereco_com_sucesso() throws ViaCEPException {
+    public void teste_registra_endereco_com_sucesso() {
         end = Endereco.cadastraEnderecoViaCEP("60874-208", "456");
         assertThat(Endereco.getEnderecoLista().contains(end), equalTo(true));
     }
-
-    @Ignore
-    @Test //Lógica de Testes Está errada
-    public void nao_deve_registra_endereco_ja_existente() throws ViaCEPException {
-        end = Endereco.cadastraEndereco("Rua Francisco de Assis", "Doutor Juvêncio de Andrade", "A245", "62039-245", "Sobral", Estado.CE);        
-        assertThat(Endereco.getEnderecoLista().contains(end), equalTo(false));        
-    }
     
-    @Ignore
     @Test 
     public void teste_remocao_deObjeto_deForma_diferenciada() {
-        //O objeto removido será o do SetUpBeforeClass;
-        Endereco.removeEndereco("62039-245", "A245");
-        //Teste Improvisado
-        assertThat(Endereco.getEnderecoLista().contains(null), equalTo(true));
+        Endereco.removeEndereco(end.solicitaEndereco("62039-245", "A245"));
+        //assertThat(Endereco.getEnderecoLista().contains(end.solicitaEndereco("62039-245", "A245")), equalTo(false));
+        assertNull(end.solicitaEndereco("62039-245", "A245"));
+    }
+    
+    @Test 
+    public void teste_remocao_deObjeto_dois() {
+        end = Endereco.cadastraEnderecoViaCEP("72444-134", "A420");
+        Endereco.removeEndereco("72444-134", "A420");
+        //assertThat(Endereco.getEnderecoLista().contains(end.solicitaEndereco("62039-245", "A245")), equalTo(false));
+        assertNull(end.solicitaEndereco("72444-134", "A420"));
+    }
+    
+    @Test 
+    public void deve_buscar_Endereco_eRetornar_ele() {
+        end = Endereco.cadastraEnderecoViaCEP("28245-970", "558");
+        assertNotNull(endereco.solicitaEndereco("28245-970", "558"));
     }
 
 }
