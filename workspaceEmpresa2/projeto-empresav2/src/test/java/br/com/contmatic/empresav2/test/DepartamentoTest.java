@@ -1,9 +1,11 @@
 package br.com.contmatic.empresav2.test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -13,6 +15,7 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,7 +48,7 @@ public class DepartamentoTest {
     private static Departamento departamento;
     private Departamento dep; // criado para testar diferença de instâncias
 
-    private ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    private static ValidatorFactory vf;
 
     private Validator validator;
 
@@ -54,6 +57,7 @@ public class DepartamentoTest {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         FixtureFactoryLoader.loadTemplates("br.com.contmatic.empresav2.template");
+        vf = Validation.buildDefaultValidatorFactory();
         departamento = new Departamento(1, "Financeiro", 155);
         departamento = new Departamento(2, "Recursos Humanos", 285);
         departamento = new Departamento(3, "Tecnologias", 405);
@@ -63,19 +67,20 @@ public class DepartamentoTest {
     public void setUp() throws Exception {
         dep = new Departamento();
         dep = Fixture.from(Departamento.class).gimme("valido");
-        // ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        // this.validator = factory.getValidator();
+        validator = vf.getValidator();
     }
 
     @After
     public void tearDown() throws Exception {
         dep = null;
+        validator = null;
     }
 
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
         Departamento.getDepartamentoLista().clear();
         departamento = null;
+        vf = null;
     }
     
     
@@ -85,8 +90,6 @@ public class DepartamentoTest {
     
     @Test
     public void teste_annotation_validator_incorreto() { // Código Retirado do Stack Overflow
-        ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
-        Validator validator = vf.getValidator();
         Departamento exDepErrado = new Departamento();
         exDepErrado = Fixture.from(Departamento.class).gimme("invalido");
                                                                                                                                                     // NotBlank não permite registrar nomes com (             )
@@ -94,21 +97,20 @@ public class DepartamentoTest {
 
         for(ConstraintViolation<Departamento> cv : constraintViolations) {
             System.out.println(String.format("Erro Encontrado! propriedade: [%s], value: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage())); //Confirmar se existe uma forma melhor de exbir oq não estiver válido
+            //assertThat(constraintViolations.contains(hasItem(1)), equalTo(true));
         }
     }
     
     @Test
     public void teste_annotation_validator_correto() { // Código Retirado do Stack Overflow
-        ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
-        Validator validator = vf.getValidator();
-        Departamento exDepErrado = new Departamento();
-        exDepErrado = Fixture.from(Departamento.class).gimme("valido");
+        Departamento exDepCerto = new Departamento();
+        exDepCerto = Fixture.from(Departamento.class).gimme("valido");
 
-        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(exDepErrado.registraDep(exDepErrado.getIdDepartamento(), exDepErrado.getNome(), exDepErrado.getRamal()));
-
-        for(ConstraintViolation<Departamento> cv : constraintViolations) {
-            System.out.println(String.format("Erro Encontrado! propriedade: [%s], value: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()));
-        }
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(exDepCerto.registraDep(exDepCerto.getIdDepartamento(), exDepCerto.getNome(), exDepCerto.getRamal()));
+        assertTrue(constraintViolations.isEmpty());
+//        for(ConstraintViolation<Departamento> cv : constraintViolations) {
+//            System.out.println(String.format("Erro Encontrado! propriedade: [%s], value: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()));
+//        }
     }
 
     /*
@@ -273,6 +275,22 @@ public class DepartamentoTest {
     @Test(expected = IllegalArgumentException.class)
     public void nao_deve_registra_nome_com_numeros() {
         dep.registraDep(5, "Cleber4578Araujo", 405);
+    }
+    
+    @Test
+    public void bigBrainTest() {
+        dep.registraDep(99, "Junior1", 205);
+        dep.registraDep(100, "Junior2", 206);
+        dep.registraDep(101, "Junior3", 206);
+        departamento.listarDepartamentos();
+        departamento.removeDep(3);
+        departamento.removeDep(100);
+        departamento.removeDep(1);
+        departamento.removeDep(99);
+        departamento.removeDep(101);
+        departamento.removeDep(2);
+        System.out.println("Depois de excluir");
+        departamento.listarDepartamentos();
     }
 
     // @Test // (expected = IllegalArgumentException.class)

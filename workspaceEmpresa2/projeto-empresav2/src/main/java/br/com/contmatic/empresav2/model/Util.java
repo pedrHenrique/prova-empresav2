@@ -35,7 +35,27 @@ public enum Util {
     public static String formataCPF(String cpf) {
         cpf = (cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11));
         return cpf;
-
+    }
+    
+    public static String formataCEP(String cep) {
+        cep = cep.replace("\\D", "");
+        cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
+        return cep;
+    }
+    
+    /**
+     * <h1> DESATIVADO </h1>
+     * 
+     * Formata nome rua removendo qualquer caractere "rua" no nome.
+     * <br> Método criado com a intenção de uso apenas pelas funções internas 
+     *
+     * @param rua O nome da sua rua
+     * @return O nome da rua sem qualquer caractere "rua" nele
+     */
+    public static String formataNomeRua(String rua) {
+        rua = rua.replaceAll("[ ]+", " "); // remove possíveis múltiplos espaços em brancos
+        rua = rua.replaceAll(("^[Rr][Uu][Aa]"), "");
+        return rua;
     }
 
     public static Util tipoContato(String contato) {

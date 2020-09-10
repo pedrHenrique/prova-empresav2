@@ -4,10 +4,21 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.validator.constraints.Length;
 
 import com.google.common.base.VerifyException;
+import com.sun.istack.internal.NotNull;
 
 import br.com.parg.viacep.ViaCEP;
 import br.com.parg.viacep.ViaCEPException;
@@ -22,12 +33,35 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
 
     // Variáveis
 
+    @NotBlank(message = "Sua rua não tem nome???")
+    @Length(min = 1, max = 60, message = "Nome da rua não deve ser tão grande.")
+    @Pattern(regexp = "[\\wªáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ- ]+", message = "Este tipo de nome de rua não pode ser aceito. Verifique se você não digitou nada de errado")
     private String rua; // VIACEP Logradouro
+    
+    @NotBlank
+    @Length(min = 5, max = 40, message = "Nome da bairro não deve ser tão grande.")
+    @Pattern(regexp = "[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+", message = "Este tipo de nome de bairro não pode ser aceito. Verifique se você não digitou nada de errado")
     private String bairro;
+    
+    @NotBlank(message = "Numero de identificação não pode ficar vazio")
+    @Max(value = 5, message = "O tamanho máximo para um número de identificação é de 5")
+    @Pattern(regexp = "[\\dA-Z]+", message = "Numero só pode conter dígitos e uma a letra de identificação")
     private String num;
+    
+    @NotBlank(message = "CEP não pode ficar vazio")
+    @Length(min = 9, message = "O tamanho mínimo do CEP deveria ser de 9 caracteres")
+    @Pattern(regexp = "[\\D-]+", message = "CEP deve conter apenas números") //Teste promissor
     private String cep;
+    
+    @NotBlank(message = "Cidade não pode ficar vazia")
+    @Length(min = 4, max = 30, message = "Nome da cidade não deve ser tão grande")
+    @Pattern(regexp = "[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+", message = "Este tipo de nome de cidade não pode ser aceito, verifique se você não digitou nada de errado") //Teste promissor
     private String cidade; // VIACEP Localidade
+    
+    @NotNull
+    @Valid
     private Estado estado;
+    
     private static Set<Endereco> enderecoLista = new HashSet<>();
     // Map Regras.
     // Chaves Não Podem ser repetidas.
@@ -35,22 +69,22 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     // Construtores
 
     public Endereco(String rua, String bairro, String num, String cep, String cidade, Estado estado) {
-        setRua(rua);
-        setBairro(bairro);
-        setNumero(num);
-        setCep(cep);
-        setCidade(cidade);
-        setEstado(estado);
+        this.rua = rua.replaceAll(("^[Rr][Uu][Aa] "), "");
+        this.bairro = bairro;
+        this.num = num;
+        this.cep = Util.formataCEP(cep);
+        this.cidade = cidade;
+        this.estado = estado;
         registraEndereco(this);
     }
 
     public Endereco(String rua, String bairro, String num, String cep, String cidade, String estado) {
-        setRua(rua);
-        setBairro(bairro);
-        setNumero(num);
-        setCep(cep);
-        setCidade(cidade);
-        setEstado((Estado.formata(estado)));
+        this.rua = rua.replaceAll(("^[Rr][Uu][Aa] "), "");
+        this.bairro = bairro;
+        this.num = num;
+        this.cep = cep;
+        this.cidade = cidade;
+        this.estado = Estado.formata(estado);
         registraEndereco(this);
     }
 
@@ -61,15 +95,16 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     // Métodos
 
     private void registraEndereco(Endereco end) {
-       // try {
-            verify(!(enderecoLista.contains(end))); // Verifique se o enderecoLista já não contem esse tipo de objeto
-        //} catch (VerifyException e) {
-            System.out.println("Este endereço já possui registro. Insira um endereço alternativo, ou verifique se vc digitou a numeração correta.");
-         //   return; //Return sai do método sem executar o restande dele.
-       // }
+         try {
+             
+             verify(!(enderecoLista.contains(end))); // Verifique se o enderecoLista já não contem esse tipo de objeto
+         } catch (VerifyException e) {
+             
+             System.out.println("Este endereço:\n" + end + "já está cadastrado. Insira um endereço alternativo, ou verifique se vc digitou a numeração correta.\n");
+         return; //Return sai do método sem executar o restande dele.
+         }
         enderecoLista.add(end);
         System.out.println(end.toString());
-
 
     }
 
@@ -98,27 +133,24 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
         }
 
     }
-    
-    public Endereco solicitaEndereco(String cep, String numero) { 
-        /* 
-         * -> Está Forma de buscar departamentos não é muito "adequada"
-         * Pensar em outra forma de solicitar departamentos, seja atráves de uma enum ou até mesmo atraves de um contain this
-         */
+
+    public Endereco solicitaEndereco(String cep, String numero) {
         Iterator<Endereco> iterator = getEnderecoLista().iterator();
         Endereco obj = new Endereco();
 
-//        while (iterator.hasNext() && obj.getIdDepartamento() != id) {
-//            obj = iterator.next();
-//        }
-//        verify(obj.getIdDepartamento() == id, "O Departamento " + id + " não foi encontrado\n");
+         while (iterator.hasNext() && (obj.getCep().equals(cep) && obj.getNumero().equals(numero))) {
+         obj = iterator.next();
+         }
+         //verify(obj.getIdDepartamento() == id, "O Departamento " + id + " não foi encontrado\n");
         return obj;
     }
 
     /**
-     * Verifica e busca seu endereço se existente nos bancos do VIACEP. <br>
-     * Está é a forma recomendada e mais simples de cadastrar seu endereco.
+     * Busca e verifica se seu endereço existe nos registros do VIACEP. <br>
+     * Está é a forma recomendada e mais prática de cadastrar seu endereco.
      *
      * @param cep Ex.: 03575090
+     * @param numero - O Número da sua residência Ex.: 406, 2091, 107A, 1017B.
      * @throws ViaCEPException caso o CEP não seja encontrado
      */
     public static Endereco cadastraEnderecoViaCEP(String cep, String numero) throws ViaCEPException {
@@ -160,10 +192,10 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     }
 
     public void setRua(String rua) {
-        rua = rua.replaceAll("[ ]+", " "); // remove os espaços em brancos
-        rua = checkNotNull(rua.replaceAll(("^[Rr][Uu][Aa]"), ""), "Rua não deve estar vazia");
-        checkArgument(rua.matches("[\\wªáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+") && (rua.length() >= 2 && rua.length() <= 40),
-            "Este tipo de nome de rua não pode ser aceito, verifique se você não digitou nada de errado");
+//        rua = rua.replaceAll("[ ]+", " "); // remove os espaços em brancos
+//        rua = checkNotNull(rua.replaceAll(("^[Rr][Uu][Aa]"), ""), "Rua não deve estar vazia");
+//        checkArgument(rua.matches("[\\wªáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+") && (rua.length() >= 2 && rua.length() <= 40),
+//            "Este tipo de nome de rua não pode ser aceito, verifique se você não digitou nada de errado");
         this.rua = rua;
     }
 
@@ -172,9 +204,9 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     }
 
     public void setBairro(String bairro) {
-        bairro = checkNotNull(bairro.replaceAll(("[ ]+"), " "), "Bairro não pode ficar vazio");
-        checkArgument(bairro.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ() ]+") && (bairro.length() >= 5 && bairro.length() <= 40),
-            "Este tipo de nome de bairro não pode ser aceito, verifique se você não digitou nada de errado");
+//        bairro = checkNotNull(bairro.replaceAll(("[ ]+"), " "), "Bairro não pode ficar vazio");
+//        checkArgument(bairro.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ() ]+") && (bairro.length() >= 5 && bairro.length() <= 40),
+//            "Este tipo de nome de bairro não pode ser aceito, verifique se você não digitou nada de errado");
         this.bairro = bairro;
     }
 
@@ -183,9 +215,10 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     }
 
     public void setNumero(String numero) {
-        checkArgument(numero.matches("[\\dA-Z]+") && (numero.length() <= 5),
-            numero + " não pode ser registrado como um número de casa. Numero pode conter 5 dígitos contando com a letra de identificação");
-        this.num = checkNotNull(numero, "O numero da residência precisa ser inserido");
+//        checkArgument(numero.matches("[\\dA-Z]+") && (numero.length() <= 5),
+//            numero + " não pode ser registrado como um número de casa. Numero pode conter 5 dígitos contando com a letra de identificação");
+//        this.num = checkNotNull(numero, "O numero da residência precisa ser inserido");
+        this.num = numero;
     }
 
     public String getCidade() {
@@ -193,9 +226,9 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     }
 
     public void setCidade(String cidade) {
-        cidade = checkNotNull(cidade.replaceAll(("[ ]+"), " "), "Cidade não pode ficar em branco");
-        checkArgument(cidade.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+") && (cidade.length() >= 5 && cidade.length() <= 60),
-            "Este tipo de nome de cidade não pode ser aceito, verifique se você não digitou nada de errado");
+//        cidade = checkNotNull(cidade.replaceAll(("[ ]+"), " "), "Cidade não pode ficar em branco");
+//        checkArgument(cidade.matches("[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+") && (cidade.length() >= 5 && cidade.length() <= 60),
+//            "Este tipo de nome de cidade não pode ser aceito, verifique se você não digitou nada de errado");
         this.cidade = cidade;
     }
 
@@ -204,9 +237,10 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     }
 
     public void setCep(String cep) {
-        cep = checkNotNull(cep.replaceAll("\\D", ""), "CEP não pode ficar em branco"); // Cep deve sair no formato: 03575-090
-        checkArgument(cep.length() == 8, "Digite apenas os números do CEP");
-        this.cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
+//        cep = checkNotNull(cep.replaceAll("\\D", ""), "CEP não pode ficar em branco"); // Cep deve sair no formato: 03575-090
+//        checkArgument(cep.length() == 8, "Digite apenas os números do CEP");
+//        this.cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
+        this.cep = cep;
     }
 
     public Estado getEstado() {
@@ -214,65 +248,45 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     }
 
     public void setEstado(Estado estado) {
-        this.estado = checkNotNull(estado, "O estado " + estado + " não pode ter sido encontrado. Tente novamente");
+//        this.estado = checkNotNull(estado, "O estado " + estado + " não pode ter sido encontrado. Tente novamente");
+        this.estado = estado;
     }
-    
-    
-
-//    public int hashCode() {
-//        return HashCodeBuilder.reflectionHashCode(cep + num);
-//    }
-//
-//    public boolean equals(Object obj) {
-//        return EqualsBuilder.reflectionEquals(this, obj);
-//    }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((cep == null) ? 0 : cep.hashCode());
-        result = prime * result + ((num == null) ? 0 : num.hashCode());
-        return result;
+    public int hashCode() { // Não entendi pq quando dando new, podemos utilizar o append e o hashcode...
+        return new HashCodeBuilder().append(this.cep).append(this.num).hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
             return true;
-        if (obj == null)
+        }
+        if (obj.getClass() != getClass()) {
             return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Endereco other = (Endereco) obj;
-        if (cep == null) {
-            if (other.cep != null)
-                return false;
-        } else if (!cep.equals(other.cep))
-            return false;
-        if (num == null) {
-            if (other.num != null)
-                return false;
-        } else if (!num.equals(other.num))
-            return false;
-        return true;
+        }
+        Endereco fn = (Endereco) obj;
+        return new EqualsBuilder().append(this.cep, fn.cep).append(this.num, fn.num).isEquals();
     }
 
     // Para Testes
-//    public static void main(String[] args) throws ViaCEPException {
-//        Endereco end = new Endereco();
-//        end.cadastraEnderecoViaCEP("58052232", "105");
-//        Endereco end2 = new Endereco();
-//        end2.cadastraEnderecoViaCEP("58020673", "2098");
-//        Endereco end3 = new Endereco();
-//        end3.cadastraEnderecoViaCEP("41502-280", "21A");
-//        end.cadastraEnderecoViaCEP("41502-280", "304C");
-//        end.cadastraEnderecoViaCEP("41502-280", "304C");
-//
-//        new Endereco().cadastraEndereco("rua São José", "Eliane", "83", "03575-090", "Santa Catarina", Estado.SC);
-//        new Endereco().cadastraEndereco("RUA Vila Viana", "Boa Vista", "205", "60860-660", "Ceara", Estado.CE);
-//        new Endereco().cadastraEndereco("", "Boa Vista", "205", "60860-660", "Ceara", Estado.CE); // deve falhar
-//    }
+     public static void main(String[] args) throws ViaCEPException {
+     Endereco end = new Endereco();
+     end.cadastraEnderecoViaCEP("58052232", "105");
+     Endereco end2 = new Endereco();
+     end2.cadastraEnderecoViaCEP("58020673", "2098");
+     Endereco end3 = new Endereco();
+     end3.cadastraEnderecoViaCEP("41502-280", "21A");
+     end.cadastraEnderecoViaCEP("41502-280", "304C");
+     end.cadastraEnderecoViaCEP("41502-280", "304C");
+    
+     new Endereco().cadastraEndereco("rua São José", "Eliane", "83", "03575-090", "Santa Catarina", Estado.SC);
+     new Endereco().cadastraEndereco("RUA Vila Viana", "Boa Vista", "205", "60860-660", "Ceara", Estado.CE);
+     new Endereco().cadastraEndereco("", "Boa Vista", "205", "60860-660", "Ceara", Estado.CE); // deve falhar
+     }
 
     public static Set<Endereco> getEnderecoLista() {
         return enderecoLista;
@@ -280,7 +294,7 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
 
     @Override
     public String toString() {
-        return "Endereco [Rua:" + rua + ", Bairro: " + bairro + ", Numeração: " + num + ", CEP: " + cep + ", Cidade: " + cidade + ", Estado: " + estado + "]";
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE).concat("\n");
     }
 
 }
