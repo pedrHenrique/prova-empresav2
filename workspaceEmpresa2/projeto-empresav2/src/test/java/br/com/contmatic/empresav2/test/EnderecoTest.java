@@ -61,7 +61,7 @@ public class EnderecoTest {
     }
     
     @Test
-    @org.junit.Ignore
+    @org.junit.Ignore //Ignorado até que o validation factory seja compreendido e implementado nesta classe.
     public void nao_deve_registrar_endereco_naoExistente_peloVIACEP() {
         end = Endereco.cadastraEnderecoViaCEP("47890-078", "1");
     }
@@ -72,9 +72,9 @@ public class EnderecoTest {
     
     @Test 
     public void teste_deveRemover_objeto_passando_CEP_NUM_doObjeto() {
-        Endereco.removeEndereco("62039-245", "A245");
-        assertThat(Endereco.getEnderecoLista().contains(end.solicitaEndereco("62039-245", "A245")), equalTo(false));
-        assertNull(endereco.solicitaEndereco("62039-245", "A245"));
+        Endereco.removeEndereco("62039245", "A245");
+        assertThat(Endereco.getEnderecoLista().contains(endereco.solicitaEndereco("62039245", "A245")), equalTo(false));
+        assertNull(endereco.solicitaEndereco("62039245", "A245"));
     }
     
     @Test 
@@ -83,6 +83,11 @@ public class EnderecoTest {
         Endereco.removeEndereco(end);
         assertThat(Endereco.getEnderecoLista().contains(end), equalTo(false));
         assertNull(endereco.solicitaEndereco("72444-134", "420J"));
+    }
+    
+    @Test 
+    public void naoDeve_tentar_remover_objeto_naoCadastrado() {   
+        Endereco.removeEndereco("000000-000", "00");        
     }
     
     /*

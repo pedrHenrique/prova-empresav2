@@ -38,7 +38,7 @@ public enum Util {
     }
     
     public static String formataCEP(String cep) {
-        cep = cep.replace("\\D", "");
+        cep = cep.replace("\\D-", "");
         cep = cep.substring(0, 5) + "-" + cep.substring(6, 9);
         return cep;
     }

@@ -3,6 +3,7 @@ package br.com.contmatic.empresav2.test;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -97,8 +98,9 @@ public class DepartamentoTest {
 
         for(ConstraintViolation<Departamento> cv : constraintViolations) {
             System.out.println(String.format("Erro Encontrado! propriedade: [%s], value: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage())); //Confirmar se existe uma forma melhor de exbir oq não estiver válido
-            //assertThat(constraintViolations.contains(hasItem(1)), equalTo(true));
         }
+        //assertThat(constraintViolations.contains(hasItem(1)), equalTo(true));
+        assertFalse(constraintViolations.isEmpty());
     }
     
     @Test
@@ -108,9 +110,6 @@ public class DepartamentoTest {
 
         Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(exDepCerto.registraDep(exDepCerto.getIdDepartamento(), exDepCerto.getNome(), exDepCerto.getRamal()));
         assertTrue(constraintViolations.isEmpty());
-//        for(ConstraintViolation<Departamento> cv : constraintViolations) {
-//            System.out.println(String.format("Erro Encontrado! propriedade: [%s], value: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage()));
-//        }
     }
 
     /*
@@ -134,9 +133,11 @@ public class DepartamentoTest {
     }
 
     @Test(expected = VerifyException.class)
-    public void nao_deve_registrar_departamento_com_ID_ja_utilizado() {
+    public void nao_deve_registrar_departamento_com_ID_ou_Ramal_jaUtilizado() {
           //dep.registraDep(1, "Abacate", 155);
-        dep.registraDep(1, "TesteQueDeveSacar", 250);
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(dep.registraDep(1, "TesteQueDeveSacar", 155));
+        assertFalse(constraintViolations.isEmpty());
+        
     }
 
     @Test(expected = NullPointerException.class)

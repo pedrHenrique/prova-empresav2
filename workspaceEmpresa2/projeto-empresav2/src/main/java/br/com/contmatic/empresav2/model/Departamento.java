@@ -58,9 +58,9 @@ public class Departamento {
 
     // Construtores
     public Departamento(long idDepartamento, String nome, int ramal) {
-        setIdDepartamento(idDepartamento);
-        setNome(nome);
-        setRamal(ramal);
+        this.idDepartamento = idDepartamento;
+        this.nome = nome;
+        this.ramal = ramal;
         salvarRegistro(this);
     }
 
@@ -84,9 +84,6 @@ public class Departamento {
 
     private void salvarRegistro(Departamento departamento) {
         verify(!(departamentoLista.contains(departamento)), getIdDepartamento() + " já possui registro\n");
-        if (departamentoLista.contains(departamento)) {
-            System.out.println("Departamento já presente.");
-        }
         departamentoLista.add(departamento);
     }
 
