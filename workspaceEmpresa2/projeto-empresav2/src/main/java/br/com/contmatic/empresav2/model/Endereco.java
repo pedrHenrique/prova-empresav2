@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -66,10 +67,11 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     @NotNull
     @Valid
     private Estado estado;
-    
-    //Variável logger estática que referencia uma instancia de Logger da minha classe
+
+    // Variável logger estática que referencia uma instancia de Logger da minha classe
     private static final Logger logger = LogManager.getLogger(Endereco.class.getName());
-    
+
+    @NotEmpty
     private static Set<Endereco> enderecoLista = new HashSet<>();
     // Map Regras.
     // Chaves Não Podem ser repetidas.
@@ -84,10 +86,9 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
      * @param num Numero da sua residência
      * @param cep Seu CEP
      * @param cidade Nome da sua cidade
-     * @param estado O estado informado atráves da classe Estados.
-     * <br>Exemplo:
-     * <code>Estado.(O seu Estado)</code>
-     *    
+     * @param estado O estado informado atráves da classe Estados. <br>
+     *        Exemplo: <code>Estado.(O seu Estado)</code>
+     * 
      */
     public Endereco(String rua, String bairro, String num, String cep, String cidade, Estado estado) {
         this.rua = rua.replaceAll(("^[Rr][Uu][Aa] "), "");
@@ -128,86 +129,20 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     /**
      * Registra endereco se o mesmo já não existir dentro da lista de enderecos cadastrados
      *
-     * @param end O endereço passado.
+     * @param end - O endereço passado.
      */
     private void registraEndereco(Endereco end) {
-        try {
-            verify(!(enderecoLista.contains(end))); // Verifique se o enderecoLista já não contem esse tipo de objeto
-        } catch (VerifyException e) {
-            logger.error("Este endereço:\n" + end + "já está cadastrado. Insira um endereço alternativo, ou verifique se vc digitou a numeração correta.\n");            
-            return; // Return sai do método sem executar o restande dele.
-        }
-        enderecoLista.add(end);
+        verify(!(getEnderecoLista().contains(end)), "Este endereço:\n" + end + "já está cadastrado. Insira um endereço alternativo, ou verifique se vc digitou a numeração correta.\n"); // Verifique se o enderecoLista já não contem esse tipo de objeto
+        getEnderecoLista().add(end);
         logger.info("Endereco Cadastrado", end.toString());
 
     }
-
-    /**
-     * Remove endereco com base em um CEP e a numeração da residência.
-     *
-     * @param cep, utilizado para descobrir a localização da residência
-     * @param numero, numero utilizado para descobrir qual a residência daquele endereço deve ser removida
-     */
-    public static void removeEndereco(String cep, String numero) {
-        Endereco obj = new Endereco().solicitaEndereco(cep, numero);
-        checkArgument(obj == null, "O endereço que tentou remover não existe");
-        try { // Talve esse try seja desnecessário
-            getEnderecoLista().remove(obj);
-        } catch (IllegalArgumentException ie) {
-            logger.error("Algo deu errado.... É possível que alguém já tenha removido esse endereço");
-        }
-
-    }
-
-    /**
-     * Método alternativo de remoção de Endereco.
-     *
-     * @param endereco, você pode fornecer o próprio objeto que deseja remover.
-     */
-    public static void removeEndereco(Endereco endereco) {
-        try {
-            checkArgument(getEnderecoLista().contains(endereco));
-            getEnderecoLista().remove(endereco);
-        } catch (IllegalArgumentException ie) {
-            //ie.printStackTrace();
-            logger.error("O Endereço que tentou remover não existe");
-        }
-    }
-
-    /**
-     * Solicita endereco irá procurar dentro da lista de Enderecos pelo cep e número fornecido.
-     * 
-     *
-     * @param cep Ex.: 03575090 ou 03575-090
-     * @param numero - O Número da sua residência Ex.: 406, 2091, 107A, 1017B.
-     * 
-     * @return Caso a função tenha encontrado o endereço solicitado, ela retornará ele.<br>
-     *         Caso ela não tenha o encontrado, ela retornará null.
-     */
-    public Endereco solicitaEndereco(String cep, String numero) {
-        Iterator<Endereco> iterator = getEnderecoLista().iterator();
-        cep = Util.formataCEP(cep);
-        Endereco obj = new Endereco();
-
-        while (iterator.hasNext() && (obj.getCep() != cep && obj.getNumero() != numero)) {
-            obj = iterator.next();
-        }
-        
-        try {
-            checkArgument(obj.getCep().equals(cep) && obj.getNumero().equals(numero));
-            return obj;
-        } catch (IllegalArgumentException | NullPointerException ie) { //O NullPointer pode ser gerado caso a lista esteja vazia na hora da busca, 
-//            ie.printStackTrace();
-            logger.error("O Endereço solicitado não foi encontrado ou não existe\n");
-            return null;
-        }
-    }
-
+    
     /**
      * Busca e verifica se seu endereço existe nos registros do VIACEP. <br>
      * Está é a forma recomendada e mais prática de cadastrar seu endereco.
      *
-     * @param cep Ex.: 03575090
+     * @param cep - Ex.: 03575090
      * @param numero - O Número da sua residência Ex.: 406, 2091, 107A, 1017B.
      * @throws ViaCEPException caso o CEP não seja encontrado
      */
@@ -223,10 +158,6 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
         return new Endereco(viaCEP.getLogradouro(), viaCEP.getBairro(), numero, viaCEP.getCep(), viaCEP.getLocalidade(), viaCEP.getUf());
     }
 
-    public Endereco alteraEndereco(String cep) {
-        throw new NotImplementedException("Método ainda não implementado");
-    }
-
     /**
      * Cadastra o endereco inserido. <br>
      * Método alternativo caso o VIACEP pare de funcionar eventualmente.
@@ -234,13 +165,76 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
      * @param rua - Ex.: Alameda dos Cisnes
      * @param bairro - Ex.: Vila Jardim Vitória
      * @param numero - O Número da sua residência
-     * @param cep - Ex.: 74865355 (<b> Sem o traço </b>)
+     * @param cep - Ex.: 74865355 ou 74865-355
      * @param cidade - Ex.: Goiânia
      * @param estado - Ex.: GO
      * @return retorna o objeto Endereco.
      */
     public static Endereco cadastraEndereco(String rua, String bairro, String numero, String cep, String cidade, Estado estado) {
         return new Endereco(rua, bairro, numero, cep, cidade, estado);
+    }
+    
+    /**
+     * Solicita endereco irá procurar dentro da lista de Enderecos pelo cep e número fornecido.
+     * 
+     *
+     * @param cep - Ex.: 03575090 ou 03575-090
+     * @param numero - O Número da sua residência Ex.: 406, 2091, 107A, 1017B.
+     * 
+     * @return Caso a função tenha encontrado o endereço solicitado, ela retornará ele.<br>
+     *         Caso ela não tenha o encontrado, ela retornará null.
+     */
+    public Endereco solicitaEndereco(String cep, String numero) {
+        Iterator<Endereco> iterator = getEnderecoLista().iterator();
+        Endereco obj = new Endereco();
+
+        cep = Util.formataCEP(cep);
+        while (iterator.hasNext() && (obj.getCep() != cep && obj.getNumero() != numero)) {
+            obj = iterator.next();
+        }
+        try {
+            checkArgument(obj.getCep().equals(cep) && obj.getNumero().equals(numero));
+            return obj;
+        } catch (IllegalArgumentException | NullPointerException ie) { // O NullPointer pode ser gerado caso a lista esteja vazia na hora da busca e o objeto obtido esteja nulo.
+            ie.printStackTrace();
+            logger.error("O Endereço solicitado não foi encontrado ou não existe\n");
+            return null;
+        }
+    }
+
+    /**
+     * Remove endereco com base em um CEP e a numeração da residência.
+     *
+     * @param cep - utilizado para descobrir a localização da residência
+     * @param numero - numero utilizado para descobrir qual a residência daquele endereço deve ser removida
+     */
+    public static void removeEndereco(String cep, String numero) {
+        Endereco obj = new Endereco().solicitaEndereco(cep, numero);
+
+        checkNotNull(obj, "O endereço que tentou remover não existe"); // O objeto recebido de solicitaEndereco, não deve ser nulo
+
+        // Caso o retorno não tenha sido nulo, o objeto esperado foi encontrado.
+        try {
+            getEnderecoLista().remove(obj);
+        } catch (IllegalArgumentException ie) {
+            logger.error("Algo deu errado.... É possível que alguém já tenha removido esse endereço");
+        }
+
+    }
+
+    /**
+     * Método alternativo de remoção de Endereco.
+     *
+     * @param endereco - você pode fornecer o próprio objeto que deseja remover.
+     */
+    public static void removeEndereco(Endereco endereco) {
+        try {
+            checkArgument(getEnderecoLista().contains(endereco));
+            getEnderecoLista().remove(endereco);
+        } catch (IllegalArgumentException ie) {
+            // ie.printStackTrace();
+            logger.error("O Endereço que tentou remover não existe");
+        }
     }
 
     // Getters and Setters
@@ -266,7 +260,7 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     }
 
     public void setNumero(String numero) {
-        
+
         this.num = numero;
     }
 

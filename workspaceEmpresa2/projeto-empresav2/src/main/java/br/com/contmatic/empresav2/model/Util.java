@@ -37,9 +37,20 @@ public enum Util {
         return cpf;
     }
     
+    
+    /**
+     * Formata CEP formatará o cep recebido para o Padrão Ex.:"00000-000"<br>
+     * Ele também verificará se o CEP obtido atrávês da formatação, condiz
+     * com o formato padrão esperado.
+     *
+     * @param cep - Podendo estar apenas com os números, ou separado com o hífen 
+     * @return o CEP já formatado
+     * @throws IllegalArgumentException Caso o cep formatado não esteja no padrão esperado "00000-000".
+     */
     public static String formataCEP(String cep) {
-        cep = cep.replace("\\D-", "");
-        cep = cep.substring(0, 5) + "-" + cep.substring(6, 9);
+        cep = cep.replaceAll("[\\D-]+", "");
+        cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
+        checkArgument(cep.length() == 9, "Esté CEP inserído, não é válido.");
         return cep;
     }
     

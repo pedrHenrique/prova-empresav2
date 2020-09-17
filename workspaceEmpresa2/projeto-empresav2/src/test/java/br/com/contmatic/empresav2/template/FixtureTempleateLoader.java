@@ -21,7 +21,7 @@ public class FixtureTempleateLoader implements TemplateLoader {
 
     private static final String[] NOMES = {"Claudia Vasconcelos Pinto", "Eduardo Araujo Ribeiro", "Sofia Dantas", "Danton Camargo", "Bárbara Luz", "Jônatas Oséias Amós Tomás"}; 
     private static final String[] CPF = {"78964260058", "74967040080", "79641635077", "39687447052", "13690061016", "47782562040"}; 
-    private static final String[] CEP = {"76963-731", "63038-270", "57084-818", "96835-712", "65091-223", "64022-240", "68513-603", "77814-190"}; //ceps gerador a partir do 4devs
+    private static final String[] CEP = {"76963-731", "63038-270", "57084-818", "96835-712", "65091-223", "64022-240", "68513-603", "77814-190"}; //TODO Existe a possibilidade de um cep repetido ser utilizado, se atentar a isso num futuro próximo
     private static final String[] NOMESDEP = {"Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"}; //tem um nome aqui com erro
     private static final String[] NOMESEMP = {"Yahoo!", "AMD", "Clube do Hardware", "Dafiti", "Tifany&CO", "Mercedez-Benz", "Amazon.com, Itaú", "HLC"};
     private static final String[] CNPJS = {"71420773000175", "08887547000162", "10000944000112", "34237642000120", "14628526000125", "61589319000199"};
@@ -37,22 +37,22 @@ public class FixtureTempleateLoader implements TemplateLoader {
             {
             add("idDepartamento", uniqueRandom(10L, 299L)); //Os primeiros 10 serão exclusivos.
             add("nome", NOMESDEP[new Random().nextInt(NOMESDEP.length)]);
-            add("ramal", random(Integer.class, range(1, 999)));
+            add("ramal", uniqueRandom(1, 999)); //TODO Ramal deveria ser uniqueRandom, porém o fixture apresenta erro quando iniciamos ele assim.
         }});
         
         Fixture.of(Departamento.class).addTemplate("invalido", new Rule(){ //para testes
             
             //Departamentos com valores inválidos
             {
-            add("idDepartamento", random(Long.class, range(300L, 500L))); 
+            add("idDepartamento", uniqueRandom(300L, 500L)); 
             add("nome", random("PRËMØNÏÇÃØ", "_¢8²¹²³²7!|øYžÕ#b", "[][][][]][", "チキンパステル", "ロロノア・ゾロ ","             "));
-            add("ramal", random(Integer.class, range(999L, 2000L)));
+            add("ramal", uniqueRandom(999, 2000));
         }});
         
         Fixture.of(Empresa.class).addTemplate("valido", new Rule(){ //para testes
             //Exemplo empresa com valores válidos
             {
-            add("idEmpresa", random(Long.class, range(10L, 499L))); 
+            add("idEmpresa", uniqueRandom(Long.class, range(10L, 499L))); 
             add("nome", NOMESEMP[new Random().nextInt(NOMESEMP.length)]);
             add("cnpj", CNPJS[new Random().nextInt(CNPJS.length)]);
             add("cep", CEP [new Random().nextInt(CEP.length)]);
@@ -64,7 +64,7 @@ public class FixtureTempleateLoader implements TemplateLoader {
         Fixture.of(Funcionario.class).addTemplate("valido", new Rule(){ //para testes
             //Exemplo Funcionario Com valores válidos
             {
-            add("idFuncionario", random(Long.class, range(10L, 3000L))); 
+            add("idFuncionario", uniqueRandom(Long.class, range(10L, 3000L))); 
             add("nome", NOMES[new Random().nextInt(NOMES.length)]);
             add("cpf", /*random(*/CPF[new Random().nextInt(CPF.length)]/*)*/);
             //add("cep", CEP[new Random().nextInt(CEP.length)]);

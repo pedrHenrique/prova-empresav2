@@ -2,6 +2,8 @@ package br.com.contmatic.empresav2.test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -22,10 +24,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
-import com.google.common.base.VerifyException;
 
 import static org.apache.log4j.BasicConfigurator.configure;
 
@@ -85,6 +86,17 @@ public class DepartamentoTest {
     }
     
     
+    /**
+     * Método de auxílio que exibe Validations que foram infringidas no decorer de um teste específico.
+     *
+     * @param constraintViolations - A lista contendo todas as infrações que foram recebidas pelo validator.
+     */
+    public void exibeConstrains(Set<ConstraintViolation<Departamento>> constraintViolations) {
+        for(ConstraintViolation<Departamento> cv : constraintViolations) {
+            System.out.println(String.format("Constrain infringida! atributo: [%s], valor: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage())); //Confirmar se existe uma forma melhor de exbir oq não estiver válido
+        }
+    }
+    
     /*
      * Seção de testes sobre Validation
      */
@@ -95,12 +107,8 @@ public class DepartamentoTest {
         exDepErrado = Fixture.from(Departamento.class).gimme("invalido");
                                                                                                                                                     // NotBlank não permite registrar nomes com (             )
         Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(exDepErrado.registraDep(exDepErrado.getIdDepartamento(), exDepErrado.getNome(), exDepErrado.getRamal()));
-
-        for(ConstraintViolation<Departamento> cv : constraintViolations) {
-            System.out.println(String.format("Erro Encontrado! propriedade: [%s], value: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage())); //Confirmar se existe uma forma melhor de exbir oq não estiver válido
-        }
-        //assertThat(constraintViolations.contains(hasItem(1)), equalTo(true));
-        assertFalse(constraintViolations.isEmpty());
+        //assertThat(constraintViolations(hasItem(1)), equalTo(true));
+        assertFalse(constraintViolations.isEmpty()); exibeConstrains(constraintViolations);
     }
     
     @Test
@@ -109,7 +117,7 @@ public class DepartamentoTest {
         exDepCerto = Fixture.from(Departamento.class).gimme("valido");
 
         Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(exDepCerto.registraDep(exDepCerto.getIdDepartamento(), exDepCerto.getNome(), exDepCerto.getRamal()));
-        assertTrue(constraintViolations.isEmpty());
+        assertTrue(constraintViolations.isEmpty()); exibeConstrains(constraintViolations);
     }
 
     /*
@@ -132,17 +140,26 @@ public class DepartamentoTest {
         assertNotNull("O objeto não deveria estar nulo", dep);
     }
 
-    @Test(expected = VerifyException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nao_deve_registrar_departamento_com_ID_ou_Ramal_jaUtilizado() {
-          //dep.registraDep(1, "Abacate", 155);
-        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(dep.registraDep(1, "TesteQueDeveSacar", 155));
-        assertFalse(constraintViolations.isEmpty());
-        
+        dep.registraDep(1, "Abacate", 155);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void nao_deve_registrar_departamento_com_ID_jaUtilizado() {
+        dep.registraDep(1, "Abacate", 467);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void nao_deve_registrar_departamento_com_RAMAL_jaUtilizado() {
+        dep.registraDep(dep.getIdDepartamento(), "Abacate", 155);
     }
 
     @Test(expected = NullPointerException.class)
     public void nao_deve_criar_departamento_nulo() {
         dep = new Departamento(NULLONG, NULLSTR, NULLINT);
+        //Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(dep);
+        //assertFalse(constraintViolations.isEmpty());
     }
 
     /*
@@ -151,16 +168,31 @@ public class DepartamentoTest {
 
     @Test
     public void deve_remover_objeto_ja_existente_daCollection_com_sucesso() {
-        // Registra para depois remover
+        // Este Teste as vezes eventualmente falha... Não sei o motivo por enquanto.
         dep.registraDep(dep.getIdDepartamento(), dep.getNome(), dep.getRamal());
         departamento.removeDep(dep.getIdDepartamento());
         assertThat("O departamento não deve estar registrado", Departamento.getDepartamentoLista().contains(dep), equalTo(false));
 
     }
+    
+    @Test
+    public void deve_remover_objeto_com_sucesso_metodo_alternativo() {
+        // Este Teste as vezes eventualmente falha... Não sei o motivo por enquanto.
+        dep.registraDep(dep.getIdDepartamento(), dep.getNome(), dep.getRamal());
+        Departamento.removeDep(dep);
+        assertThat("O departamento não deve estar registrado", Departamento.getDepartamentoLista().contains(dep), equalTo(false));
 
-    @Test(expected = VerifyException.class)
+    }
+
+    @Test(expected = NullPointerException.class)
     public void nao_deve_remover_departamento_nao_existente() {
         dep.removeDep(1050);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void nao_deve_remover_departamento_nao_existente_metodo_alternativo() {
+        Departamento depVazio = new Departamento();
+        Departamento.removeDep(depVazio);
     }
 
     /*
@@ -174,9 +206,9 @@ public class DepartamentoTest {
         assertNotNull("Esperava receber um objeto", dep.solicitaDep(3));
     }
 
-    @Test(expected = VerifyException.class)
-    public void nao_deve_retornar_departamento_nao_existente() {
-        dep.solicitaDep(1050);
+    @Test
+    public void deve_retornar_null_casoDepartamento_solicitado_naoFor_existente() {
+        assertThat("O retorno deveria ter sido nulo",dep.solicitaDep(1050), is(equalTo(null)));
     }
 
     /*
@@ -186,65 +218,113 @@ public class DepartamentoTest {
     @Test
     public void teste_setId_e_getId_corretos() {
         departamento.setIdDepartamento(dep.getIdDepartamento());
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateValue(Departamento.class, "idDepartamento", dep.getIdDepartamento());
         assertThat("Os valores deveriam ser iguais: ", departamento.getIdDepartamento(), equalTo(dep.getIdDepartamento()));
+        assertThat(constraintViolations.isEmpty(), equalTo(true)); exibeConstrains(constraintViolations);
     }
 
+    @Ignore //ignorado até descobrir forma de como testar os nulos
     @Test(expected = NullPointerException.class)
     public void setIdDepartamento_nao_deve_aceitar_valores_nulos() {
         dep.setIdDepartamento(NULLONG);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void setIdDepartamento_nao_deve_aceitar_valores_vazios() {
+    @Test
+    public void IdDepartamento_nao_deve_aceitar_valores_vazios() {
         dep.setIdDepartamento(EMPTYLONG);
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateValue(Departamento.class, "idDepartamento", dep.getIdDepartamento());        
+        assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void setIdDepartamento_nao_deve_aceitar_valores_incorretos() {
+    @Test
+    public void IdDepartamento_nao_deve_aceitar_valores_negativos() {
         dep.setIdDepartamento(-5);
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateValue(Departamento.class, "idDepartamento", dep.getIdDepartamento());        
+        assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);
+    }
+    
+    @Test
+    public void IdDepartamento_nao_deve_aceitar_valores_maiores_queTrecentos() {
+        dep.setIdDepartamento(301);
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateValue(Departamento.class, "idDepartamento", dep.getIdDepartamento());        
+        assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);
     }
 
     @Test
-    public void teste_setNome_e_getNome_corretos() {
+    public void teste_setNome_e_getNome() {
         departamento.setNome(dep.getNome());
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateValue(Departamento.class, "nome", dep.getNome());
         assertThat("Os valores deveriam ser iguais: ", departamento.getNome(), equalTo(dep.getNome())); // recebemos/esperado
+        assertThat(constraintViolations.isEmpty(), equalTo(true)); exibeConstrains(constraintViolations);
     }
 
-    @Test(expected = NullPointerException.class)
-    public void setNome_nao_deve_aceitar_valor_nulo() {
+    @Ignore
+    @Test//(expected = NullPointerException.class)
+    public void setNome_nao_deve_aceitar_valor_nulo() { //TODO refatorar este teste.
         dep.setNome(NULLSTR);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void setNome_nao_deve_aceitar_valor_vazio() {
-        dep.setNome(EMPTYSTR);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void setNome_nao_deve_aceitar_caracteres_especiais() {
-        dep.setNome("¥$Õ¨¬Q@#%");
+        Set<ConstraintViolation<Departamento>> constraintViolations = null;
+        try {
+            constraintViolations = validator.validateValue(Departamento.class, "nome", dep.getNome());  
+        } catch (NullPointerException e) {
+            assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);
+        }
+              
+        
     }
 
     @Test
-    public void teste_setRamal_e_getRamal_corretos() {
+    public void Nome_nao_deve_aceitar_valor_vazio() {
+        dep.setNome(EMPTYSTR);
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateValue(Departamento.class, "nome", dep.getNome());        
+        assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);
+        
+    }
+
+    @Test
+    public void Nome_nao_deve_aceitar_caracteres_especiais() {
+        dep.setNome("¥$Õ¨¬Q@#%");
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateValue(Departamento.class, "nome", dep.getNome());        
+        assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);
+    }
+    
+    @Test
+    public void Nome_deveGerar_constrain_recebendo_nomes_enormes() {
+        dep.setNome("NOMEDEPARTAMENTOEXEMPLOTESTENOMEMUITOGRANDEMESMO");
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateValue(Departamento.class, "nome", dep.getNome());        
+        assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);
+    }
+
+    @Test
+    public void teste_setRamal_e_getRamal() {
         departamento.setRamal(dep.getRamal());
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateValue(Departamento.class, "ramal", dep.getRamal());  
         assertThat("Os valores deveriam ser iguais: ", departamento.getRamal(), equalTo(dep.getRamal()));
+        assertThat(constraintViolations.isEmpty(), equalTo(true)); exibeConstrains(constraintViolations);
+        
     }
 
+    @Ignore
     @Test(expected = NullPointerException.class)
-    public void setRamal_nao_deve_aceitar_valores_nulos() {
+    public void Ramal_nao_deve_aceitar_valores_nulos() { //TODO Teste precisa ser refatorado.
         dep.setRamal(NULLINT);
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateProperty(dep, "ramal");        
+        assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void setRamal_nao_deve_aceitar_valores_vazios() {
+    @Test
+    public void Ramal_deveGerar_constrain_recebendo_valores_vazios() {
         dep.setRamal(EMPTYINT);
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateValue(Departamento.class, "ramal", dep.getRamal());        
+        assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void teste_setRamal_valor_nao_permitidos() {
+    @Test
+    public void Ramal_deveGerar_constrain_recebendo_valores_naoPermitidos() {
         dep.setRamal(-9420);
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateValue(Departamento.class, "ramal", dep.getRamal());        
+        assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);
     }
+    
 
     /*
      * Está seção de testes tem o intuito de testar os métodos de listagem
@@ -265,35 +345,22 @@ public class DepartamentoTest {
     /**
      * Teste Específico: Não Registra nome apenas com espaços em branco.
      */
-    @Test(expected = IllegalArgumentException.class)
-    public void nao_deve_registra_nome_com_espacos_emBranco() {
-        dep.registraDep(4, "                ", 99);
+    @Test
+    public void deve_gerarConstrain_seRegistrar_nome_com_espacos_emBranco() {        
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(dep.registraDep(4, "                ", 99));        
+        assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);
     }
 
     /**
      * Teste Específico: Não Registra nome que apresente números.
      */
-    @Test(expected = IllegalArgumentException.class)
-    public void nao_deve_registra_nome_com_numeros() {
-        dep.registraDep(5, "Cleber4578Araujo", 405);
+    @Test
+    public void deve_gerarConstrain_seRegistrar_nome_comNumeros() {
+        Set<ConstraintViolation<Departamento>> constraintViolations = validator.validate(dep.registraDep(5, "Cleber4578Araujo", 405));        
+        assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);
+        
     }
     
-    @Test
-    public void bigBrainTest() {
-        dep.registraDep(99, "Junior1", 205);
-        dep.registraDep(100, "Junior2", 206);
-        dep.registraDep(101, "Junior3", 206);
-        departamento.listarDepartamentos();
-        departamento.removeDep(3);
-        departamento.removeDep(100);
-        departamento.removeDep(1);
-        departamento.removeDep(99);
-        departamento.removeDep(101);
-        departamento.removeDep(2);
-        System.out.println("Depois de excluir");
-        departamento.listarDepartamentos();
-    }
-
     // @Test // (expected = IllegalArgumentException.class)
     // public void teste_notifica_annotation_validator_lista_incorreto() {
     // System.out.println("Testes Iniciais de ValidatorFactory:");

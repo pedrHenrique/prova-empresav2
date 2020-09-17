@@ -1,6 +1,8 @@
 package br.com.contmatic.empresav2.test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -95,9 +97,11 @@ public class EnderecoTest {
      */
     
     @Test 
-    public void deve_buscar_Endereco_eRetornar_ele() {
-        end = Endereco.cadastraEnderecoViaCEP("28245-970", "558");        
-        assertNotNull(endereco.solicitaEndereco("28245-970", "558"));
+    public void deve_buscar_endereco_cadastrado_eRetornar_ele() {        
+        end = Endereco.cadastraEndereco("Cleber", "Jardim Juvêncio", "207", "37701-047", "Sobral", Estado.AP);
+        //assertNotNull(endereco.solicitaEndereco("37701-047", "207")); Ficou mais simples, porém não há feedback do poq o teste falhou.
+        assertThat("O Endereço retornado não deveria ter sido nulo", endereco.solicitaEndereco("37701-047", "207"), is(not(equalTo(null)))); //teste assim ficou mais robusto, porém com menor
+        assertThat("Os Endereços comparados deveriam ser iguais", endereco.solicitaEndereco("37701047", "207").equals(end), equalTo(true)); // legibilidade
     }
     
     /*

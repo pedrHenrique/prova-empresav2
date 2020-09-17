@@ -47,15 +47,9 @@ public class Funcionario {
     @NotEmpty(message = "CPF não pode ficar vázio")
     @CPF
     private String cpf;
-
-    // Cep não pode ser vazio e deve sempre ter o valor mínimo de 8 caracteres
-    /*
-     * @NotBlank
-     * 
-     * @Min(8)
-     * 
-     * @Pattern(regexp = "[\\D-]") // Testar Futuramente
-     */
+    
+    @NotEmpty
+    @Valid
     private Endereco endereco;
 
     // Email possui sua própria annotation, tamanho, expressão regular, e não deve estar vazio
