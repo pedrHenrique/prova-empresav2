@@ -74,9 +74,9 @@ public class EnderecoTest {
     
     @Test 
     public void teste_deveRemover_objeto_passando_CEP_NUM_doObjeto() {
-        Endereco.removeEndereco("62039245", "A245");
-        assertThat(Endereco.getEnderecoLista().contains(endereco.solicitaEndereco("62039245", "A245")), equalTo(false));
-        assertNull(endereco.solicitaEndereco("62039245", "A245"));
+        end.removeEndereco("62039245", "A245");
+        assertThat(Endereco.getEnderecoLista().contains(Endereco.solicitaEndereco("62039245", "A245")), equalTo(false));
+        assertNull(Endereco.solicitaEndereco("62039245", "A245"));
     }
     
     @Test 
@@ -84,12 +84,7 @@ public class EnderecoTest {
         end = Endereco.cadastraEnderecoViaCEP("72444-134", "420J");
         Endereco.removeEndereco(end);
         assertThat(Endereco.getEnderecoLista().contains(end), equalTo(false));
-        assertNull(endereco.solicitaEndereco("72444-134", "420J"));
-    }
-    
-    @Test 
-    public void naoDeve_tentar_remover_objeto_naoCadastrado() {   
-        Endereco.removeEndereco("000000-000", "00");        
+        assertNull(Endereco.solicitaEndereco("72444-134", "420J"));
     }
     
     /*
@@ -100,8 +95,8 @@ public class EnderecoTest {
     public void deve_buscar_endereco_cadastrado_eRetornar_ele() {        
         end = Endereco.cadastraEndereco("Cleber", "Jardim Juvêncio", "207", "37701-047", "Sobral", Estado.AP);
         //assertNotNull(endereco.solicitaEndereco("37701-047", "207")); Ficou mais simples, porém não há feedback do poq o teste falhou.
-        assertThat("O Endereço retornado não deveria ter sido nulo", endereco.solicitaEndereco("37701-047", "207"), is(not(equalTo(null)))); //teste assim ficou mais robusto, porém com menor
-        assertThat("Os Endereços comparados deveriam ser iguais", endereco.solicitaEndereco("37701047", "207").equals(end), equalTo(true)); // legibilidade
+        assertThat("O Endereço retornado não deveria ter sido nulo", Endereco.solicitaEndereco("37701-047", "207"), is(not(equalTo(null)))); //teste assim ficou mais robusto, porém com menor
+        assertThat("Os Endereços comparados deveriam ser iguais", Endereco.solicitaEndereco("37701047", "207").equals(end), equalTo(true)); // legibilidade
     }
     
     /*

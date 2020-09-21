@@ -34,7 +34,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.message.Message;
 import org.apache.logging.log4j.LogManager;
 
-// Classe Endereco Será futuramente trabalhada de melhor forma...
+
 public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
 
     // Variáveis
@@ -70,9 +70,11 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
 
     // Variável logger estática que referencia uma instancia de Logger da minha classe
     private static final Logger logger = LogManager.getLogger(Endereco.class.getName());
+    
+    private static final String NA = "Não Cadastrado";
 
     @NotEmpty
-    private static Set<Endereco> enderecoLista = new HashSet<>();
+    private static Set<@NotEmpty Endereco> enderecoLista = new HashSet<>();
     // Map Regras.
     // Chaves Não Podem ser repetidas.
 
@@ -87,7 +89,7 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
      * @param cep Seu CEP
      * @param cidade Nome da sua cidade
      * @param estado O estado informado atráves da classe Estados. <br>
-     *        Exemplo: <code>Estado.(O seu Estado)</code>
+     *        Exemplo: <code> Estado.<"SeuEstado"> </code>
      * 
      */
     public Endereco(String rua, String bairro, String num, String cep, String cidade, Estado estado) {
@@ -119,9 +121,14 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
         this.estado = Estado.formata(estado);
         registraEndereco(this);
     }
-
+    
     public Endereco() {
-
+        this.rua = NA;
+        this.bairro = NA;
+        this.num = NA;
+        this.cep = NA;
+        this.cidade = NA;
+        this.estado = Estado.NA;
     }
 
     // Métodos
@@ -134,7 +141,8 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     private void registraEndereco(Endereco end) {
         verify(!(getEnderecoLista().contains(end)), "Este endereço:\n" + end + "já está cadastrado. Insira um endereço alternativo, ou verifique se vc digitou a numeração correta.\n"); // Verifique se o enderecoLista já não contem esse tipo de objeto
         getEnderecoLista().add(end);
-        logger.info("Endereco Cadastrado", end.toString());
+        logger.debug("Endereco Cadastrado", end.toString());
+        System.out.println(end.toString());
 
     }
     
@@ -148,7 +156,7 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
      */
     public static Endereco cadastraEnderecoViaCEP(String cep, String numero) {
         ViaCEP viaCEP = new ViaCEP();
-
+        //Rua Mangericão 83 Jardim Eliane 
         try {
             viaCEP.buscar(cep.replaceAll("\\D", ""));
         } catch (Exception viaCEPException) {
@@ -175,7 +183,7 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     }
     
     /**
-     * Solicita endereco irá procurar dentro da lista de Enderecos pelo cep e número fornecido.
+     * Método utilizado para buscar um endereço que já tenha sido registrado na classe.
      * 
      *
      * @param cep - Ex.: 03575090 ou 03575-090
@@ -184,7 +192,7 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
      * @return Caso a função tenha encontrado o endereço solicitado, ela retornará ele.<br>
      *         Caso ela não tenha o encontrado, ela retornará null.
      */
-    public Endereco solicitaEndereco(String cep, String numero) {
+    public static Endereco solicitaEndereco(String cep, String numero) {
         Iterator<Endereco> iterator = getEnderecoLista().iterator();
         Endereco obj = new Endereco();
 
@@ -208,9 +216,10 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
      * @param cep - utilizado para descobrir a localização da residência
      * @param numero - numero utilizado para descobrir qual a residência daquele endereço deve ser removida
      */
-    public static void removeEndereco(String cep, String numero) {
-        Endereco obj = new Endereco().solicitaEndereco(cep, numero);
-
+    public void removeEndereco(String cep, String numero) {
+        Endereco obj = solicitaEndereco(cep, numero);
+        
+        
         checkNotNull(obj, "O endereço que tentou remover não existe"); // O objeto recebido de solicitaEndereco, não deve ser nulo
 
         // Caso o retorno não tenha sido nulo, o objeto esperado foi encontrado.
@@ -235,6 +244,10 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
             // ie.printStackTrace();
             logger.error("O Endereço que tentou remover não existe");
         }
+    }
+    
+    public static Endereco naoCadastrado() {        
+        return new Endereco();
     }
 
     // Getters and Setters
@@ -288,6 +301,10 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
         this.estado = estado;
     }
 
+    public static String getNa() {
+        return NA;
+    }
+
     public static Set<Endereco> getEnderecoLista() {
         return enderecoLista;
     }
@@ -314,7 +331,7 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE).concat("\n");
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
 }

@@ -56,8 +56,8 @@ public class Departamento {
         salvaRegistro(this);
     }
 
-    public Departamento() {
-
+    public Departamento() { //Teste
+        this.nome = "Não Cadastrado";  
     }
 
     // Métodos
@@ -89,7 +89,7 @@ public class Departamento {
      * @param id - O ID do departamento.
      * @return O Departamento se encontrado, caso contrário, retornará <b>null</b>
      */
-    public Departamento solicitaDep(long id) {
+    public static Departamento solicitaDep(long id) {
         Iterator<Departamento> iterator = getDepartamentoLista().iterator();
         Departamento obj = new Departamento();
 
@@ -114,7 +114,7 @@ public class Departamento {
      */
     public void removeDep(long id) {
         Departamento obj = solicitaDep(id);
-        checkNotNull(obj, "O Departamento que tentou remover não está cadastrado");
+        checkArgument(obj != null, "O Departamento de ID: " + id + " que você tentou remover não está cadastrado");
         getDepartamentoLista().remove(obj);
         logger.info("Departamento Removido com Sucesso!");
     }
@@ -128,6 +128,10 @@ public class Departamento {
         checkArgument(getDepartamentoLista().contains(departamento), "O Departamento que tentou remover não está cadastrado");
         getDepartamentoLista().remove(departamento);
         logger.info("Departamento Removido com Sucesso!");
+    }
+    
+    public static Departamento naoCadastrado() {        
+        return new Departamento();
     }
 
     // Getters And Setters

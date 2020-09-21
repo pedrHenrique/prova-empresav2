@@ -41,7 +41,8 @@ public enum Estado {
     SC("Santa Catarina"),
     SP("São Paulo"),
     SE("Sergipe"),
-    TO("Tocantins");
+    TO("Tocantins"),
+    NA("Não Informado");
                     
     private static EnumSet<Estado> estadoLista = EnumSet.allOf(Estado.class); // Talvez será uma boa forma de armazenar todas as constantes
     private String descricao; // nome do estado
@@ -63,7 +64,7 @@ public enum Estado {
                 i++;
             }
         } catch (IndexOutOfBoundsException e) { //se chegou nesse ponto, nenhuma UF correspondete foi achada pelo VIACEP
-            return null;
+            throw new IllegalArgumentException("A sigla de estado que você informou não existe");
         }
         verify(list.get(i).name().equals(uf), "UF não encontrada."); //Verificação extra para garantir que a UF certa foi encontrada
         return Enum.valueOf(Estado.class, uf);

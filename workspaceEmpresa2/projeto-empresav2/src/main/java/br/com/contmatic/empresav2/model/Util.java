@@ -33,32 +33,33 @@ public enum Util {
     }
 
     public static String formataCPF(String cpf) {
+        cpf = cpf.replaceAll("[.-]+", "");
+        checkArgument(cpf.length() == 11, "Esté CPF inserído, não é válido.");
         cpf = (cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11));
         return cpf;
+
     }
-    
-    
+
     /**
      * Formata CEP formatará o cep recebido para o Padrão Ex.:"00000-000"<br>
-     * Ele também verificará se o CEP obtido atrávês da formatação, condiz
-     * com o formato padrão esperado.
+     * Ele também verificará se o CEP obtido atrávês da formatação, condiz com o formato padrão esperado.
      *
-     * @param cep - Podendo estar apenas com os números, ou separado com o hífen 
+     * @param cep - Podendo estar apenas com os números, ou separado com o hífen
      * @return o CEP já formatado
      * @throws IllegalArgumentException Caso o cep formatado não esteja no padrão esperado "00000-000".
      */
     public static String formataCEP(String cep) {
         cep = cep.replaceAll("[\\D-]+", "");
+        checkArgument(cep.length() == 8, "Esté CEP inserído, não é válido.");
         cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
-        checkArgument(cep.length() == 9, "Esté CEP inserído, não é válido.");
         return cep;
     }
-    
+
     /**
-     * <h1> DESATIVADO </h1>
+     * <h1>DESATIVADO</h1>
      * 
-     * Formata nome rua removendo qualquer caractere "rua" no nome.
-     * <br> Método criado com a intenção de uso apenas pelas funções internas 
+     * Formata nome rua removendo qualquer caractere "rua" no nome. <br>
+     * Método criado com a intenção de uso apenas pelas funções internas
      *
      * @param rua O nome da sua rua
      * @return O nome da rua sem qualquer caractere "rua" nele

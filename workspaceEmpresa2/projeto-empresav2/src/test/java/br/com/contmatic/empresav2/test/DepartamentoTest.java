@@ -91,7 +91,7 @@ public class DepartamentoTest {
      *
      * @param constraintViolations - A lista contendo todas as infrações que foram recebidas pelo validator.
      */
-    public void exibeConstrains(Set<ConstraintViolation<Departamento>> constraintViolations) {
+    private void exibeConstrains(Set<ConstraintViolation<Departamento>> constraintViolations) {
         for(ConstraintViolation<Departamento> cv : constraintViolations) {
             System.out.println(String.format("Constrain infringida! atributo: [%s], valor: [%s], message: [%s]", cv.getPropertyPath(), cv.getInvalidValue(), cv.getMessage())); //Confirmar se existe uma forma melhor de exbir oq não estiver válido
         }
@@ -176,8 +176,7 @@ public class DepartamentoTest {
     }
     
     @Test
-    public void deve_remover_objeto_com_sucesso_metodo_alternativo() {
-        // Este Teste as vezes eventualmente falha... Não sei o motivo por enquanto.
+    public void deve_remover_objeto_com_sucesso_metodo_alternativo() {        
         dep.registraDep(dep.getIdDepartamento(), dep.getNome(), dep.getRamal());
         Departamento.removeDep(dep);
         assertThat("O departamento não deve estar registrado", Departamento.getDepartamentoLista().contains(dep), equalTo(false));
@@ -201,14 +200,14 @@ public class DepartamentoTest {
 
     @Test // Testando a busca por objetos num HashSet
     public void deve_retornar_objeto_ja_cadastrado() {
-        assertNotNull("Esperava receber um objeto", dep.solicitaDep(1));
-        assertNotNull("Esperava receber um objeto", dep.solicitaDep(2));
-        assertNotNull("Esperava receber um objeto", dep.solicitaDep(3));
+        assertNotNull("Esperava receber um objeto", Departamento.solicitaDep(1));
+        assertNotNull("Esperava receber um objeto", Departamento.solicitaDep(2));
+        assertNotNull("Esperava receber um objeto", Departamento.solicitaDep(3));
     }
 
     @Test
     public void deve_retornar_null_casoDepartamento_solicitado_naoFor_existente() {
-        assertThat("O retorno deveria ter sido nulo",dep.solicitaDep(1050), is(equalTo(null)));
+        assertThat("O retorno deveria ter sido nulo",Departamento.solicitaDep(1050), is(equalTo(null)));
     }
 
     /*
@@ -223,7 +222,7 @@ public class DepartamentoTest {
         assertThat(constraintViolations.isEmpty(), equalTo(true)); exibeConstrains(constraintViolations);
     }
 
-    @Ignore //ignorado até descobrir forma de como testar os nulos
+    @Ignore("ignorado até descobrir forma de como testar os nulos")
     @Test(expected = NullPointerException.class)
     public void setIdDepartamento_nao_deve_aceitar_valores_nulos() {
         dep.setIdDepartamento(NULLONG);
@@ -260,7 +259,7 @@ public class DepartamentoTest {
 
     @Ignore
     @Test//(expected = NullPointerException.class)
-    public void setNome_nao_deve_aceitar_valor_nulo() { //TODO refatorar este teste.
+    public void Nome_deveGerar_constrain_recebendo_valores_nulos() { //TODO refatorar este teste.
         dep.setNome(NULLSTR);
         Set<ConstraintViolation<Departamento>> constraintViolations = null;
         try {
@@ -273,7 +272,7 @@ public class DepartamentoTest {
     }
 
     @Test
-    public void Nome_nao_deve_aceitar_valor_vazio() {
+    public void Nome_deveGerar_constrain_recebendo_valores_vazios() {
         dep.setNome(EMPTYSTR);
         Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateValue(Departamento.class, "nome", dep.getNome());        
         assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);
@@ -281,7 +280,7 @@ public class DepartamentoTest {
     }
 
     @Test
-    public void Nome_nao_deve_aceitar_caracteres_especiais() {
+    public void Nome_deveGerar_constrain_recebendo_caracteres_especiais() {
         dep.setNome("¥$Õ¨¬Q@#%");
         Set<ConstraintViolation<Departamento>> constraintViolations = validator.validateValue(Departamento.class, "nome", dep.getNome());        
         assertThat(constraintViolations, is(not(equalTo(null)))); exibeConstrains(constraintViolations);

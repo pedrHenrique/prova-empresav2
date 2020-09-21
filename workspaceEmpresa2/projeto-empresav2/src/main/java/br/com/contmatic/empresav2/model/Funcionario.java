@@ -25,7 +25,6 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Verify.verify;
 
 //TODO JAutoDoc Funcionario
 public class Funcionario {
@@ -33,6 +32,7 @@ public class Funcionario {
     // Variáveis
 
     // Número máximo de funcionarios é 3000 e seus valores só podem ser positivos
+    
     @Max(value = 3000, message = "Numero máximo de funcionarios não pode ser maior que 3000")
     @Positive(message = "ID não pode ser negativo")
     private long idFuncionario;
@@ -40,50 +40,61 @@ public class Funcionario {
     // Nome não pode estar vazio, possui um tamanho específico, e uma recomendação de expressão regular
     @NotBlank(message = "Campo nome não pode ficar vázio")
     @Length(min = 3, max = 40, message = "Nome não pode ser desse tamanho.")
-    @Pattern(regexp = "regexp = \"[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+", message = "Nome invalido. Recomenda-se mudar")
+    @Pattern(regexp = "[a-zA-ZáéíóúâêîôûãõÁÉÍÓÚÂÊÎÔÛÃÕ ]+", message = "Nome invalido. Recomenda-se mudar")
     private String nome;
 
     // CPF não pode estar vazio e possui seu próprio tipo de annotation
-    @NotEmpty(message = "CPF não pode ficar vázio")
+    @NotBlank(message = "CPF não pode ficar vázio")
     @CPF
     private String cpf;
-    
-    @NotEmpty
+   
+    // Endereco Precisa ser válido, seguindo as regras das annotations de sua classe
     @Valid
     private Endereco endereco;
-
-    // Email possui sua própria annotation, tamanho, expressão regular, e não deve estar vazio
-    @Email
-    @Size(min = 7, max = 50)
-    @Pattern(regexp = ".+@.+\\.[a-z]+", message = "Email Invalido")
-    private String contato;
 
     // tipoContato sempre será um valor de referência presente na classe, portanto ele não poderá ser nulo
     @NotNull
     @Valid
     private Util tipoContato;
 
+    // contato pode ser um telefone, celular, ou até mesmo um email.
+    @Size(min = 7, max = 50)
+    @Pattern(regexp = "[\\w@._()-]+", message = "Contato não permitido. Você pode fornecer tanto um Telefone quanto um email.")
+    private String contato;
+
     // Salario possui um valor mínimo, máximo e sempre deve ser positivo
+   
     @Positive(message = "Salario não pode ser negativo")
-    @NotBlank(message = "Salario não pode estar vazio")
     @Range(min = 1, max = 50000)
     private double salario;
 
     @NotNull
     @Valid
-    private Departamento departamento = new Departamento();
-    private static Collection<Funcionario> funcionarioLista = new HashSet<>();
+    private Departamento departamento;
+    private static Collection<@NotEmpty Funcionario> funcionarioLista = new HashSet<>();
 
     // Construtores
 
-    public Funcionario(long idFuncionario, String nome, String cpf, String cep, String contato, long dep, double salario) {
+//    public Funcionario(long idFuncionario, String nome, String cpf, String contato, long dep, double salario) {
+//        this.idFuncionario = idFuncionario;
+//        this.nome = nome;
+//        this.cpf = Util.formataCPF(cpf);
+//        this.endereco = Endereco.naoCadastrado();
+//        this.contato = Util.formataContato(contato);
+//        this.tipoContato = Util.tipoContato(contato);
+//        this.departamento = buscaDepartamento(Departamento.solicitaDep(dep));
+//        this.salario = salario;
+//        salvaRegistro(this);
+//    }
+
+    public Funcionario(long idFuncionario, String nome, String cpf, String contato, double salario) {
         this.idFuncionario = idFuncionario;
         this.nome = nome;
         this.cpf = Util.formataCPF(cpf);
-        // setCep(cep);
+        this.endereco = Endereco.naoCadastrado();
         this.contato = Util.formataContato(contato);
         this.tipoContato = Util.tipoContato(contato);
-        this.departamento = buscaDepartamento(departamento.solicitaDep(dep));
+        this.departamento = Departamento.naoCadastrado();
         this.salario = salario;
         salvaRegistro(this);
     }
@@ -99,44 +110,79 @@ public class Funcionario {
 
     }
 
-    public Funcionario solicitaFuncionario(long id) {
+    public static Funcionario solicitaFuncionario(long id) {
         Iterator<Funcionario> iterator = getFuncionarioLista().iterator();
         Funcionario obj = new Funcionario();
+
         while (iterator.hasNext() && obj.getIdFuncionario() != id) {
             obj = iterator.next();
         }
-        verify(obj.getIdFuncionario() == id, "O Funcionario com o ID: " + id + " não existe\n");
-        return obj;
 
+        try {
+            checkArgument(obj.getIdFuncionario() == id, "O Funcionario com o ID: " + id + " não existe\n");
+            return obj;
+        } catch (IllegalArgumentException | NullPointerException ie) {
+            // logger.info("O Departamento solicitado não foi encontrado");
+            return null;
+        }
     }
 
-    public Funcionario cadastraFuncionario(long id, String nome, String cpf, String cep, String email, long dep, double salario) {
-        Funcionario fn = new Funcionario(id, nome, cpf, cep, email, dep, salario);
-        return fn;
+    public Funcionario cadastraFuncionario(long id, String nome, String cpf, String contato, double salario) {
+        return new Funcionario(id, nome, Util.formataCPF(cpf), contato, salario);// Ficou desta forma para evitar bugs
+    }
+
+    public void cadastraFuncionarioEndereco(Funcionario funcionario, String cep, String numero) {
+        checkArgument(Funcionario.getFuncionarioLista().contains(funcionario), "Não foi possível encontrar este funcionario");
+        Funcionario.getFuncionarioLista().remove(funcionario);
+        funcionario.endereco = checkNotNull(Endereco.cadastraEnderecoViaCEP(cep, numero), "O Endereco solicitado nao foi encontrado");
+        Funcionario.getFuncionarioLista().add(funcionario);
+        System.out.println(funcionario.toString());
+        // Logger ficaria legal aqui
+    }
+
+    public void cadastraFuncionarioDepartamento(Funcionario funcionario, long idDepartamento) {
+        checkArgument(Funcionario.getFuncionarioLista().contains(funcionario), "Não foi possível encontrar este funcionario");
+        Funcionario.getFuncionarioLista().remove(funcionario);
+        funcionario.departamento = checkNotNull(Departamento.solicitaDep(idDepartamento), "O Departamento solicitado não foi encontrado");
+        Funcionario.getFuncionarioLista().add(funcionario);
+        System.out.println(funcionario.toString());
+        // Logger ficaria legal aqui
     }
 
     public void removeFuncionario(long id) {
-        Iterator<Funcionario> iterator = getFuncionarioLista().iterator();
-        Funcionario obj = new Funcionario();
-
-        while (iterator.hasNext() && obj.getIdFuncionario() != id) {
-            obj = iterator.next();
-        }
-        verify(obj.getIdFuncionario() == id, "Funcionario com o ID: " + id + " não existe\n");
-        iterator.remove();
+        Funcionario obj = solicitaFuncionario(id);
+        checkArgument(obj != null, "O Funcionario de ID: " + id + " que você tentou remover não existe");
+        checkArgument(obj.getIdFuncionario() == id, "Funcionario com o ID: " + id + " não existe\n");
+        getFuncionarioLista().remove(obj);
 
     }
 
     private void salvaRegistro(Funcionario funcionario) {
-        // Analisar melhor depois \/
-        verify(!(funcionarioLista.contains(funcionario)), "O Funcionario: " + getNome() + " de ID: " + getIdFuncionario() + " já possui registro\n");
+        //Lógica abaixo: Se a lista de funcionários NÂO conter o funcionario (hash:CPF) e o funcionario NÃO tiver com o ID já sendo utilizado, então adicione ele na lista.
+        checkArgument(!getFuncionarioLista().contains(funcionario) && !idUtilizado(funcionario), "O Funcionario: " + getNome() + " de CPF: " + getCpf() + " já possui registro\n");
         funcionarioLista.add(funcionario);
+        System.out.println("Funcionario Registrado: " + funcionario.toString());
     }
 
     public Departamento buscaDepartamento(Departamento departamento) { // Está Verificando
         checkArgument(Departamento.getDepartamentoLista().contains(checkNotNull(departamento)), "Este departamento não possui registro\n");
         this.departamento = departamento;
-        return departamento;
+
+        return this.departamento;
+    }
+
+    /**
+     * Está é uma simples função que verifica se o ID inserido já não esteja sendo utilizado por algum outro funcionario.
+     *
+     * @param funcionario - extrai o ID deste objeto.
+     * @return falso caso o ID do funcionario não esteja sendo utilizado.
+     * @throws IllegalArgumentException 
+     *         Caso o ID já esteja sendo utilizado.
+     */
+    private boolean idUtilizado(Funcionario funcionario) {
+        checkArgument(Funcionario.solicitaFuncionario(funcionario.idFuncionario) == null, "O ID " + funcionario.idFuncionario + " já está sendo utilizado");
+
+        return false;
     }
 
     // Getters and Setters
@@ -172,7 +218,7 @@ public class Funcionario {
     public void setCpf(String cpf) {
         // cpf = cpf.replaceAll("\\D", "");
         // checkArgument(cpf.length() == 11, "Digite apenas os números do CPF");
-        this.cpf = Util.formataCPF(cpf);
+        this.cpf = Util.formataCPF(cpf); //intencional
     }
 
     public String getContato() {
@@ -181,7 +227,7 @@ public class Funcionario {
     }
 
     public void setContato(String contato) {
-        this.contato = Util.formataContato(contato);
+        this.contato = Util.formataContato(contato); //intencional
     }
 
     public String getCep() { // Alterar isso depois
@@ -225,7 +271,7 @@ public class Funcionario {
 
     @Override
     public int hashCode() { // Não entendi pq quando dando new, podemos utilizar o append e o hashcode...
-        return new HashCodeBuilder().append(this.idFuncionario).append(this.cpf).hashCode();
+        return HashCodeBuilder.reflectionHashCode(this.cpf.replaceAll("\\D", ""));
     }
 
     @Override
@@ -240,12 +286,12 @@ public class Funcionario {
             return false;
         }
         Funcionario fn = (Funcionario) obj;
-        return new EqualsBuilder().append(this.idFuncionario, fn.idFuncionario).append(this.cpf, fn.cpf).isEquals();
+        return (EqualsBuilder.reflectionEquals(this.idFuncionario, fn.idFuncionario) || EqualsBuilder.reflectionEquals(this.cpf, fn.cpf));
+        // new EqualsBuilder().append(this.idFuncionario, fn.idFuncionario).append(this.cpf, fn.cpf).isEquals();
     }
 
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE).concat("\n");
     }
-
 }

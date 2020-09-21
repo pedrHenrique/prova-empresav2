@@ -19,12 +19,11 @@ import br.com.six2six.fixturefactory.loader.TemplateLoader;
 
 public class FixtureTempleateLoader implements TemplateLoader {
 
+    // -> Descobri que as coisas não são da forma como eu imaginei que fossem...
     private static final String[] NOMES = {"Claudia Vasconcelos Pinto", "Eduardo Araujo Ribeiro", "Sofia Dantas", "Danton Camargo", "Bárbara Luz", "Jônatas Oséias Amós Tomás"}; 
-    private static final String[] CPF = {"78964260058", "74967040080", "79641635077", "39687447052", "13690061016", "47782562040"}; 
     private static final String[] CEP = {"76963-731", "63038-270", "57084-818", "96835-712", "65091-223", "64022-240", "68513-603", "77814-190"}; //TODO Existe a possibilidade de um cep repetido ser utilizado, se atentar a isso num futuro próximo
     private static final String[] NOMESDEP = {"Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"}; //tem um nome aqui com erro
-    private static final String[] NOMESEMP = {"Yahoo!", "AMD", "Clube do Hardware", "Dafiti", "Tifany&CO", "Mercedez-Benz", "Amazon.com, Itaú", "HLC"};
-    private static final String[] CNPJS = {"71420773000175", "08887547000162", "10000944000112", "34237642000120", "14628526000125", "61589319000199"};
+    private static final String[] NOMESEMP = {"Yahoo!", "AMD", "Clube do Hardware", "Dafiti", "Tifany&CO", "Mercedez-Benz", "Amazon.com, Itaú", "HLC"};    
     private static final String[] DATAS = {"25/07/2029", "15/05/1971", "14/04/1959", "24/12/1968", "14/06/1999", "02/02/1990"};
     private static final String[] CONTATOS = {"28211740711", "10749174420", "2558693247", "4448956789", "testeMatic@cont.com", "PhoenixTest@contmatic.com"}; //Telefone/Celular/Email
     private static final String[] ESTADO = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "PA", "PB", "PR", "PE", "PE", "PI", "RJ", "SP", "SE", "TO"};
@@ -36,7 +35,7 @@ public class FixtureTempleateLoader implements TemplateLoader {
             // Departamentos Válidos
             {
             add("idDepartamento", uniqueRandom(10L, 299L)); //Os primeiros 10 serão exclusivos.
-            add("nome", NOMESDEP[new Random().nextInt(NOMESDEP.length)]);
+            add("nome", random("Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"));
             add("ramal", uniqueRandom(1, 999)); //TODO Ramal deveria ser uniqueRandom, porém o fixture apresenta erro quando iniciamos ele assim.
         }});
         
@@ -52,23 +51,23 @@ public class FixtureTempleateLoader implements TemplateLoader {
         Fixture.of(Empresa.class).addTemplate("valido", new Rule(){ //para testes
             //Exemplo empresa com valores válidos
             {
-            add("idEmpresa", uniqueRandom(Long.class, range(10L, 499L))); 
-            add("nome", NOMESEMP[new Random().nextInt(NOMESEMP.length)]);
-            add("cnpj", CNPJS[new Random().nextInt(CNPJS.length)]);
+            add("idEmpresa", random(Long.class, range(10L, 499L))); 
+            add("nome", random("Yahoo!", "AMD", "Clube do Hardware", "Dafiti", "Tifany&CO", "Mercedez-Benz", "Amazon.com, Itaú", "HLC"));
+            add("cnpj", cnpj());
             add("cep", CEP [new Random().nextInt(CEP.length)]);
             //add("dtFundacao", DATAS[new Random().nextInt(DATAS.length)]); //enquanto getDtFundacao tiver tipo de retorno DateTime, está forma do fixture não vai funcionar
-            add("contato", CONTATOS[new Random().nextInt(CONTATOS.length)]);
+            add("contato", random("28211740711", "10749174420", "2558693247", "4448956789", "testeMatic@cont.com", "PhoenixTest@contmatic.com"));
         }});
         
         
         Fixture.of(Funcionario.class).addTemplate("valido", new Rule(){ //para testes
             //Exemplo Funcionario Com valores válidos
             {
-            add("idFuncionario", uniqueRandom(Long.class, range(10L, 3000L))); 
-            add("nome", NOMES[new Random().nextInt(NOMES.length)]);
-            add("cpf", /*random(*/CPF[new Random().nextInt(CPF.length)]/*)*/);
+            add("idFuncionario", random(Long.class, range(20L, 3000L))); 
+            add("nome", random("Claudia Vasconcelos Pinto", "Eduardo Araujo Ribeiro", "Sofia Dantas", "Danton Camargo", "Bárbara Luz", "Jônatas Oséias Amós Tomás")); //old NOMES[new Random().nextInt(NOMES.length)]
+            add("cpf", regex("\\d{11}")); // -> Poderia ser dessa forma também \\d{3}.\\d{3}.\\d{3}-\\d{2}
             //add("cep", CEP[new Random().nextInt(CEP.length)]);
-            add("contato", CONTATOS[new Random().nextInt(CONTATOS.length)]);
+            add("contato", random("28211740711", "10749174420", "2558693247", "4448956789", "testeMatic@cont.com", "PhoenixTest@contmatic.com"));
             add("salario", uniqueRandom(800.00, 2500.00, 1500.00, 4500.00, 6000.00));
             
             
