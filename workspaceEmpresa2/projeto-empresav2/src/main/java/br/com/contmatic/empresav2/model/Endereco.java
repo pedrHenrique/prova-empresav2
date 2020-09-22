@@ -75,8 +75,6 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
 
     @NotEmpty
     private static Set<@NotEmpty Endereco> enderecoLista = new HashSet<>();
-    // Map Regras.
-    // Chaves Não Podem ser repetidas.
 
     // Construtores
 
@@ -139,9 +137,9 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
      * @param end - O endereço passado.
      */
     private void registraEndereco(Endereco end) {
-        verify(!(getEnderecoLista().contains(end)), "Este endereço:\n" + end + "já está cadastrado. Insira um endereço alternativo, ou verifique se vc digitou a numeração correta.\n"); // Verifique se o enderecoLista já não contem esse tipo de objeto
+        checkArgument(!(getEnderecoLista().contains(end)), "Este endereço:\n" + end + "já está cadastrado. Insira um endereço alternativo, ou verifique se vc digitou a numeração correta.\n"); // Verifique se o enderecoLista já não contem esse tipo de objeto
         getEnderecoLista().add(end);
-        logger.debug("Endereco Cadastrado", end.toString());
+        //logger.debug("Endereco Cadastrado", end.toString());
         System.out.println(end.toString());
 
     }
@@ -152,11 +150,11 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
      *
      * @param cep - Ex.: 03575090
      * @param numero - O Número da sua residência Ex.: 406, 2091, 107A, 1017B.
-     * @throws ViaCEPException caso o CEP não seja encontrado
+     * @throws IllegalArgumentException caso o CEP não seja encontrado
      */
     public static Endereco cadastraEnderecoViaCEP(String cep, String numero) {
         ViaCEP viaCEP = new ViaCEP();
-        //Rua Mangericão 83 Jardim Eliane 
+
         try {
             viaCEP.buscar(cep.replaceAll("\\D", ""));
         } catch (Exception viaCEPException) {
@@ -219,8 +217,7 @@ public class Endereco { // Não consegui fazer com que Endereco seja uma ENUM
     public void removeEndereco(String cep, String numero) {
         Endereco obj = solicitaEndereco(cep, numero);
         
-        
-        checkNotNull(obj, "O endereço que tentou remover não existe"); // O objeto recebido de solicitaEndereco, não deve ser nulo
+        checkArgument(obj != null, "O endereço que tentou remover não existe"); // O objeto recebido de solicitaEndereco, não deve ser nulo
 
         // Caso o retorno não tenha sido nulo, o objeto esperado foi encontrado.
         try {

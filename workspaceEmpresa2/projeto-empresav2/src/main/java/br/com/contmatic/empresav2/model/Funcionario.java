@@ -99,8 +99,20 @@ public class Funcionario {
         salvaRegistro(this);
     }
 
+    public Funcionario(long id, String nome, String cpf, String contato, Endereco endereco, Departamento departamento, double salario) {
+        this.idFuncionario = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.contato = contato;
+        this.tipoContato = Util.tipoContato(contato); //testar no futuro se esse método não apresenta problemas
+        this.departamento = departamento;
+        this.salario = salario;
+        salvaRegistro(this);
+    }
+    
     public Funcionario() {
-
+        
     }
 
     // Métodos
@@ -129,7 +141,7 @@ public class Funcionario {
 
     public Funcionario cadastraFuncionario(long id, String nome, String cpf, String contato, double salario) {
         return new Funcionario(id, nome, Util.formataCPF(cpf), contato, salario);// Ficou desta forma para evitar bugs
-    }
+    } //eu preciso arrumar uma forma de remover esse Util.FormataCPF
 
     public void cadastraFuncionarioEndereco(Funcionario funcionario, String cep, String numero) {
         checkArgument(Funcionario.getFuncionarioLista().contains(funcionario), "Não foi possível encontrar este funcionario");
@@ -230,16 +242,10 @@ public class Funcionario {
         this.contato = Util.formataContato(contato); //intencional
     }
 
-    public String getCep() { // Alterar isso depois
-        return endereco.toString();
+    public Endereco getEndereco() { // Alterar isso depois
+        return endereco;
 
     }
-
-    // public void setCep(String cep) { Desativado
-    // cep = checkNotNull(cep.replaceAll("\\D", "")); // Cep deve sair no formato: 03575-090
-    // checkArgument(cep.length() == 8, "Digite apenas os números do CEP");
-    // this.cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
-    // }
 
     public double getSalario() {
         return salario;

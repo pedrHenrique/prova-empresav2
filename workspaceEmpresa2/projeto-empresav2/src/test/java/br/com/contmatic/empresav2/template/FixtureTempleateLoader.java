@@ -34,18 +34,18 @@ public class FixtureTempleateLoader implements TemplateLoader {
         Fixture.of(Departamento.class).addTemplate("valido", new Rule(){
             // Departamentos Válidos
             {
-            add("idDepartamento", uniqueRandom(10L, 299L)); //Os primeiros 10 serão exclusivos.
+            add("idDepartamento", random(Long.class, range(10L, 299L))); //Os primeiros 10 serão exclusivos.
             add("nome", random("Diretória", "Expedição", "Contábil", "Recepção","Segurança", "Qualidade", "Infraestrutura"));
-            add("ramal", uniqueRandom(1, 999)); //TODO Ramal deveria ser uniqueRandom, porém o fixture apresenta erro quando iniciamos ele assim.
+            add("ramal", random(Long.class, range(1, 999))); //TODO Ramal deveria ser uniqueRandom, porém o fixture apresenta erro quando iniciamos ele assim.
         }});
         
         Fixture.of(Departamento.class).addTemplate("invalido", new Rule(){ //para testes
             
             //Departamentos com valores inválidos
             {
-            add("idDepartamento", uniqueRandom(300L, 500L)); 
+            add("idDepartamento", random(Long.class, range(300L, 500L))); 
             add("nome", random("PRËMØNÏÇÃØ", "_¢8²¹²³²7!|øYžÕ#b", "[][][][]][", "チキンパステル", "ロロノア・ゾロ ","             "));
-            add("ramal", uniqueRandom(999, 2000));
+            add("ramal", random(Long.class, range(999, 2000)));
         }});
         
         Fixture.of(Empresa.class).addTemplate("valido", new Rule(){ //para testes
@@ -66,7 +66,7 @@ public class FixtureTempleateLoader implements TemplateLoader {
             add("idFuncionario", random(Long.class, range(20L, 3000L))); 
             add("nome", random("Claudia Vasconcelos Pinto", "Eduardo Araujo Ribeiro", "Sofia Dantas", "Danton Camargo", "Bárbara Luz", "Jônatas Oséias Amós Tomás")); //old NOMES[new Random().nextInt(NOMES.length)]
             add("cpf", regex("\\d{11}")); // -> Poderia ser dessa forma também \\d{3}.\\d{3}.\\d{3}-\\d{2}
-            //add("cep", CEP[new Random().nextInt(CEP.length)]);
+            //add("cep", random("76963-731", "63038-270", "57084-818", "96835-712", "65091-223", "64022-240", "68513-603", "77814-190")); 
             add("contato", random("28211740711", "10749174420", "2558693247", "4448956789", "testeMatic@cont.com", "PhoenixTest@contmatic.com"));
             add("salario", uniqueRandom(800.00, 2500.00, 1500.00, 4500.00, 6000.00));
             
@@ -82,7 +82,7 @@ public class FixtureTempleateLoader implements TemplateLoader {
             add("num", random("4458", "205", "8", "702B", "4089C", "17", "35A", "35B", "701A", "6158", "54a", "54b", "27", "48B", "205", "777")); //O motivo de ter tantas numerações, é para evitar repetição de números.
             add("cep", CEP[new Random().nextInt(CEP.length)]);
             add("cidade", random("Teresina", "Lages", "Cariacica", "Parnamirim", "Florianópolis", "Nova Iguaçu", "Boa Vista", "Campo Grande"));            
-            //add("estado", ESTADO[new Random().nextInt(ESTADO.length)]);
+            add("estado", random(Estado.class));
             //TODO descobrir se o fixture consegue utilizar Enums
             
         }});

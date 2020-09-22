@@ -33,11 +33,9 @@ public enum Util {
     }
 
     public static String formataCPF(String cpf) {
-        cpf = cpf.replaceAll("[.-]+", "");
-        checkArgument(cpf.length() == 11, "Esté CPF inserído, não é válido.");
-        cpf = (cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11));
-        return cpf;
-
+        cpf = cpf.replaceAll("[.-]+", ""); //Remove qualquer tipo de formatação
+        checkArgument(cpf.length() == 11, "Esté CPF inserído, não é válido."); // Verifica se o tamanho correspoonde ao de um CPF
+        return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11); //formata o cpf
     }
 
     /**
@@ -51,8 +49,7 @@ public enum Util {
     public static String formataCEP(String cep) {
         cep = cep.replaceAll("[\\D-]+", "");
         checkArgument(cep.length() == 8, "Esté CEP inserído, não é válido.");
-        cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
-        return cep;
+        return cep.substring(0, 5) + "-" + cep.substring(5, 8);
     }
 
     /**
@@ -88,6 +85,7 @@ public enum Util {
         switch (aux) {
             case 10: // Enum Poderia conter a formatação que acontece dentro desse bloco de código
                 contatoFormato = "(" + contato.substring(0, 2) + ")" + contato.substring(2, 6) + "-" + contato.substring(6);
+                
                 break;
             case 11:
                 contatoFormato = "(" + contato.substring(0, 2) + ")" + contato.substring(2, 7) + "-" + contato.substring(7);
